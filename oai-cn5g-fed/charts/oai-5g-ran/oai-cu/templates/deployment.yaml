@@ -114,6 +114,7 @@ spec:
                 -e s/@AMF_IP_ADDRESS@/$AMF_IP_ADDRESS/g
                 /opt/oai-gnb/etc/cu.conf | tee /tmp/cu.conf;
             exec /opt/oai-gnb/bin/nr-softmodem -O /tmp/cu.conf $USE_ADDITIONAL_OPTIONS;
+
         {{- else}}
         command:
           - /bin/sleep
