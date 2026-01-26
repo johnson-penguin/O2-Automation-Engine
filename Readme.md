@@ -97,7 +97,7 @@ helm install oai-ue . -n johnson-ns
 ## Stop
 
 ```bash=
-helm uninstall oai-cu . -n johnson-ns
-helm uninstall oai-du . -n johnson-ns
-helm uninstall oai-ue . -n johnson-ns
+helm uninstall oai-cu -n johnson-ns
+helm uninstall oai-du -n johnson-ns
+helm uninstall oai-ue -n johnson-ns
 ```
