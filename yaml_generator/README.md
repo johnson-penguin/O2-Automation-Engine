@@ -6,22 +6,22 @@ This directory contains a suite of tools designed to automate the process of "fu
 
 ```text
 yaml_generator/
-├── tool/                  # Core Python scripts
-│   ├── generator_cms.py   # Step 1: LLM-based Change Management System (CMS) generator
-│   ├── apply_changes.py   # Step 2: Applies LLM suggestions to YAML files
-│   ├── multiple_testing.py# Step 3: Automated Batch Testing Runner
-│   └── prompt.md          # System prompt for the LLM
-├── workable_yaml/         # Base "Golden" Valid Configurations (CU/DU/UE)
-└── output/                # Generated Artifacts
-    ├── cms/               # Intermediate JSON Modification Requests
-    └── yaml/              # Final Accessible Helm Value Files
+├── tool/                                         # Core Python scripts
+│   ├── generator_cms.py                          # Step 1: LLM-based Change Management System (CMS) generator
+│   ├── apply_changes.py                          # Step 2: Applies LLM suggestions to YAML files
+│   ├── multiple_testing.py                       # Step 3: Automated Batch Testing Runner
+│   └── Configuration_Mutation_Prompt.md          # System prompt for the LLM
+├── workable_yaml/                                # Base "Golden" Valid Configurations (CU/DU/UE)
+└── output/                                       # Generated Artifacts
+    ├── cms/                                      # Intermediate JSON Modification Requests
+    └── yaml/                                     # Final Accessible Helm Value Files
 ```
 
 ## 🚀 Workflow
 
 ### Step 1: Generate Test Cases (`generator_cms.py`)
 Uses the NVIDIA API to analyze base YAML files (`workable_yaml/`) and generate "Chaos" modification requests.
-- **Input**: `workable_yaml/*.yaml`
+- **Input**: `workable_yaml/*.yaml`, `Configuration Mutation Prompt.md`
 - **Output**: `output/cms/mod_*.json`
 - **Details**: Generates 5 distinct test cases per run, targeting the `config` section with fuzzing strategies (Type Mismatch, Boundary Violations, etc.).
 
