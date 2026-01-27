@@ -1,0 +1,91 @@
+CMDLINE: "/opt/oai-nr-ue/bin/nr-uesoftmodem" "-O" "/opt/oai-nr-ue/etc/nr-ue.conf" "-E" "--rfsim" "-r" "106" "--numerology" "1" "-C" "3319680000" "--log_config.global_log_options" "level,nocolor,time" "--rfsimulator.serveraddr" "10.0.6.112" 
+150548.779502 [UTIL]   I running in SA mode (no --phy-test, --do-ra, --nsa option present)
+150548.779622 [UTIL]   I threadCreate() for Tpool0_-1: creating thread with affinity ffffffff, priority 97
+150548.780125 [UTIL]   I threadCreate() for Tpool1_-1: creating thread with affinity ffffffff, priority 97
+150548.780219 [UTIL]   I threadCreate() for Tpool2_-1: creating thread with affinity ffffffff, priority 97
+150548.780457 [UTIL]   I threadCreate() for Tpool3_-1: creating thread with affinity ffffffff, priority 97
+150548.780625 [UTIL]   I threadCreate() for Tpool4_-1: creating thread with affinity ffffffff, priority 97
+150548.780786 [UTIL]   I threadCreate() for Tpool5_-1: creating thread with affinity ffffffff, priority 97
+150548.780947 [UTIL]   I threadCreate() for Tpool6_-1: creating thread with affinity ffffffff, priority 97
+150548.781169 [UTIL]   I threadCreate() for Tpool7_-1: creating thread with affinity ffffffff, priority 97
+150549.791250 [OPT]    I OPT disabled
+150549.791745 [HW]     I Version: Branch: HEAD Abrev. Hash: ed4cca814a Date: Thu Jan 22 14:27:15 2026 +0000
+150549.792303 [NR_RRC] I create TASK_RRC_NRUE 
+150549.792321 [UTIL]   I threadCreate() for TASK_RRC_NRUE: creating thread with affinity ffffffff, priority 50
+150549.792461 [UTIL]   I threadCreate() for TASK_NAS_NRUE: creating thread with affinity ffffffff, priority 50
+150549.792761 [SIM]    I UICC simulation: IMSI=001010000062653, IMEISV=6754567890123413, Ki=8baf473f2f8fd09487cccbd7097c6862, OPc=8e27b6af0e692e750f32667a3b14605d, DNN=Internet, SST=0x01, SD=0xffffff
+150549.792825 [NR_MAC] I [UE0] Initializing MAC
+150549.792848 [NR_MAC] I Initializing dl and ul config_request. num_slots = 20
+150549.792985 [RLC]    I Activated srb0 for UE 0
+150549.793024 [UTIL]   I threadCreate() for time source iq samples: creating thread with affinity ffffffff, priority 2
+150549.793117 [UTIL]   I time manager configuration: [time source: iq_samples] [mode: standalone] [server IP: 127.0.0.1} [server port: 7374] (server IP/port not used)
+150549.793125 [PHY]    I Set UE_fo_compensation 0, UE_scan_carrier 0, UE_no_timing_correction 0 
+, chest-freq 0, chest-time 0
+150549.793128 [PHY]    I Set UE nb_rx_antenna 1, nb_tx_antenna 1, threequarter_fs 1, ssb_start_subcarrier 516
+150549.793138 [PHY]    I SA init parameters. DL freq 3319680000 UL offset 0 SSB numerology 1 N_RB_DL 106
+150549.793146 [PHY]    I Init: N_RB_DL 106, first_carrier_offset 900, nb_prefix_samples 108,nb_prefix_samples0 132, ofdm_symbol_size 1536
+150549.793150 [PHY]    W samples_per_subframe 46080/per second 46080000, wCP 43008
+150549.793158 [UTIL]   I threadCreate() for SYNC__actor: creating thread with affinity ffffffff, priority 97
+150549.793233 [UTIL]   I threadCreate() for DL__actor: creating thread with affinity ffffffff, priority 97
+150549.793419 [UTIL]   I threadCreate() for DL__actor: creating thread with affinity ffffffff, priority 97
+150549.793508 [UTIL]   I threadCreate() for DL__actor: creating thread with affinity ffffffff, priority 97
+150549.793593 [UTIL]   I threadCreate() for DL__actor: creating thread with affinity ffffffff, priority 97
+150549.793670 [UTIL]   I threadCreate() for UL__actor: creating thread with affinity ffffffff, priority 97
+150549.793739 [UTIL]   I threadCreate() for UL__actor: creating thread with affinity ffffffff, priority 97
+150549.793828 [PHY]    I Initializing UE vars for gNB TXant 1, UE RXant 1
+150550.043669 [PHY]    I prs_config configuration NOT found..!! Skipped configuring UE for the PRS reception
+150550.419491 [PHY]    I HW: Configuring card 0, sample_rate 46080000.000000, tx/rx num_channels 1/1, duplex_mode TDD
+150550.419538 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_freq 3319680000 Hz, rx_freq 3319680000 Hz, tune_offset 0
+150550.419549 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_gain 0, rx_gain 110
+150550.419561 [PHY]    I HW: Configuring card 1, sample_rate 46080000.000000, tx/rx num_channels 1/1, duplex_mode TDD
+150550.419566 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_freq 3319680000 Hz, rx_freq 3319680000 Hz, tune_offset 0
+150550.419571 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_gain 0, rx_gain 110
+150550.419576 [PHY]    I HW: Configuring card 2, sample_rate 46080000.000000, tx/rx num_channels 1/1, duplex_mode TDD
+150550.419578 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_freq 3319680000 Hz, rx_freq 3319680000 Hz, tune_offset 0
+150550.419581 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_gain 0, rx_gain 110
+150550.419586 [PHY]    I HW: Configuring card 3, sample_rate 46080000.000000, tx/rx num_channels 1/1, duplex_mode TDD
+150550.419588 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_freq 3319680000 Hz, rx_freq 3319680000 Hz, tune_offset 0
+150550.419591 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_gain 0, rx_gain 110
+150550.419595 [PHY]    I HW: Configuring card 4, sample_rate 46080000.000000, tx/rx num_channels 1/1, duplex_mode TDD
+150550.419597 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_freq 3319680000 Hz, rx_freq 3319680000 Hz, tune_offset 0
+150550.419600 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_gain 0, rx_gain 110
+150550.419606 [PHY]    I HW: Configuring card 5, sample_rate 46080000.000000, tx/rx num_channels 1/1, duplex_mode TDD
+150550.419608 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_freq 3319680000 Hz, rx_freq 3319680000 Hz, tune_offset 0
+150550.419611 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_gain 0, rx_gain 110
+150550.419615 [PHY]    I HW: Configuring card 6, sample_rate 46080000.000000, tx/rx num_channels 1/1, duplex_mode TDD
+150550.419617 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_freq 3319680000 Hz, rx_freq 3319680000 Hz, tune_offset 0
+150550.419620 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_gain 0, rx_gain 110
+150550.419624 [PHY]    I HW: Configuring card 7, sample_rate 46080000.000000, tx/rx num_channels 1/1, duplex_mode TDD
+150550.419626 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_freq 3319680000 Hz, rx_freq 3319680000 Hz, tune_offset 0
+150550.419629 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_gain 0, rx_gain 110
+150550.566941 [PHY]    I Intializing UE Threads for instance 0 ...
+150550.566972 [UTIL]   I threadCreate() for UEthread_0: creating thread with affinity ffffffff, priority 97
+150550.572809 [UTIL]   I threadCreate() for L1_UE_stats_0: creating thread with affinity ffffffff, priority 1
+150550.578198 [HW]     I Running as client: will connect to a rfsimulator server side
+150550.578341 [HW]     I [RRU] has loaded RFSIMULATOR device.
+150550.578350 [HW]     I Trying to connect to 10.0.6.112:4043
+150550.578477 [HW]     I connect() to 10.0.6.112:4043 failed, errno(111)
+150551.578509 [HW]     I Trying to connect to 10.0.6.112:4043
+150551.578694 [HW]     I connect() to 10.0.6.112:4043 failed, errno(111)
+150552.578725 [HW]     I Trying to connect to 10.0.6.112:4043
+150552.578933 [HW]     I connect() to 10.0.6.112:4043 failed, errno(111)
+150553.578961 [HW]     I Trying to connect to 10.0.6.112:4043
+150553.579142 [HW]     I connect() to 10.0.6.112:4043 failed, errno(111)
+150554.579170 [HW]     I Trying to connect to 10.0.6.112:4043
+150554.579342 [HW]     I connect() to 10.0.6.112:4043 failed, errno(111)
+150555.579370 [HW]     I Trying to connect to 10.0.6.112:4043
+150555.579525 [HW]     I connect() to 10.0.6.112:4043 failed, errno(111)
+150556.579578 [HW]     I Trying to connect to 10.0.6.112:4043
+150556.579780 [HW]     I connect() to 10.0.6.112:4043 failed, errno(111)
+150557.579816 [HW]     I Trying to connect to 10.0.6.112:4043
+150557.579997 [HW]     I connect() to 10.0.6.112:4043 failed, errno(111)
+150558.580037 [HW]     I Trying to connect to 10.0.6.112:4043
+150558.580207 [HW]     I connect() to 10.0.6.112:4043 failed, errno(111)
+150559.580237 [HW]     I Trying to connect to 10.0.6.112:4043
+150559.580397 [HW]     I connect() to 10.0.6.112:4043 failed, errno(111)
+150560.580449 [HW]     I Trying to connect to 10.0.6.112:4043
+150560.580612 [HW]     I connect() to 10.0.6.112:4043 failed, errno(111)
+150561.580657 [HW]     I Trying to connect to 10.0.6.112:4043
+150561.580813 [HW]     I connect() to 10.0.6.112:4043 failed, errno(111)
+150562.580842 [HW]     I Trying to connect to 10.0.6.112:4043
+150562.581117 [HW]     I connect() to 10.0.6.112:4043 failed, errno(111)

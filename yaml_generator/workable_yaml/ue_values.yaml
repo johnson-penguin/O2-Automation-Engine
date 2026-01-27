@@ -32,7 +32,7 @@ config:
   sst: "1"              # configure according to gnb and amf, smf and upf 
   # sd: "16777215"
   radio: "rfsim"            # allowed rfsim, b2xx, n3xx, x3xx
-  useAdditionalOptions: "-E --rfsim -r 106 --numerology 1 -C 3319680000 --log_config.global_log_options level,nocolor,time"
+  useAdditionalOptions: "-E --rfsim -r 106 --numerology 1 -C 3319680000 --log_config.global_log_options level,nocolor"
 
 start:
   nrue: true      # If false → NF container sleeps (for manual debugging)

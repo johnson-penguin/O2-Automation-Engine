@@ -1,0 +1,104 @@
+CMDLINE: "/opt/oai-nr-ue/bin/nr-uesoftmodem" "-O" "/opt/oai-nr-ue/etc/nr-ue.conf" "-E" "--rfsim" "-r" "106" "--numerology" "1" "-C" "3319680000" "--log_config.global_log_options" "level,nocolor,time" "--rfsimulator.serveraddr" "oai-ran" 
+150343.037310 [UTIL]   I running in SA mode (no --phy-test, --do-ra, --nsa option present)
+150343.037350 [UTIL]   I threadCreate() for Tpool0_-1: creating thread with affinity ffffffff, priority 97
+150343.037613 [UTIL]   I threadCreate() for Tpool1_-1: creating thread with affinity ffffffff, priority 97
+150343.037818 [UTIL]   I threadCreate() for Tpool2_-1: creating thread with affinity ffffffff, priority 97
+150343.037923 [UTIL]   I threadCreate() for Tpool3_-1: creating thread with affinity ffffffff, priority 97
+150343.038028 [UTIL]   I threadCreate() for Tpool4_-1: creating thread with affinity ffffffff, priority 97
+150343.038146 [UTIL]   I threadCreate() for Tpool5_-1: creating thread with affinity ffffffff, priority 97
+150343.038222 [UTIL]   I threadCreate() for Tpool6_-1: creating thread with affinity ffffffff, priority 97
+150343.038297 [UTIL]   I threadCreate() for Tpool7_-1: creating thread with affinity ffffffff, priority 97
+150344.054142 [OPT]    I OPT disabled
+150344.055139 [HW]     I Version: Branch: HEAD Abrev. Hash: ed4cca814a Date: Thu Jan 22 14:27:15 2026 +0000
+150344.055787 [NR_RRC] I create TASK_RRC_NRUE 
+150344.055805 [UTIL]   I threadCreate() for TASK_RRC_NRUE: creating thread with affinity ffffffff, priority 50
+150344.056327 [UTIL]   I threadCreate() for TASK_NAS_NRUE: creating thread with affinity ffffffff, priority 50
+150344.056654 [SIM]    I UICC simulation: IMSI=001010000062653, IMEISV=6754567890123413, Ki=8baf473f2f8fd09487cccbd7097c6862, OPc=8e27b6af0e692e750f32667a3b14605d, DNN=Internet, SST=0x01, SD=0xffffff
+150344.056724 [NR_MAC] I [UE0] Initializing MAC
+150344.056755 [NR_MAC] I Initializing dl and ul config_request. num_slots = 20
+150344.056942 [RLC]    I Activated srb0 for UE 0
+150344.056977 [UTIL]   I threadCreate() for time source iq samples: creating thread with affinity ffffffff, priority 2
+150344.057100 [UTIL]   I time manager configuration: [time source: iq_samples] [mode: standalone] [server IP: 127.0.0.1} [server port: 7374] (server IP/port not used)
+150344.057120 [PHY]    I Set UE_fo_compensation 0, UE_scan_carrier 0, UE_no_timing_correction 0 
+, chest-freq 0, chest-time 0
+150344.057125 [PHY]    I Set UE nb_rx_antenna 1, nb_tx_antenna 1, threequarter_fs 1, ssb_start_subcarrier 516
+150344.057141 [PHY]    I SA init parameters. DL freq 3319680000 UL offset 0 SSB numerology 1 N_RB_DL 106
+150344.057162 [PHY]    I Init: N_RB_DL 106, first_carrier_offset 900, nb_prefix_samples 108,nb_prefix_samples0 132, ofdm_symbol_size 1536
+150344.057167 [PHY]    W samples_per_subframe 46080/per second 46080000, wCP 43008
+150344.057178 [UTIL]   I threadCreate() for SYNC__actor: creating thread with affinity ffffffff, priority 97
+150344.057290 [UTIL]   I threadCreate() for DL__actor: creating thread with affinity ffffffff, priority 97
+150344.057382 [UTIL]   I threadCreate() for DL__actor: creating thread with affinity ffffffff, priority 97
+150344.057463 [UTIL]   I threadCreate() for DL__actor: creating thread with affinity ffffffff, priority 97
+150344.057553 [UTIL]   I threadCreate() for DL__actor: creating thread with affinity ffffffff, priority 97
+150344.057639 [UTIL]   I threadCreate() for UL__actor: creating thread with affinity ffffffff, priority 97
+150344.057721 [UTIL]   I threadCreate() for UL__actor: creating thread with affinity ffffffff, priority 97
+150344.058213 [PHY]    I Initializing UE vars for gNB TXant 1, UE RXant 1
+150344.292396 [PHY]    I prs_config configuration NOT found..!! Skipped configuring UE for the PRS reception
+150344.712631 [PHY]    I HW: Configuring card 0, sample_rate 46080000.000000, tx/rx num_channels 1/1, duplex_mode TDD
+150344.712671 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_freq 3319680000 Hz, rx_freq 3319680000 Hz, tune_offset 0
+150344.712685 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_gain 0, rx_gain 110
+150344.712692 [PHY]    I HW: Configuring card 1, sample_rate 46080000.000000, tx/rx num_channels 1/1, duplex_mode TDD
+150344.712695 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_freq 3319680000 Hz, rx_freq 3319680000 Hz, tune_offset 0
+150344.712698 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_gain 0, rx_gain 110
+150344.712702 [PHY]    I HW: Configuring card 2, sample_rate 46080000.000000, tx/rx num_channels 1/1, duplex_mode TDD
+150344.712704 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_freq 3319680000 Hz, rx_freq 3319680000 Hz, tune_offset 0
+150344.712707 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_gain 0, rx_gain 110
+150344.712712 [PHY]    I HW: Configuring card 3, sample_rate 46080000.000000, tx/rx num_channels 1/1, duplex_mode TDD
+150344.712714 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_freq 3319680000 Hz, rx_freq 3319680000 Hz, tune_offset 0
+150344.712717 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_gain 0, rx_gain 110
+150344.712721 [PHY]    I HW: Configuring card 4, sample_rate 46080000.000000, tx/rx num_channels 1/1, duplex_mode TDD
+150344.712723 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_freq 3319680000 Hz, rx_freq 3319680000 Hz, tune_offset 0
+150344.712726 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_gain 0, rx_gain 110
+150344.712733 [PHY]    I HW: Configuring card 5, sample_rate 46080000.000000, tx/rx num_channels 1/1, duplex_mode TDD
+150344.712735 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_freq 3319680000 Hz, rx_freq 3319680000 Hz, tune_offset 0
+150344.712738 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_gain 0, rx_gain 110
+150344.712742 [PHY]    I HW: Configuring card 6, sample_rate 46080000.000000, tx/rx num_channels 1/1, duplex_mode TDD
+150344.712744 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_freq 3319680000 Hz, rx_freq 3319680000 Hz, tune_offset 0
+150344.712747 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_gain 0, rx_gain 110
+150344.712751 [PHY]    I HW: Configuring card 7, sample_rate 46080000.000000, tx/rx num_channels 1/1, duplex_mode TDD
+150344.712753 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_freq 3319680000 Hz, rx_freq 3319680000 Hz, tune_offset 0
+150344.712756 [PHY]    I HW: Configuring channel 0 (rf_chain 0): setting tx_gain 0, rx_gain 110
+150344.873442 [PHY]    I Intializing UE Threads for instance 0 ...
+150344.873472 [UTIL]   I threadCreate() for UEthread_0: creating thread with affinity ffffffff, priority 97
+150344.878232 [UTIL]   I threadCreate() for L1_UE_stats_0: creating thread with affinity ffffffff, priority 1
+150344.882430 [HW]     I Running as client: will connect to a rfsimulator server side
+150344.882603 [HW]     I [RRU] has loaded RFSIMULATOR device.
+150344.882612 [HW]     I Trying to connect to oai-ran:4043
+150344.886781 [HW]     E getaddrinfo: Name or service not known
+150344.886793 [HW]     I connect() to oai-ran:4043 failed, errno(0)
+150345.886825 [HW]     I Trying to connect to oai-ran:4043
+150345.889942 [HW]     E getaddrinfo: Name or service not known
+150345.889953 [HW]     I connect() to oai-ran:4043 failed, errno(0)
+150346.889981 [HW]     I Trying to connect to oai-ran:4043
+150346.893901 [HW]     E getaddrinfo: Name or service not known
+150346.893915 [HW]     I connect() to oai-ran:4043 failed, errno(0)
+150347.893987 [HW]     I Trying to connect to oai-ran:4043
+150347.898279 [HW]     E getaddrinfo: Name or service not known
+150347.898291 [HW]     I connect() to oai-ran:4043 failed, errno(0)
+150348.898316 [HW]     I Trying to connect to oai-ran:4043
+150348.905863 [HW]     E getaddrinfo: Name or service not known
+150348.905876 [HW]     I connect() to oai-ran:4043 failed, errno(0)
+150349.905903 [HW]     I Trying to connect to oai-ran:4043
+150349.909552 [HW]     E getaddrinfo: Name or service not known
+150349.909563 [HW]     I connect() to oai-ran:4043 failed, errno(0)
+150350.909590 [HW]     I Trying to connect to oai-ran:4043
+150350.912412 [HW]     E getaddrinfo: Name or service not known
+150350.912421 [HW]     I connect() to oai-ran:4043 failed, errno(0)
+150351.912441 [HW]     I Trying to connect to oai-ran:4043
+150351.915631 [HW]     E getaddrinfo: Name or service not known
+150351.915640 [HW]     I connect() to oai-ran:4043 failed, errno(0)
+150352.915668 [HW]     I Trying to connect to oai-ran:4043
+150352.918879 [HW]     E getaddrinfo: Name or service not known
+150352.918890 [HW]     I connect() to oai-ran:4043 failed, errno(0)
+150353.918914 [HW]     I Trying to connect to oai-ran:4043
+150353.921647 [HW]     E getaddrinfo: Name or service not known
+150353.921658 [HW]     I connect() to oai-ran:4043 failed, errno(0)
+150354.921684 [HW]     I Trying to connect to oai-ran:4043
+150354.925028 [HW]     E getaddrinfo: Name or service not known
+150354.925039 [HW]     I connect() to oai-ran:4043 failed, errno(0)
+150355.925058 [HW]     I Trying to connect to oai-ran:4043
+150355.927774 [HW]     E getaddrinfo: Name or service not known
+150355.927790 [HW]     I connect() to oai-ran:4043 failed, errno(0)
+150356.927818 [HW]     I Trying to connect to oai-ran:4043
+150356.930747 [HW]     E getaddrinfo: Name or service not known
+150356.930760 [HW]     I connect() to oai-ran:4043 failed, errno(0)
