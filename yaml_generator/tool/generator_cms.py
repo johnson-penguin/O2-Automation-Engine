@@ -33,7 +33,7 @@ def load_prompt(prompt_path):
 
 def generate_modifications(yaml_subset, filename, prompt_template, component_name, gen_number):
     """
-    將過濾後的 yaml_subset 傳送給 LLM 進行修改建議生成。
+    Filter the yaml_subset and send it to LLM for modification suggestions.
     """
     formatted_prompt = prompt_template.replace("{component_name}", component_name) \
                                       .replace("{filename}", os.path.basename(filename)) \
@@ -64,26 +64,26 @@ def main():
     print(f"Searching for YAML files in: {WORKABLE_YAML_DIR}")
     
     try:
-        # 1. 隨機選取一個 YAML 原始檔案
+        # 1. Randomly select a YAML file
         selected_file = get_random_yaml_file(WORKABLE_YAML_DIR)
         base_name = os.path.basename(selected_file)
         print(f"Selected file: {selected_file}")
         
-        # 2. 讀取並僅提取 'config' 區塊
+        # 2. Read and extract 'config' section
         with open(selected_file, 'r') as f:
             full_data = yaml.safe_load(f)
         
-        # 取得 config 內容，若不存在則給予空字典
+        # Get config section, if not exist then give empty dictionary
         config_data = full_data.get('config', {})
         if not config_data:
             print("Warning: No 'config' section found in the selected YAML.")
         
-        # 將 config 區塊轉回 YAML 字串，只餵這個部分給 LLM
+        # Convert config section back to YAML string, only feed this part to LLM
         config_yaml_subset = yaml.dump(config_data, default_flow_style=False)
             
         prompt_template = load_prompt(PROMPT_FILE)
         
-        # 3. 自動判定組件名稱 (根據檔名關鍵字)
+        # 3. Automatically determine component name (based on file name keywords)
         base_name_lower = base_name.lower()
         if "du" in base_name_lower:
             comp_name = "oai-du"
@@ -100,24 +100,22 @@ def main():
             print(f"Generating {5} cases specifically for 'config' section...")
             current_gen_number = 5
             
-            # 呼叫 LLM 產生修改建議 (僅針對 config 子集)
+            # Call LLM to generate modification (only for config subset)
             result = generate_modifications(config_yaml_subset, selected_file, prompt_template, comp_name, current_gen_number)
             
-            # --- 4. 解析與儲存機制 ---
+            # --- 4. Parsing and Storage Mechanism ---
             try:
-                # 使用 Regex 提取 JSON，忽略前後文字
+                # Use Regex to extract JSON, ignore surrounding text
                 json_match = re.search(r'(\[.*\]|\{.*\})', result, re.DOTALL)
                 
                 if json_match:
                     clean_result = json_match.group(1)
-                    # 修正可能的 JSON 結尾多餘逗號
+                    # Fix possible trailing commas in JSON
                     clean_result = re.sub(r',\s*([\]}])', r'\1', clean_result)
                 else:
                     clean_result = result.replace("```json", "").replace("```", "").strip()
 
                 json_data = json.loads(clean_result)
-                
-                # 移除副檔名 (.yaml 或 .yml)
                 file_stem = os.path.splitext(base_name)[0]
                 output_filename = f"mod_{file_stem}.json"
                 output_path = os.path.join(OUTPUT_DIR, output_filename)
@@ -129,7 +127,7 @@ def main():
                 
             except (json.JSONDecodeError, Exception) as e:
                 print(f"\nWarning: Parsing failed. Error: {e}")
-                # 解析失敗時儲存原始文字以便除錯
+                # Save raw response for debugging
                 error_raw_path = os.path.join(OUTPUT_DIR, f"debug_raw_{base_name}.txt")
                 with open(error_raw_path, 'w') as f_err:
                     f_err.write(result)

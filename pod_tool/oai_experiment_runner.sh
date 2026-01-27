@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# --- 參數設定 ---
-QUIET_MODE=true  # 設定為 true 則隱藏監控時的 Log 輸出，false 則顯示
+# --- Configuration ---
+QUIET_MODE=true  # Set to true to hide Stern log output, false to show
 # ----------------
 
 set -e
@@ -20,10 +20,8 @@ mkdir -p "$LOG_DIR"
 
 trap "kill $STERN_CU_PID $STERN_DU_PID $STERN_UE_PID 2>/dev/null || true" EXIT
 
-
-# 1. 啟動背景持續存檔 (修正 Label 確保 UE 抓得到)
+# 1. Execute Helm Install
 echo -e "${CYAN}--- Starting Stern Log Capture ---${NC}"
-# 使用名稱包含匹配，最保險
 stern "oai-cu" -n johnson-ns --output raw > "$LOG_DIR/cu.log" &
 STERN_CU_PID=$!
 stern "oai-du" -n johnson-ns --output raw > "$LOG_DIR/du.log" &
