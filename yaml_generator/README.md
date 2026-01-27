@@ -29,7 +29,42 @@ Uses the NVIDIA API to analyze base YAML files (`workable_yaml/`) and generate "
 python3 tool/generator_cms.py
 ```
 *Requires `NVIDIA_API_KEY` in your environment variables.*
-
+### Output
+```bash
+[
+    {
+        "filename": "oai-du_case_1.yaml",
+        "modified": "parameter_fuzzing",
+        "changes": [
+            {
+                "key": "config.cuHost",
+                "original_value": "oai-cu",
+                "error_value": "true"
+            },
+            {
+                "key": "config.plmn_list[0].mnc_length",
+                "original_value": "2",
+                "error_value": "null"
+            }
+        ]
+    },
+    {
+        "filename": "oai-du_case_2.yaml",
+        "modified": "parameter_fuzzing",
+        "changes": [
+            {
+                "key": "config.enableE2",
+                "original_value": "false",
+                "error_value": "123"
+            },
+            {
+                "key": "config.plmn_list[0].mnc",
+                "original_value": "01",
+                "error_value": "true"
+            }
+        ]
+    },
+```
 ### Step 2: Apply Changes (`apply_changes.py`)
 Reads the generated JSON modification requests and applies them to the base YAML files to create deployable Helm values files.
 - **Input**: `output/cms/*.json` + `workable_yaml/*.yaml`
@@ -38,6 +73,48 @@ Reads the generated JSON modification requests and applies them to the base YAML
 
 ```bash
 python3 tool/apply_changes.py
+```
+
+### Output
+```bash
+ config:
+  timeZone: Europe/Paris
+  useAdditionalOptions: -E --rfsim --log_config.global_log_options level,nocolor,time
+  duName: oai-rfsim
+  usrp: rfsim
+  cuHost: true # Modified: oai-cu -> true
+  enableE2: false
+  f1duPort: 2153
+  ricHost: oai-flexric
+  gdbstack: 1
+  tac: 1
+  plmn_list:
+  - mcc: 001
+    mnc: 01
+    mnc_length: null # Modified: 2 -> null
+    snssaiList:
+    - sst: 1
+      sd: 0xffffff
+```
+```bash
+  config:
+  timeZone: Europe/Paris
+  useAdditionalOptions: -E --rfsim --log_config.global_log_options level,nocolor,time
+  duName: oai-rfsim
+  usrp: rfsim
+  cuHost: oai-cu
+  enableE2: 123 # Modified: false -> 123
+  f1duPort: 2153
+  ricHost: oai-flexric
+  gdbstack: 1
+  tac: 1
+  plmn_list:
+  - mcc: 001
+    mnc: true # Modified: 01 -> true
+    mnc_length: 2
+    snssaiList:
+    - sst: 1
+      sd: 0xffffff
 ```
 
 ### Step 3: Run Automated Tests (`multiple_testing.py`)
