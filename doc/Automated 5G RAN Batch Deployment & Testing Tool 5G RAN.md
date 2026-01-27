@@ -12,6 +12,9 @@ yaml_generator/
 │   ├── multiple_testing.py# Step 3: Automated Batch Testing Runner
 │   └── prompt.md          # System prompt for the LLM
 ├── workable_yaml/         # Base "Golden" Valid Configurations (CU/DU/UE)
+│    ├── cu_values.yaml    # CU workable_yaml
+│    ├── du_values.yaml    # DU workable_yaml
+│    └── ue_values.yaml    # UE workable_yaml
 └── output/                # Generated Artifacts
     ├── cms/               # Intermediate JSON Modification Requests
     └── yaml/              # Final Accessible Helm Value Files
