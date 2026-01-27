@@ -1,0 +1,82 @@
+[
+    {
+        "filename": "oai-du_case_1.yaml",
+        "modified": "parameter_fuzzing",
+        "changes": [
+            {
+                "key": "config.cuHost",
+                "original_value": "oai-cu",
+                "error_value": "true"
+            },
+            {
+                "key": "config.plmn_list[0].mnc_length",
+                "original_value": "2",
+                "error_value": "null"
+            }
+        ]
+    },
+    {
+        "filename": "oai-du_case_2.yaml",
+        "modified": "parameter_fuzzing",
+        "changes": [
+            {
+                "key": "config.enableE2",
+                "original_value": "false",
+                "error_value": "123"
+            },
+            {
+                "key": "config.plmn_list[0].mnc",
+                "original_value": "01",
+                "error_value": "true"
+            }
+        ]
+    },
+    {
+        "filename": "oai-du_case_3.yaml",
+        "modified": "parameter_fuzzing",
+        "changes": [
+            {
+                "key": "config.ricHost",
+                "original_value": "oai-flexric",
+                "error_value": "false"
+            },
+            {
+                "key": "config.plmn_list[0].snssaiList[0].sd",
+                "original_value": "0xffffff",
+                "error_value": "1234567890"
+            }
+        ]
+    },
+    {
+        "filename": "oai-du_case_4.yaml",
+        "modified": "parameter_fuzzing",
+        "changes": [
+            {
+                "key": "config.plmn_list[0].mnc",
+                "original_value": "01",
+                "error_value": "null"
+            },
+            {
+                "key": "config.useAdditionalOptions",
+                "original_value": "-E --rfsim --log_config.global_log_options level,nocolor,time",
+                "error_value": "true"
+            }
+        ]
+    },
+    {
+        "filename": "oai-du_case_5.yaml",
+        "modified": "parameter_fuzzing",
+        "changes": [
+            {
+                "key": "config.plmn_list[0].mnc_length",
+                "original_value": "2",
+                "error_value": "123"
+            },
+            {
+                "key": "config.plmn_list[0].sst",
+                "original_value": "1",
+                "error_value": "null"
+            }
+        ]
+    }
+]

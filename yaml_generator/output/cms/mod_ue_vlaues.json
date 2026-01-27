@@ -1,0 +1,57 @@
+[
+    {
+        "filename": "oai-ue_case_1.yaml",
+        "modified": "parameter_fuzzing",
+        "changes": [
+            {
+                "key": "config.fullImsi",
+                "original_value": "001010000062653",
+                "error_value": "true"
+            }
+        ]
+    },
+    {
+        "filename": "oai-ue_case_2.yaml",
+        "modified": "parameter_fuzzing",
+        "changes": [
+            {
+                "key": "config.useAdditionalOptions",
+                "original_value": "-E --rfsim -r 106 --numerology 1 -C 3319680000 --log_config.global_log_options level,nocolor,time",
+                "error_value": "null"
+            }
+        ]
+    },
+    {
+        "filename": "oai-ue_case_3.yaml",
+        "modified": "parameter_fuzzing",
+        "changes": [
+            {
+                "key": "config.sst",
+                "original_value": "1",
+                "error_value": "false"
+            }
+        ]
+    },
+    {
+        "filename": "oai-ue_case_4.yaml",
+        "modified": "parameter_fuzzing",
+        "changes": [
+            {
+                "key": "config.gdbstack",
+                "original_value": "1",
+                "error_value": "-1"
+            }
+        ]
+    },
+    {
+        "filename": "oai-ue_case_5.yaml",
+        "modified": "parameter_fuzzing",
+        "changes": [
+            {
+                "key": "config.opc",
+                "original_value": "8e27b6af0e692e750f32667a3b14605d",
+                "error_value": "1234567890"
+            }
+        ]
+    }
+]
