@@ -77,11 +77,11 @@ helm install oai-ue . -n johnson-ns
 ```
 ### Result
 - CU
-![screenshot](image/cu_log.png)
+![screenshot](../image/cu_log.png)
 - DU
-![screenshot](image/du_log.png)
+![screenshot](../image/du_log.png)
 - UE
-![screenshot](image/ue_log.png)
+![screenshot](../image/ue_log.png)
 - CN
 ```bash=
 01/26 17:18:01.620: [sbi] INFO: [f0e7fd76-fa93-41f0-9f33-2d3cf5357361] NF Instance setup [type:SMF validity:0s] (../lib/sbi/path.c:227)
