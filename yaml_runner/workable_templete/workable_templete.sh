@@ -39,9 +39,11 @@ wait_for_log() {
 # 1. Start background continuous archiving (fix Label to ensure UE can be captured)
 echo -e "${CYAN}--- Starting Stern Log Capture ---${NC}"
 # Use name matching, which is the most reliable
-stern "oai-cu" -n $NAMESPACE --output raw > "$LOG_DIR/cu.log" 2>/dev/null &
+# stern "oai-cu" -c "cu" -n $NAMESPACE --output raw > "$LOG_DIR/cu.log" 2>/dev/null &
+stern "oai-cu" -c "cu" -n $NAMESPACE --output raw | sed -n '/Starting gNB soft modem/,$p' > "$LOG_DIR/cu.log" 2>/dev/null &
 STERN_CU_PID=$!
-stern "oai-du" -n $NAMESPACE --output raw > "$LOG_DIR/du.log" 2>/dev/null &
+# stern "oai-du" -c "du" -n $NAMESPACE --output raw > "$LOG_DIR/du.log" 2>/dev/null &
+stern "oai-du" -c "du" -n $NAMESPACE --output raw | sed -n '/Starting gNB soft modem/,$p' > "$LOG_DIR/du.log" 2>/dev/null &
 STERN_DU_PID=$!
 stern "oai-nr-ue" -n $NAMESPACE --output raw > "$LOG_DIR/ue.log" 2>/dev/null &
 STERN_UE_PID=$!
