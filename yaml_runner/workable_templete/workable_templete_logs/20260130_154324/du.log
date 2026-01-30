@@ -1,0 +1,8 @@
++ oai-du-589f895c45-xqqlm › wait-for-cu
+Ncat: Version 7.95 ( https://nmap.org/ncat )
+Ncat: Connected to 10.0.6.147:38472.
+Ncat: 0 bytes sent, 0 bytes received in 3.20 seconds.
+- oai-du-589f895c45-xqqlm › wait-for-cu
++ oai-du-589f895c45-xqqlm › config-patcher
+Resolving hostnames and patching config...
+Resolved CU_IP=10.0.6.147
