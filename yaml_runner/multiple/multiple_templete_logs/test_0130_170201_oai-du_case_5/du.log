@@ -1,0 +1,888 @@
+Ncat: Version 7.95 ( https://nmap.org/ncat )
+Ncat: Connected to 10.0.6.140:38472.
+Ncat: 0 bytes sent, 0 bytes received in 3.20 seconds.
+Resolving hostnames and patching config...
+Resolved CU_IP=10.0.6.140
+# Active DUs
+Active_gNBs:
+  - oai-rfsim
+# Asn1_verbosity, choice in: none, info, annoying
+Asn1_verbosity: "none"
+gNBs:
+  - #////////// Identification parameters:
+    gNB_ID: 0xe00
+    gNB_DU_ID: 0xe00
+    gNB_name: "oai-rfsim"
+    # Tracking area code, 0x0000 and 0xfffe are reserved values
+    tracking_area_code: "1"
+    plmn_list:
+      - mcc: 1
+        mnc: 1
+        mnc_length: 123
+        snssaiList:
+          - sd: 16777215
+            sst: 1
+        sst: null
+    nr_cellid: 12345678
+    #////////// Physical parameters:
+    min_rxtxtime: 6
+    servingCellConfigCommon:
+      #spCellConfigCommon
+      - physCellId: 0
+        #  downlinkConfigCommon
+        #frequencyInfoDL
+        # this is 3300.60 MHz + 53*12*30e-3 MHz = 3319.68
+        absoluteFrequencySSB: 621312
+        # this is 3300.60 MHz
+        dl_absoluteFrequencyPointA: 620040
+        #scs-SpecificCarrierList
+        dl_offstToCarrier: 0
+        # subcarrierSpacing
+        # 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+        dl_subcarrierSpacing: 1
+        dl_carrierBandwidth: 106
+        #initialDownlinkBWP
+        #genericParameters
+        # this is RBstart=0,L=106 (275*(L-1))+RBstart
+        initialDLBWPlocationAndBandwidth: 28875
+        # subcarrierSpacing
+        # 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+        initialDLBWPsubcarrierSpacing: 1
+        #pdcch-ConfigCommon
+        initialDLBWPcontrolResourceSetZero: 11
+        initialDLBWPsearchSpaceZero: 0
+        #uplinkConfigCommon
+        #frequencyInfoUL
+        ul_frequencyBand: 78
+        #scs-SpecificCarrierList
+        ul_offstToCarrier: 0
+        # subcarrierSpacing
+        # 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+        ul_subcarrierSpacing: 1
+        ul_carrierBandwidth: 106
+        pMax: 20
+        #initialUplinkBWP
+        #genericParameters
+        initialULBWPlocationAndBandwidth: 28875
+        # subcarrierSpacing
+        # 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+        initialULBWPsubcarrierSpacing: 1
+        #rach-ConfigCommon
+        #rach-ConfigGeneric
+        prach_ConfigurationIndex: 98
+        #prach_msg1_FDM
+        #0 = one, 1=two, 2=four, 3=eight
+        prach_msg1_FDM: 0
+        prach_msg1_FrequencyStart: 0
+        zeroCorrelationZoneConfig: 12
+        preambleReceivedTargetPower: -104
+        #preamblTransMax (0...10) = (3,4,5,6,7,8,10,20,50,100,200)
+        preambleTransMax: 6
+        #powerRampingStep
+        # 0=dB0,1=dB2,2=dB4,3=dB6
+        powerRampingStep: 1
+        #ssb_perRACH_OccasionAndCB_PreamblesPerSSB_PR
+        #1=oneeighth,2=onefourth,3=half,4=one,5=two,6=four,7=eight,8=sixteen
+        ssb_perRACH_OccasionAndCB_PreamblesPerSSB_PR: 4
+        #one (0..15) 4,8,12,16,...60,64
+        ssb_perRACH_OccasionAndCB_PreamblesPerSSB: 15
+        #ra_ContentionResolutionTimer
+        #(0..7) 8,16,24,32,40,48,56,64
+        ra_ContentionResolutionTimer: 7
+        rsrp_ThresholdSSB: 19
+        #prach-RootSequenceIndex_PR
+        #1 = 839, 2 = 139
+        prach_RootSequenceIndex_PR: 2
+        prach_RootSequenceIndex: 1
+        # SCS for msg1, can only be 15 for 30 kHz < 6 GHz, takes precendence over the one derived from prach-ConfigIndex
+        msg1_SubcarrierSpacing: 1
+        # restrictedSetConfig
+        # 0=unrestricted, 1=restricted type A, 2=restricted type B
+        restrictedSetConfig: 0
+        msg3_DeltaPreamble: 1
+        p0_NominalWithGrant: -90
+        # pucch-ConfigCommon setup :
+        # pucchGroupHopping
+        # 0 = neither, 1= group hopping, 2=sequence hopping
+        pucchGroupHopping: 0
+        hoppingId: 40
+        p0_nominal: -90
+        ssb_PositionsInBurst_Bitmap: 1
+        # ssb_periodicityServingCell
+        # 0 = ms5, 1=ms10, 2=ms20, 3=ms40, 4=ms80, 5=ms160, 6=spare2, 7=spare1
+        ssb_periodicityServingCell: 2
+        # dmrs_TypeA_position
+        # 0 = pos2, 1 = pos3
+        dmrs_TypeA_Position: 0
+        # subcarrierSpacing
+        # 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+        subcarrierSpacing: 1
+        #tdd-UL-DL-ConfigurationCommon
+        # subcarrierSpacing
+        # 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+        referenceSubcarrierSpacing: 1
+        # pattern1
+        # dl_UL_TransmissionPeriodicity
+        # 0=ms0p5, 1=ms0p625, 2=ms1, 3=ms1p25, 4=ms2, 5=ms2p5, 6=ms5, 7=ms10
+        dl_UL_TransmissionPeriodicity: 6
+        nrofDownlinkSlots: 7
+        nrofDownlinkSymbols: 6
+        nrofUplinkSlots: 2
+        nrofUplinkSymbols: 4
+        ssPBCH_BlockPower: -25
+    # ------- SCTP definitions
+    SCTP:
+      # Number of streams to use in input/output
+      SCTP_INSTREAMS: 2
+      SCTP_OUTSTREAMS: 2
+MACRLCs:
+  - num_cc: 1
+    tr_s_preference: "local_L1"
+    tr_n_preference: "f1"
+    local_n_address: "10.0.6.87"
+    remote_n_address: "10.0.6.140"
+    local_n_portd: 2153
+    remote_n_portd: 2153
+    pusch_TargetSNRx10: 200
+    pucch_TargetSNRx10: 200
+    local_n_address_f1u: 10.0.6.87
+L1s:
+  - num_cc: 1
+    tr_n_preference: "local_mac"
+    prach_dtx_threshold: 200
+    pucch0_dtx_threshold: 150
+    ofdm_offset_divisor: 8 # set this to UINT_MAX for offset 0
+RUs:
+  - local_rf: "yes"
+    nb_tx: 1
+    nb_rx: 1
+    att_tx: 0
+    att_rx: 0
+    bands: [78]
+    max_pdschReferenceSignalPower: -27
+    max_rxgain: 114
+    eNB_instances: [0]
+    clock_src: "internal"
+rfsimulator:
+  serveraddr: server
+log_config:
+  global_log_level: "info"
+  hw_log_level: "info"
+  phy_log_level: "info"
+  mac_log_level: "info"
+  rlc_log_level: "info"
+  f1ap_log_level: "info"
+==================================
+/proc/sys/kernel/core_pattern=|/usr/lib/systemd/systemd-coredump %P %u %g %s %t %c %h
+No configuration file /opt/oai-gnb/etc/gnb.conf found: attempting to find YAML config
+==================================
+== Configuration file:
+# Active DUs
+Active_gNBs:
+  - oai-rfsim
+# Asn1_verbosity, choice in: none, info, annoying
+Asn1_verbosity: "none"
+gNBs:
+  - #////////// Identification parameters:
+    gNB_ID: 0xe00
+    gNB_DU_ID: 0xe00
+    gNB_name: "oai-rfsim"
+    # Tracking area code, 0x0000 and 0xfffe are reserved values
+    tracking_area_code: "1"
+    plmn_list:
+      - mcc: 1
+        mnc: 1
+        mnc_length: 123
+        snssaiList:
+          - sd: 16777215
+            sst: 1
+        sst: null
+    nr_cellid: 12345678
+    #////////// Physical parameters:
+    min_rxtxtime: 6
+    servingCellConfigCommon:
+      #spCellConfigCommon
+      - physCellId: 0
+        #  downlinkConfigCommon
+        #frequencyInfoDL
+        # this is 3300.60 MHz + 53*12*30e-3 MHz = 3319.68
+        absoluteFrequencySSB: 621312
+        # this is 3300.60 MHz
+        dl_absoluteFrequencyPointA: 620040
+        #scs-SpecificCarrierList
+        dl_offstToCarrier: 0
+        # subcarrierSpacing
+        # 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+        dl_subcarrierSpacing: 1
+        dl_carrierBandwidth: 106
+        #initialDownlinkBWP
+        #genericParameters
+        # this is RBstart=0,L=106 (275*(L-1))+RBstart
+        initialDLBWPlocationAndBandwidth: 28875
+        # subcarrierSpacing
+        # 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+        initialDLBWPsubcarrierSpacing: 1
+        #pdcch-ConfigCommon
+        initialDLBWPcontrolResourceSetZero: 11
+        initialDLBWPsearchSpaceZero: 0
+        #uplinkConfigCommon
+        #frequencyInfoUL
+        ul_frequencyBand: 78
+        #scs-SpecificCarrierList
+        ul_offstToCarrier: 0
+        # subcarrierSpacing
+        # 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+        ul_subcarrierSpacing: 1
+        ul_carrierBandwidth: 106
+        pMax: 20
+        #initialUplinkBWP
+        #genericParameters
+        initialULBWPlocationAndBandwidth: 28875
+        # subcarrierSpacing
+        # 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+        initialULBWPsubcarrierSpacing: 1
+        #rach-ConfigCommon
+        #rach-ConfigGeneric
+        prach_ConfigurationIndex: 98
+        #prach_msg1_FDM
+        #0 = one, 1=two, 2=four, 3=eight
+        prach_msg1_FDM: 0
+        prach_msg1_FrequencyStart: 0
+        zeroCorrelationZoneConfig: 12
+        preambleReceivedTargetPower: -104
+        #preamblTransMax (0...10) = (3,4,5,6,7,8,10,20,50,100,200)
+        preambleTransMax: 6
+        #powerRampingStep
+        # 0=dB0,1=dB2,2=dB4,3=dB6
+        powerRampingStep: 1
+        #ssb_perRACH_OccasionAndCB_PreamblesPerSSB_PR
+        #1=oneeighth,2=onefourth,3=half,4=one,5=two,6=four,7=eight,8=sixteen
+        ssb_perRACH_OccasionAndCB_PreamblesPerSSB_PR: 4
+        #one (0..15) 4,8,12,16,...60,64
+        ssb_perRACH_OccasionAndCB_PreamblesPerSSB: 15
+        #ra_ContentionResolutionTimer
+        #(0..7) 8,16,24,32,40,48,56,64
+        ra_ContentionResolutionTimer: 7
+        rsrp_ThresholdSSB: 19
+        #prach-RootSequenceIndex_PR
+        #1 = 839, 2 = 139
+        prach_RootSequenceIndex_PR: 2
+        prach_RootSequenceIndex: 1
+        # SCS for msg1, can only be 15 for 30 kHz < 6 GHz, takes precendence over the one derived from prach-ConfigIndex
+        msg1_SubcarrierSpacing: 1
+        # restrictedSetConfig
+        # 0=unrestricted, 1=restricted type A, 2=restricted type B
+        restrictedSetConfig: 0
+        msg3_DeltaPreamble: 1
+        p0_NominalWithGrant: -90
+        # pucch-ConfigCommon setup :
+        # pucchGroupHopping
+        # 0 = neither, 1= group hopping, 2=sequence hopping
+        pucchGroupHopping: 0
+        hoppingId: 40
+        p0_nominal: -90
+        ssb_PositionsInBurst_Bitmap: 1
+        # ssb_periodicityServingCell
+        # 0 = ms5, 1=ms10, 2=ms20, 3=ms40, 4=ms80, 5=ms160, 6=spare2, 7=spare1
+        ssb_periodicityServingCell: 2
+        # dmrs_TypeA_position
+        # 0 = pos2, 1 = pos3
+        dmrs_TypeA_Position: 0
+        # subcarrierSpacing
+        # 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+        subcarrierSpacing: 1
+        #tdd-UL-DL-ConfigurationCommon
+        # subcarrierSpacing
+        # 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+        referenceSubcarrierSpacing: 1
+        # pattern1
+        # dl_UL_TransmissionPeriodicity
+        # 0=ms0p5, 1=ms0p625, 2=ms1, 3=ms1p25, 4=ms2, 5=ms2p5, 6=ms5, 7=ms10
+        dl_UL_TransmissionPeriodicity: 6
+        nrofDownlinkSlots: 7
+        nrofDownlinkSymbols: 6
+        nrofUplinkSlots: 2
+        nrofUplinkSymbols: 4
+        ssPBCH_BlockPower: -25
+    # ------- SCTP definitions
+    SCTP:
+      # Number of streams to use in input/output
+      SCTP_INSTREAMS: 2
+      SCTP_OUTSTREAMS: 2
+MACRLCs:
+  - num_cc: 1
+    tr_s_preference: "local_L1"
+    tr_n_preference: "f1"
+    local_n_address: "10.0.6.87"
+    remote_n_address: "10.0.6.140"
+    local_n_portd: 2153
+    remote_n_portd: 2153
+    pusch_TargetSNRx10: 200
+    pucch_TargetSNRx10: 200
+    local_n_address_f1u: 10.0.6.87
+L1s:
+  - num_cc: 1
+    tr_n_preference: "local_mac"
+    prach_dtx_threshold: 200
+    pucch0_dtx_threshold: 150
+    ofdm_offset_divisor: 8 # set this to UINT_MAX for offset 0
+RUs:
+  - local_rf: "yes"
+    nb_tx: 1
+    nb_rx: 1
+    att_tx: 0
+    att_rx: 0
+    bands: [78]
+    max_pdschReferenceSignalPower: -27
+    max_rxgain: 114
+    eNB_instances: [0]
+    clock_src: "internal"
+rfsimulator:
+  serveraddr: server
+log_config:
+  global_log_level: "info"
+  hw_log_level: "info"
+  phy_log_level: "info"
+  mac_log_level: "info"
+  rlc_log_level: "info"
+  f1ap_log_level: "info"
+==================================
+== Load USRP binaries
+==================================
+== Starting gNB soft modem
+Additional option(s): -E --rfsim --log_config.global_log_options level,nocolor,time
+/opt/oai-gnb/bin/nr-softmodem -O /opt/oai-gnb/etc/gnb.yaml -E --rfsim --log_config.global_log_options level,nocolor,time
+CMDLINE: "/opt/oai-gnb/bin/nr-softmodem" "-O" "/opt/oai-gnb/etc/gnb.yaml" "-E" "--rfsim" "--log_config.global_log_options" "level,nocolor,time" 
+411708.095294 [UTIL]   W mlockall() failed: 12, Cannot allocate memory
+411708.096152 [UTIL]   I running in SA mode (no --phy-test, --do-ra, --nsa option present)
+411709.097561 [OPT]    I OPT disabled
+411709.097577 [HW]     I Version: Branch: HEAD Abrev. Hash: ed4cca814a Date: Thu Jan 22 14:27:15 2026 +0000
+411709.098342 [GNB_APP] I Initialized RAN Context: RC.nb_nr_inst = 1, RC.nb_nr_macrlc_inst = 1, RC.nb_nr_L1_inst = 1, RC.nb_RU = 1, RC.nb_nr_CC[0] = 1
+411709.098356 [NR_PHY] I Initializing gNB RAN context: RC.nb_nr_L1_inst = 1 
+411709.098845 [NR_PHY] I Registered with MAC interface module (0x56071e5d3eb0)
+411709.098865 [NR_PHY] I Initializing NR L1: RC.nb_nr_L1_inst = 1
+411709.099996 [NR_PHY] I L1_RX_THREAD_CORE -1 (15)
+411709.100035 [NR_PHY] I TX_AMP = 519 (-36 dBFS)
+411709.100261 [PHY]    I No prs_config configuration found..!!
+411709.102813 [GNB_APP] I pdsch_AntennaPorts N1 1 N2 1 XP 1 pusch_AntennaPorts 1
+411709.103095 [GNB_APP] I minTXRXTIME 6
+411709.103102 [GNB_APP] I CSI-RS 0, SRS 0, report type 0 (ssb_rsrp), 256 QAM may be on, delta_MCS off, maxMIMO_Layers -1, HARQ feedback enabled, num DLHARQ:16, num ULHARQ:16
+411709.103341 [GNB_APP] I No RedCap configuration found
+411709.103534 [GNB_APP] I No PTRS configuration found
+411709.103711 [GNB_APP] I sr_ProhibitTimer 0, sr_TransMax 64, sr_ProhibitTimer_v1700 0, t300 400, t301 400, t310 2000, n310 10, t311 3000, n311 1, t319 400
+411709.103718 [NR_MAC] I Candidates per PDCCH aggregation level on UESS: L1: 0, L2: 2, L4: 0, L8: 0, L16: 0
+411709.105272 [RRC]    I Read in ServingCellConfigCommon (PhysCellId 0, ABSFREQSSB 621312, DLBand 78, ABSFREQPOINTA 620040, DLBW 106,RACH_TargetReceivedPower -104
+411709.105290 [RRC]    I absoluteFrequencySSB 621312 corresponds to 3319680000 Hz
+411709.105323 [NR_MAC] I TDD period index = 6, based on the sum of dl_UL_TransmissionPeriodicity from Pattern1 (5.000000 ms) and Pattern2 (0.000000 ms): Total = 5.000000 ms
+411709.107453 [UTIL]   I threadCreate() for MAC_STATS: creating thread with affinity ffffffff, priority 2
+411709.107695 [NR_MAC] I PUSCH Target 200, PUCCH Target 200, PUCCH Failure 10, PUSCH Failure 10
+411709.108337 [NR_PHY] I Copying 0 blacklisted PRB to L1 context
+411709.108429 [NR_MAC] I Set TX antenna number to 1, Set RX antenna number to 1 (num ssb 1: 80000000,0)
+411709.108440 [NR_MAC] I TDD period index = 6, based on the sum of dl_UL_TransmissionPeriodicity from Pattern1 (5.000000 ms) and Pattern2 (0.000000 ms): Total = 5.000000 ms
+411709.108446 [NR_MAC] I Set TDD configuration period to: 8 DL slots, 3 UL slots, 10 slots per period (NR_TDD_UL_DL_Pattern is 7 DL slots, 2 UL slots, 6 DL symbols, 4 UL symbols)
+411709.108449 [NR_MAC] I Configured 1 TDD patterns (total slots: pattern1 = 10, pattern2 = 0)
+411709.108452 [NR_PHY] I Set TDD Period Configuration: 2 periods per frame, 20 slots to be configured (8 DL, 3 UL)
+411709.108456 [NR_PHY] I TDD period configuration: slot 0 is DOWNLINK
+411709.108458 [NR_PHY] I TDD period configuration: slot 1 is DOWNLINK
+411709.108459 [NR_PHY] I TDD period configuration: slot 2 is DOWNLINK
+411709.108461 [NR_PHY] I TDD period configuration: slot 3 is DOWNLINK
+411709.108462 [NR_PHY] I TDD period configuration: slot 4 is DOWNLINK
+411709.108463 [NR_PHY] I TDD period configuration: slot 5 is DOWNLINK
+411709.108465 [NR_PHY] I TDD period configuration: slot 6 is DOWNLINK
+411709.108466 [NR_PHY] I TDD period configuration: slot 7 is FLEXIBLE: DDDDDDFFFFUUUU
+411709.108468 [NR_PHY] I TDD period configuration: slot 8 is UPLINK
+411709.108469 [NR_PHY] I TDD period configuration: slot 9 is UPLINK
+411709.108471 [NR_MAC] I Command line parameters for OAI UE: -C 3319680000 -r 106 --numerology 1 --band 78 --ssb 516 -E
+411709.108485 [NR_PHY] I dlfreq:3319680 ulfreq:3319680 deltaduplex:0 khz, uldl_min_offset:0 khz
+411709.108487 [NR_PHY] I dlfreq:3319680 ulfreq:3319680 deltaduplex:0 khz, uldl_min_offset:0 khz
+411709.108489 [NR_PHY] I dlfreq:3319680 ulfreq:3319680 deltaduplex:0 khz, uldl_min_offset:0 khz
+411709.108490 [NR_PHY] I dlfreq:3319680 ulfreq:3319680 deltaduplex:0 khz, uldl_min_offset:0 khz
+411709.108494 [PHY]    I DL frequency 3319680000 Hz, UL frequency 3319680000 Hz: band 78, uldl offset 0 Hz
+411709.108496 [PHY]    I Initializing frame parms for mu 1, N_RB 106, Ncp 0
+411709.108499 [PHY]    I Init: N_RB_DL 106, first_carrier_offset 900, nb_prefix_samples 108,nb_prefix_samples0 132, ofdm_symbol_size 1536
+411709.108731 [NR_MAC] I TDA index 0: start 0 length 13 k2 6
+411709.108786 [NR_MAC] I TDA index 1: start 10 length 3 k2 6
+411709.109711 [ENB_APP] E [CONFIG] config_execcheck: section gNBs.[0].plmn_list.[0] 1 parameters with wrong value
+[CONFIG] config_check_intval: mnc_length: 123 invalid value, authorized values:
+        2 3 
+[CONFIG] function config_yaml_init returned 0
+DL frequency 3319680000: band 78, UL frequency 3319680000
+/oai-ran/common/config/config_userapi.c:102 config_execcheck() Exiting OAI softmodem: exit_fun
+[INFO  tini (1)] Spawned child process '/opt/oai-gnb/bin/entrypoint.sh' with pid '2'
+[INFO  tini (1)] Main child exited normally (with status '255')
+==================================
+/proc/sys/kernel/core_pattern=|/usr/lib/systemd/systemd-coredump %P %u %g %s %t %c %h
+No configuration file /opt/oai-gnb/etc/gnb.conf found: attempting to find YAML config
+==================================
+== Configuration file:
+# Active DUs
+Active_gNBs:
+  - oai-rfsim
+# Asn1_verbosity, choice in: none, info, annoying
+Asn1_verbosity: "none"
+gNBs:
+  - #////////// Identification parameters:
+    gNB_ID: 0xe00
+    gNB_DU_ID: 0xe00
+    gNB_name: "oai-rfsim"
+    # Tracking area code, 0x0000 and 0xfffe are reserved values
+    tracking_area_code: "1"
+    plmn_list:
+      - mcc: 1
+        mnc: 1
+        mnc_length: 123
+        snssaiList:
+          - sd: 16777215
+            sst: 1
+        sst: null
+    nr_cellid: 12345678
+    #////////// Physical parameters:
+    min_rxtxtime: 6
+    servingCellConfigCommon:
+      #spCellConfigCommon
+      - physCellId: 0
+        #  downlinkConfigCommon
+        #frequencyInfoDL
+        # this is 3300.60 MHz + 53*12*30e-3 MHz = 3319.68
+        absoluteFrequencySSB: 621312
+        # this is 3300.60 MHz
+        dl_absoluteFrequencyPointA: 620040
+        #scs-SpecificCarrierList
+        dl_offstToCarrier: 0
+        # subcarrierSpacing
+        # 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+        dl_subcarrierSpacing: 1
+        dl_carrierBandwidth: 106
+        #initialDownlinkBWP
+        #genericParameters
+        # this is RBstart=0,L=106 (275*(L-1))+RBstart
+        initialDLBWPlocationAndBandwidth: 28875
+        # subcarrierSpacing
+        # 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+        initialDLBWPsubcarrierSpacing: 1
+        #pdcch-ConfigCommon
+        initialDLBWPcontrolResourceSetZero: 11
+        initialDLBWPsearchSpaceZero: 0
+        #uplinkConfigCommon
+        #frequencyInfoUL
+        ul_frequencyBand: 78
+        #scs-SpecificCarrierList
+        ul_offstToCarrier: 0
+        # subcarrierSpacing
+        # 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+        ul_subcarrierSpacing: 1
+        ul_carrierBandwidth: 106
+        pMax: 20
+        #initialUplinkBWP
+        #genericParameters
+        initialULBWPlocationAndBandwidth: 28875
+        # subcarrierSpacing
+        # 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+        initialULBWPsubcarrierSpacing: 1
+        #rach-ConfigCommon
+        #rach-ConfigGeneric
+        prach_ConfigurationIndex: 98
+        #prach_msg1_FDM
+        #0 = one, 1=two, 2=four, 3=eight
+        prach_msg1_FDM: 0
+        prach_msg1_FrequencyStart: 0
+        zeroCorrelationZoneConfig: 12
+        preambleReceivedTargetPower: -104
+        #preamblTransMax (0...10) = (3,4,5,6,7,8,10,20,50,100,200)
+        preambleTransMax: 6
+        #powerRampingStep
+        # 0=dB0,1=dB2,2=dB4,3=dB6
+        powerRampingStep: 1
+        #ssb_perRACH_OccasionAndCB_PreamblesPerSSB_PR
+        #1=oneeighth,2=onefourth,3=half,4=one,5=two,6=four,7=eight,8=sixteen
+        ssb_perRACH_OccasionAndCB_PreamblesPerSSB_PR: 4
+        #one (0..15) 4,8,12,16,...60,64
+        ssb_perRACH_OccasionAndCB_PreamblesPerSSB: 15
+        #ra_ContentionResolutionTimer
+        #(0..7) 8,16,24,32,40,48,56,64
+        ra_ContentionResolutionTimer: 7
+        rsrp_ThresholdSSB: 19
+        #prach-RootSequenceIndex_PR
+        #1 = 839, 2 = 139
+        prach_RootSequenceIndex_PR: 2
+        prach_RootSequenceIndex: 1
+        # SCS for msg1, can only be 15 for 30 kHz < 6 GHz, takes precendence over the one derived from prach-ConfigIndex
+        msg1_SubcarrierSpacing: 1
+        # restrictedSetConfig
+        # 0=unrestricted, 1=restricted type A, 2=restricted type B
+        restrictedSetConfig: 0
+        msg3_DeltaPreamble: 1
+        p0_NominalWithGrant: -90
+        # pucch-ConfigCommon setup :
+        # pucchGroupHopping
+        # 0 = neither, 1= group hopping, 2=sequence hopping
+        pucchGroupHopping: 0
+        hoppingId: 40
+        p0_nominal: -90
+        ssb_PositionsInBurst_Bitmap: 1
+        # ssb_periodicityServingCell
+        # 0 = ms5, 1=ms10, 2=ms20, 3=ms40, 4=ms80, 5=ms160, 6=spare2, 7=spare1
+        ssb_periodicityServingCell: 2
+        # dmrs_TypeA_position
+        # 0 = pos2, 1 = pos3
+        dmrs_TypeA_Position: 0
+        # subcarrierSpacing
+        # 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+        subcarrierSpacing: 1
+        #tdd-UL-DL-ConfigurationCommon
+        # subcarrierSpacing
+        # 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+        referenceSubcarrierSpacing: 1
+        # pattern1
+        # dl_UL_TransmissionPeriodicity
+        # 0=ms0p5, 1=ms0p625, 2=ms1, 3=ms1p25, 4=ms2, 5=ms2p5, 6=ms5, 7=ms10
+        dl_UL_TransmissionPeriodicity: 6
+        nrofDownlinkSlots: 7
+        nrofDownlinkSymbols: 6
+        nrofUplinkSlots: 2
+        nrofUplinkSymbols: 4
+        ssPBCH_BlockPower: -25
+    # ------- SCTP definitions
+    SCTP:
+      # Number of streams to use in input/output
+      SCTP_INSTREAMS: 2
+      SCTP_OUTSTREAMS: 2
+MACRLCs:
+  - num_cc: 1
+    tr_s_preference: "local_L1"
+    tr_n_preference: "f1"
+    local_n_address: "10.0.6.87"
+    remote_n_address: "10.0.6.140"
+    local_n_portd: 2153
+    remote_n_portd: 2153
+    pusch_TargetSNRx10: 200
+    pucch_TargetSNRx10: 200
+    local_n_address_f1u: 10.0.6.87
+L1s:
+  - num_cc: 1
+    tr_n_preference: "local_mac"
+    prach_dtx_threshold: 200
+    pucch0_dtx_threshold: 150
+    ofdm_offset_divisor: 8 # set this to UINT_MAX for offset 0
+RUs:
+  - local_rf: "yes"
+    nb_tx: 1
+    nb_rx: 1
+    att_tx: 0
+    att_rx: 0
+    bands: [78]
+    max_pdschReferenceSignalPower: -27
+    max_rxgain: 114
+    eNB_instances: [0]
+    clock_src: "internal"
+rfsimulator:
+  serveraddr: server
+log_config:
+  global_log_level: "info"
+  hw_log_level: "info"
+  phy_log_level: "info"
+  mac_log_level: "info"
+  rlc_log_level: "info"
+  f1ap_log_level: "info"
+==================================
+== Load USRP binaries
+==================================
+== Starting gNB soft modem
+Additional option(s): -E --rfsim --log_config.global_log_options level,nocolor,time
+/opt/oai-gnb/bin/nr-softmodem -O /opt/oai-gnb/etc/gnb.yaml -E --rfsim --log_config.global_log_options level,nocolor,time
+CMDLINE: "/opt/oai-gnb/bin/nr-softmodem" "-O" "/opt/oai-gnb/etc/gnb.yaml" "-E" "--rfsim" "--log_config.global_log_options" "level,nocolor,time" 
+411710.104318 [UTIL]   W mlockall() failed: 12, Cannot allocate memory
+411710.104815 [UTIL]   I running in SA mode (no --phy-test, --do-ra, --nsa option present)
+411711.106305 [OPT]    I OPT disabled
+411711.106326 [HW]     I Version: Branch: HEAD Abrev. Hash: ed4cca814a Date: Thu Jan 22 14:27:15 2026 +0000
+411711.107528 [GNB_APP] I Initialized RAN Context: RC.nb_nr_inst = 1, RC.nb_nr_macrlc_inst = 1, RC.nb_nr_L1_inst = 1, RC.nb_RU = 1, RC.nb_nr_CC[0] = 1
+411711.107548 [NR_PHY] I Initializing gNB RAN context: RC.nb_nr_L1_inst = 1 
+411711.108483 [NR_PHY] I Registered with MAC interface module (0x5589ba725eb0)
+411711.108509 [NR_PHY] I Initializing NR L1: RC.nb_nr_L1_inst = 1
+411711.109977 [NR_PHY] I L1_RX_THREAD_CORE -1 (15)
+411711.110022 [NR_PHY] I TX_AMP = 519 (-36 dBFS)
+411711.110218 [PHY]    I No prs_config configuration found..!!
+411711.113256 [GNB_APP] I pdsch_AntennaPorts N1 1 N2 1 XP 1 pusch_AntennaPorts 1
+411711.113575 [GNB_APP] I minTXRXTIME 6
+411711.113583 [GNB_APP] I CSI-RS 0, SRS 0, report type 0 (ssb_rsrp), 256 QAM may be on, delta_MCS off, maxMIMO_Layers -1, HARQ feedback enabled, num DLHARQ:16, num ULHARQ:16
+411711.113776 [GNB_APP] I No RedCap configuration found
+411711.113976 [GNB_APP] I No PTRS configuration found
+411711.114184 [GNB_APP] I sr_ProhibitTimer 0, sr_TransMax 64, sr_ProhibitTimer_v1700 0, t300 400, t301 400, t310 2000, n310 10, t311 3000, n311 1, t319 400
+411711.114191 [NR_MAC] I Candidates per PDCCH aggregation level on UESS: L1: 0, L2: 2, L4: 0, L8: 0, L16: 0
+411711.116839 [RRC]    I Read in ServingCellConfigCommon (PhysCellId 0, ABSFREQSSB 621312, DLBand 78, ABSFREQPOINTA 620040, DLBW 106,RACH_TargetReceivedPower -104
+411711.116857 [RRC]    I absoluteFrequencySSB 621312 corresponds to 3319680000 Hz
+411711.116891 [NR_MAC] I TDD period index = 6, based on the sum of dl_UL_TransmissionPeriodicity from Pattern1 (5.000000 ms) and Pattern2 (0.000000 ms): Total = 5.000000 ms
+411711.118705 [UTIL]   I threadCreate() for MAC_STATS: creating thread with affinity ffffffff, priority 2
+411711.118985 [NR_MAC] I PUSCH Target 200, PUCCH Target 200, PUCCH Failure 10, PUSCH Failure 10
+411711.120385 [NR_PHY] I Copying 0 blacklisted PRB to L1 context
+411711.120477 [NR_MAC] I Set TX antenna number to 1, Set RX antenna number to 1 (num ssb 1: 80000000,0)
+411711.120490 [NR_MAC] I TDD period index = 6, based on the sum of dl_UL_TransmissionPeriodicity from Pattern1 (5.000000 ms) and Pattern2 (0.000000 ms): Total = 5.000000 ms
+411711.120495 [NR_MAC] I Set TDD configuration period to: 8 DL slots, 3 UL slots, 10 slots per period (NR_TDD_UL_DL_Pattern is 7 DL slots, 2 UL slots, 6 DL symbols, 4 UL symbols)
+411711.120497 [NR_MAC] I Configured 1 TDD patterns (total slots: pattern1 = 10, pattern2 = 0)
+411711.120499 [NR_PHY] I Set TDD Period Configuration: 2 periods per frame, 20 slots to be configured (8 DL, 3 UL)
+411711.120504 [NR_PHY] I TDD period configuration: slot 0 is DOWNLINK
+411711.120506 [NR_PHY] I TDD period configuration: slot 1 is DOWNLINK
+411711.120507 [NR_PHY] I TDD period configuration: slot 2 is DOWNLINK
+411711.120508 [NR_PHY] I TDD period configuration: slot 3 is DOWNLINK
+411711.120510 [NR_PHY] I TDD period configuration: slot 4 is DOWNLINK
+411711.120511 [NR_PHY] I TDD period configuration: slot 5 is DOWNLINK
+411711.120512 [NR_PHY] I TDD period configuration: slot 6 is DOWNLINK
+411711.120514 [NR_PHY] I TDD period configuration: slot 7 is FLEXIBLE: DDDDDDFFFFUUUU
+411711.120515 [NR_PHY] I TDD period configuration: slot 8 is UPLINK
+411711.120517 [NR_PHY] I TDD period configuration: slot 9 is UPLINK
+411711.120519 [NR_MAC] I Command line parameters for OAI UE: -C 3319680000 -r 106 --numerology 1 --band 78 --ssb 516 -E
+411711.120534 [NR_PHY] I dlfreq:3319680 ulfreq:3319680 deltaduplex:0 khz, uldl_min_offset:0 khz
+411711.120536 [NR_PHY] I dlfreq:3319680 ulfreq:3319680 deltaduplex:0 khz, uldl_min_offset:0 khz
+411711.120538 [NR_PHY] I dlfreq:3319680 ulfreq:3319680 deltaduplex:0 khz, uldl_min_offset:0 khz
+411711.120539 [NR_PHY] I dlfreq:3319680 ulfreq:3319680 deltaduplex:0 khz, uldl_min_offset:0 khz
+411711.120542 [PHY]    I DL frequency 3319680000 Hz, UL frequency 3319680000 Hz: band 78, uldl offset 0 Hz
+411711.120545 [PHY]    I Initializing frame parms for mu 1, N_RB 106, Ncp 0
+411711.120551 [PHY]    I Init: N_RB_DL 106, first_carrier_offset 900, nb_prefix_samples 108,nb_prefix_samples0 132, ofdm_symbol_size 1536
+411711.120814 [NR_MAC] I TDA index 0: start 0 length 13 k2 6
+411711.120819 [NR_MAC] I TDA index 1: start 10 length 3 k2 6
+411711.121911 [ENB_APP] E [CONFIG] config_execcheck: section gNBs.[0].plmn_list.[0] 1 parameters with wrong value
+[CONFIG] config_check_intval: mnc_length: 123 invalid value, authorized values:
+        2 3 
+[CONFIG] function config_yaml_init returned 0
+DL frequency 3319680000: band 78, UL frequency 3319680000
+/oai-ran/common/config/config_userapi.c:102 config_execcheck() Exiting OAI softmodem: exit_fun
+[INFO  tini (1)] Spawned child process '/opt/oai-gnb/bin/entrypoint.sh' with pid '2'
+[INFO  tini (1)] Main child exited normally (with status '255')
+==================================
+/proc/sys/kernel/core_pattern=|/usr/lib/systemd/systemd-coredump %P %u %g %s %t %c %h
+No configuration file /opt/oai-gnb/etc/gnb.conf found: attempting to find YAML config
+==================================
+== Configuration file:
+# Active DUs
+Active_gNBs:
+  - oai-rfsim
+# Asn1_verbosity, choice in: none, info, annoying
+Asn1_verbosity: "none"
+gNBs:
+  - #////////// Identification parameters:
+    gNB_ID: 0xe00
+    gNB_DU_ID: 0xe00
+    gNB_name: "oai-rfsim"
+    # Tracking area code, 0x0000 and 0xfffe are reserved values
+    tracking_area_code: "1"
+    plmn_list:
+      - mcc: 1
+        mnc: 1
+        mnc_length: 123
+        snssaiList:
+          - sd: 16777215
+            sst: 1
+        sst: null
+    nr_cellid: 12345678
+    #////////// Physical parameters:
+    min_rxtxtime: 6
+    servingCellConfigCommon:
+      #spCellConfigCommon
+      - physCellId: 0
+        #  downlinkConfigCommon
+        #frequencyInfoDL
+        # this is 3300.60 MHz + 53*12*30e-3 MHz = 3319.68
+        absoluteFrequencySSB: 621312
+        # this is 3300.60 MHz
+        dl_absoluteFrequencyPointA: 620040
+        #scs-SpecificCarrierList
+        dl_offstToCarrier: 0
+        # subcarrierSpacing
+        # 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+        dl_subcarrierSpacing: 1
+        dl_carrierBandwidth: 106
+        #initialDownlinkBWP
+        #genericParameters
+        # this is RBstart=0,L=106 (275*(L-1))+RBstart
+        initialDLBWPlocationAndBandwidth: 28875
+        # subcarrierSpacing
+        # 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+        initialDLBWPsubcarrierSpacing: 1
+        #pdcch-ConfigCommon
+        initialDLBWPcontrolResourceSetZero: 11
+        initialDLBWPsearchSpaceZero: 0
+        #uplinkConfigCommon
+        #frequencyInfoUL
+        ul_frequencyBand: 78
+        #scs-SpecificCarrierList
+        ul_offstToCarrier: 0
+        # subcarrierSpacing
+        # 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+        ul_subcarrierSpacing: 1
+        ul_carrierBandwidth: 106
+        pMax: 20
+        #initialUplinkBWP
+        #genericParameters
+        initialULBWPlocationAndBandwidth: 28875
+        # subcarrierSpacing
+        # 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+        initialULBWPsubcarrierSpacing: 1
+        #rach-ConfigCommon
+        #rach-ConfigGeneric
+        prach_ConfigurationIndex: 98
+        #prach_msg1_FDM
+        #0 = one, 1=two, 2=four, 3=eight
+        prach_msg1_FDM: 0
+        prach_msg1_FrequencyStart: 0
+        zeroCorrelationZoneConfig: 12
+        preambleReceivedTargetPower: -104
+        #preamblTransMax (0...10) = (3,4,5,6,7,8,10,20,50,100,200)
+        preambleTransMax: 6
+        #powerRampingStep
+        # 0=dB0,1=dB2,2=dB4,3=dB6
+        powerRampingStep: 1
+        #ssb_perRACH_OccasionAndCB_PreamblesPerSSB_PR
+        #1=oneeighth,2=onefourth,3=half,4=one,5=two,6=four,7=eight,8=sixteen
+        ssb_perRACH_OccasionAndCB_PreamblesPerSSB_PR: 4
+        #one (0..15) 4,8,12,16,...60,64
+        ssb_perRACH_OccasionAndCB_PreamblesPerSSB: 15
+        #ra_ContentionResolutionTimer
+        #(0..7) 8,16,24,32,40,48,56,64
+        ra_ContentionResolutionTimer: 7
+        rsrp_ThresholdSSB: 19
+        #prach-RootSequenceIndex_PR
+        #1 = 839, 2 = 139
+        prach_RootSequenceIndex_PR: 2
+        prach_RootSequenceIndex: 1
+        # SCS for msg1, can only be 15 for 30 kHz < 6 GHz, takes precendence over the one derived from prach-ConfigIndex
+        msg1_SubcarrierSpacing: 1
+        # restrictedSetConfig
+        # 0=unrestricted, 1=restricted type A, 2=restricted type B
+        restrictedSetConfig: 0
+        msg3_DeltaPreamble: 1
+        p0_NominalWithGrant: -90
+        # pucch-ConfigCommon setup :
+        # pucchGroupHopping
+        # 0 = neither, 1= group hopping, 2=sequence hopping
+        pucchGroupHopping: 0
+        hoppingId: 40
+        p0_nominal: -90
+        ssb_PositionsInBurst_Bitmap: 1
+        # ssb_periodicityServingCell
+        # 0 = ms5, 1=ms10, 2=ms20, 3=ms40, 4=ms80, 5=ms160, 6=spare2, 7=spare1
+        ssb_periodicityServingCell: 2
+        # dmrs_TypeA_position
+        # 0 = pos2, 1 = pos3
+        dmrs_TypeA_Position: 0
+        # subcarrierSpacing
+        # 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+        subcarrierSpacing: 1
+        #tdd-UL-DL-ConfigurationCommon
+        # subcarrierSpacing
+        # 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+        referenceSubcarrierSpacing: 1
+        # pattern1
+        # dl_UL_TransmissionPeriodicity
+        # 0=ms0p5, 1=ms0p625, 2=ms1, 3=ms1p25, 4=ms2, 5=ms2p5, 6=ms5, 7=ms10
+        dl_UL_TransmissionPeriodicity: 6
+        nrofDownlinkSlots: 7
+        nrofDownlinkSymbols: 6
+        nrofUplinkSlots: 2
+        nrofUplinkSymbols: 4
+        ssPBCH_BlockPower: -25
+    # ------- SCTP definitions
+    SCTP:
+      # Number of streams to use in input/output
+      SCTP_INSTREAMS: 2
+      SCTP_OUTSTREAMS: 2
+MACRLCs:
+  - num_cc: 1
+    tr_s_preference: "local_L1"
+    tr_n_preference: "f1"
+    local_n_address: "10.0.6.87"
+    remote_n_address: "10.0.6.140"
+    local_n_portd: 2153
+    remote_n_portd: 2153
+    pusch_TargetSNRx10: 200
+    pucch_TargetSNRx10: 200
+    local_n_address_f1u: 10.0.6.87
+L1s:
+  - num_cc: 1
+    tr_n_preference: "local_mac"
+    prach_dtx_threshold: 200
+    pucch0_dtx_threshold: 150
+    ofdm_offset_divisor: 8 # set this to UINT_MAX for offset 0
+RUs:
+  - local_rf: "yes"
+    nb_tx: 1
+    nb_rx: 1
+    att_tx: 0
+    att_rx: 0
+    bands: [78]
+    max_pdschReferenceSignalPower: -27
+    max_rxgain: 114
+    eNB_instances: [0]
+    clock_src: "internal"
+rfsimulator:
+  serveraddr: server
+log_config:
+  global_log_level: "info"
+  hw_log_level: "info"
+  phy_log_level: "info"
+  mac_log_level: "info"
+  rlc_log_level: "info"
+  f1ap_log_level: "info"
+==================================
+== Load USRP binaries
+==================================
+== Starting gNB soft modem
+Additional option(s): -E --rfsim --log_config.global_log_options level,nocolor,time
+/opt/oai-gnb/bin/nr-softmodem -O /opt/oai-gnb/etc/gnb.yaml -E --rfsim --log_config.global_log_options level,nocolor,time
+CMDLINE: "/opt/oai-gnb/bin/nr-softmodem" "-O" "/opt/oai-gnb/etc/gnb.yaml" "-E" "--rfsim" "--log_config.global_log_options" "level,nocolor,time" 
+411725.391312 [UTIL]   W mlockall() failed: 12, Cannot allocate memory
+411725.392146 [UTIL]   I running in SA mode (no --phy-test, --do-ra, --nsa option present)
+411726.393889 [OPT]    I OPT disabled
+411726.393914 [HW]     I Version: Branch: HEAD Abrev. Hash: ed4cca814a Date: Thu Jan 22 14:27:15 2026 +0000
+411726.394644 [GNB_APP] I Initialized RAN Context: RC.nb_nr_inst = 1, RC.nb_nr_macrlc_inst = 1, RC.nb_nr_L1_inst = 1, RC.nb_RU = 1, RC.nb_nr_CC[0] = 1
+411726.394663 [NR_PHY] I Initializing gNB RAN context: RC.nb_nr_L1_inst = 1 
+411726.395213 [NR_PHY] I Registered with MAC interface module (0x55e4cb57feb0)
+411726.395232 [NR_PHY] I Initializing NR L1: RC.nb_nr_L1_inst = 1
+411726.396353 [NR_PHY] I L1_RX_THREAD_CORE -1 (15)
+411726.396388 [NR_PHY] I TX_AMP = 519 (-36 dBFS)
+411726.396573 [PHY]    I No prs_config configuration found..!!
+411726.399363 [GNB_APP] I pdsch_AntennaPorts N1 1 N2 1 XP 1 pusch_AntennaPorts 1
+411726.399646 [GNB_APP] I minTXRXTIME 6
+411726.399654 [GNB_APP] I CSI-RS 0, SRS 0, report type 0 (ssb_rsrp), 256 QAM may be on, delta_MCS off, maxMIMO_Layers -1, HARQ feedback enabled, num DLHARQ:16, num ULHARQ:16
+411726.399851 [GNB_APP] I No RedCap configuration found
+411726.400031 [GNB_APP] I No PTRS configuration found
+411726.400227 [GNB_APP] I sr_ProhibitTimer 0, sr_TransMax 64, sr_ProhibitTimer_v1700 0, t300 400, t301 400, t310 2000, n310 10, t311 3000, n311 1, t319 400
+411726.400235 [NR_MAC] I Candidates per PDCCH aggregation level on UESS: L1: 0, L2: 2, L4: 0, L8: 0, L16: 0
+411726.401790 [RRC]    I Read in ServingCellConfigCommon (PhysCellId 0, ABSFREQSSB 621312, DLBand 78, ABSFREQPOINTA 620040, DLBW 106,RACH_TargetReceivedPower -104
+411726.401809 [RRC]    I absoluteFrequencySSB 621312 corresponds to 3319680000 Hz
+411726.401847 [NR_MAC] I TDD period index = 6, based on the sum of dl_UL_TransmissionPeriodicity from Pattern1 (5.000000 ms) and Pattern2 (0.000000 ms): Total = 5.000000 ms
+411726.403189 [UTIL]   I threadCreate() for MAC_STATS: creating thread with affinity ffffffff, priority 2
+411726.403749 [NR_MAC] I PUSCH Target 200, PUCCH Target 200, PUCCH Failure 10, PUSCH Failure 10
+411726.404362 [NR_PHY] I Copying 0 blacklisted PRB to L1 context
+411726.404454 [NR_MAC] I Set TX antenna number to 1, Set RX antenna number to 1 (num ssb 1: 80000000,0)
+411726.404467 [NR_MAC] I TDD period index = 6, based on the sum of dl_UL_TransmissionPeriodicity from Pattern1 (5.000000 ms) and Pattern2 (0.000000 ms): Total = 5.000000 ms
+411726.404472 [NR_MAC] I Set TDD configuration period to: 8 DL slots, 3 UL slots, 10 slots per period (NR_TDD_UL_DL_Pattern is 7 DL slots, 2 UL slots, 6 DL symbols, 4 UL symbols)
+411726.404474 [NR_MAC] I Configured 1 TDD patterns (total slots: pattern1 = 10, pattern2 = 0)
+411726.404481 [NR_PHY] I Set TDD Period Configuration: 2 periods per frame, 20 slots to be configured (8 DL, 3 UL)
+411726.404486 [NR_PHY] I TDD period configuration: slot 0 is DOWNLINK
+411726.404488 [NR_PHY] I TDD period configuration: slot 1 is DOWNLINK
+411726.404489 [NR_PHY] I TDD period configuration: slot 2 is DOWNLINK
+411726.404491 [NR_PHY] I TDD period configuration: slot 3 is DOWNLINK
+411726.404492 [NR_PHY] I TDD period configuration: slot 4 is DOWNLINK
+411726.404493 [NR_PHY] I TDD period configuration: slot 5 is DOWNLINK
+411726.404494 [NR_PHY] I TDD period configuration: slot 6 is DOWNLINK
+411726.404496 [NR_PHY] I TDD period configuration: slot 7 is FLEXIBLE: DDDDDDFFFFUUUU
+411726.404498 [NR_PHY] I TDD period configuration: slot 8 is UPLINK
+411726.404499 [NR_PHY] I TDD period configuration: slot 9 is UPLINK
+411726.404501 [NR_MAC] I Command line parameters for OAI UE: -C 3319680000 -r 106 --numerology 1 --band 78 --ssb 516 -E
+411726.404517 [NR_PHY] I dlfreq:3319680 ulfreq:3319680 deltaduplex:0 khz, uldl_min_offset:0 khz
+411726.404521 [NR_PHY] I dlfreq:3319680 ulfreq:3319680 deltaduplex:0 khz, uldl_min_offset:0 khz
+411726.404523 [NR_PHY] I dlfreq:3319680 ulfreq:3319680 deltaduplex:0 khz, uldl_min_offset:0 khz
+411726.404524 [NR_PHY] I dlfreq:3319680 ulfreq:3319680 deltaduplex:0 khz, uldl_min_offset:0 khz
+411726.404528 [PHY]    I DL frequency 3319680000 Hz, UL frequency 3319680000 Hz: band 78, uldl offset 0 Hz
+411726.404531 [PHY]    I Initializing frame parms for mu 1, N_RB 106, Ncp 0
+411726.404534 [PHY]    I Init: N_RB_DL 106, first_carrier_offset 900, nb_prefix_samples 108,nb_prefix_samples0 132, ofdm_symbol_size 1536
+411726.405101 [NR_MAC] I TDA index 0: start 0 length 13 k2 6
+411726.405111 [NR_MAC] I TDA index 1: start 10 length 3 k2 6
+411726.405919 [ENB_APP] E [CONFIG] config_execcheck: section gNBs.[0].plmn_list.[0] 1 parameters with wrong value
+[CONFIG] config_check_intval: mnc_length: 123 invalid value, authorized values:
+        2 3 
+[CONFIG] function config_yaml_init returned 0
+DL frequency 3319680000: band 78, UL frequency 3319680000
+/oai-ran/common/config/config_userapi.c:102 config_execcheck() Exiting OAI softmodem: exit_fun
+[INFO  tini (1)] Spawned child process '/opt/oai-gnb/bin/entrypoint.sh' with pid '2'
+[INFO  tini (1)] Main child exited normally (with status '255')
