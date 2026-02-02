@@ -156,7 +156,6 @@ spec:
                 .gNBs[0].NETWORK_INTERFACES.GNB_IPV4_ADDRESS_FOR_NG_AMF = strenv(N2_IP) |
                 .gNBs[0].NETWORK_INTERFACES.GNB_IPV4_ADDRESS_FOR_NGU = strenv(N3_IP)
               ' /tmp/config_patch/gnb.yaml
-              cat /tmp/config_patch/gnb.yaml
           env:
             - name: GNB_NAME
               value: "{{ .Values.config.cuName }}"

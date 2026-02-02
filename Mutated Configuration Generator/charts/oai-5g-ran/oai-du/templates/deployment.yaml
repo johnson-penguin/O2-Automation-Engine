@@ -158,7 +158,6 @@ spec:
                 {{- end }}
                 .MACRLCs[0].remote_n_address = strenv(CU_IP) 
               ' /tmp/config_patch/gnb.yaml
-              cat /tmp/config_patch/gnb.yaml
           env:
             - name: DU_NAME
               value: "{{ .Values.config.duName }}"
