@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# --- 路徑配置 ---
+# --- Configuration ---
 CHART_ROOT="/home/johnson/O2-Automation-Engine/Mutated Configuration Generator/charts/oai-5g-ran"
 # 變異測試案來源
 TEST_CASE_DIR="/home/johnson/O2-Automation-Engine/yaml_runner/multiple/multiple_templete_yaml"
@@ -102,6 +102,7 @@ for CASE_FILE in "${TEST_FILES[@]}"; do
 
     # 3. 清理並準備下一輪
     cleanup
+    sleep 1
 done
 
 echo -e "\n${GREEN}✔ 所有 $TOTAL_CASES 個測試案例執行完畢！${NC}"
