@@ -114,6 +114,6 @@ CMDLINE: "/opt/oai-nr-ue/bin/nr-uesoftmodem" "-O" "/opt/oai-nr-ue/etc/nr-ue.conf
 [HW]     I Trying to connect to oai-ran:4043
 [HW]     E getaddrinfo: Name or service not known
 [HW]     I connect() to oai-ran:4043 failed, errno(0)
-[HW]     I Trying to connect to oai-ran:4043
-[HW]     E getaddrinfo: Name or service not known
-[HW]     I connect() to oai-ran:4043 failed, errno(0)
+Press ^C again to trigger immediate shutdown
+[NAS]    I [UE 0] Received NAS_DEREGISTRATION_REQ
+[NAS]    W No GUTI, cannot trigger deregistration request.

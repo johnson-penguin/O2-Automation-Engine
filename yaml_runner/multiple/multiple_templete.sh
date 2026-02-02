@@ -2,21 +2,21 @@
 
 # --- Configuration ---
 CHART_ROOT="/home/johnson/O2-Automation-Engine/Mutated Configuration Generator/charts/oai-5g-ran"
-# 變異測試案來源
+# Mutation test case source
 TEST_CASE_DIR="/home/johnson/O2-Automation-Engine/yaml_runner/multiple/multiple_templete_yaml"
-# 標準配置來源
+# Standard configuration source
 STD_VAL_DIR="/home/johnson/O2-Automation-Engine/Mutated Configuration Generator/workable_yaml"
-# 日誌存儲路徑
+# Log storage path
 BASE_LOG_DIR="/home/johnson/O2-Automation-Engine/yaml_runner/multiple/multiple_templete_logs/$(date +%Y%m%d_%H%M%S)"
 
 NAMESPACE="johnson-ns"
 
-# 定義標準配置檔案名
+# Define standard configuration file names
 STD_CU="$STD_VAL_DIR/cu_values.yaml"
 STD_DU="$STD_VAL_DIR/du_values.yaml"
 STD_UE="$STD_VAL_DIR/ue_values.yaml"
 
-# 顏色與樣式
+# Colors and styles
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 CYAN='\033[0;36m'
@@ -26,21 +26,21 @@ NC='\033[0m'
 
 mkdir -p "$BASE_LOG_DIR"
 
-# 清理環境函數
+# Environment cleanup function
 cleanup() {
-    echo -e "${YELLOW}>> 正在執行環境清理與重置...${NC}"
+    echo -e "${YELLOW}>> Executing environment cleanup and reset...${NC}"
     helm uninstall oai-cu oai-du oai-nr-ue -n $NAMESPACE 2>/dev/null || true
     kill $STERN_CU_PID $STERN_DU_PID $STERN_UE_PID 2>/dev/null || true
     pkill -9 stern 2>/dev/null || true
     sleep 5
 }
 
-# 取得所有變異測試檔
+# Get all mutation test files
 TEST_FILES=($(ls "$TEST_CASE_DIR"/*.yaml))
 TOTAL_CASES=${#TEST_FILES[@]}
 CURRENT_COUNT=0
 
-echo -e "${GREEN}檢測到 $TOTAL_CASES 個測試案例。日誌將存於: $BASE_LOG_DIR${NC}"
+echo -e "${GREEN}Detected $TOTAL_CASES test cases. Logs will be stored at: $BASE_LOG_DIR${NC}"
 
 
 
@@ -51,13 +51,13 @@ for CASE_FILE in "${TEST_FILES[@]}"; do
     CASE_LOG_DIR="$BASE_LOG_DIR/$CURRENT_CASE"
     mkdir -p "$CASE_LOG_DIR"
     
-    # 初始化配置：預設全部使用 Standard 路徑下的檔案
+    # Initialize configuration: Use all files from Standard path by default
     target_cu=$STD_CU
     target_du=$STD_DU
     target_ue=$STD_UE
     subject="Unknown"
 
-    # 動態判定邏輯：如果測試檔名符合組件名稱，則替換該組件為變異版
+    # Dynamic determination logic: If test filename matches component name, replace that component with mutated version
     if [[ "$FILENAME" == oai-cu* ]]; then
         target_cu="$CASE_FILE"
         subject="CU (Mutated)"
@@ -66,7 +66,7 @@ for CASE_FILE in "${TEST_FILES[@]}"; do
         subject="DU (Mutated)"
     fi
 
-    # --- 顯示目前執行的排列組合與進度 ---
+    # --- Display current execution combination and progress ---
     echo -e "\n${CYAN}================================================================${NC}"
     echo -e "${GREEN}[Progress: $CURRENT_COUNT / $TOTAL_CASES]${NC}"
     echo -e "${YELLOW}CASE ID:${NC} $CURRENT_CASE"
@@ -78,8 +78,8 @@ for CASE_FILE in "${TEST_FILES[@]}"; do
     printf "  OAI-UE     | %-35s\n" "$(basename "$target_ue")"
     echo -e "${CYAN}================================================================${NC}"
 
-    # 1. 啟動背景 Stern 日誌監控
-    # 對 CU/DU 使用 sed 過濾雜訊，UE 則全量記錄
+    # 1. Start background Stern log monitoring
+    # Use sed to filter noise for CU/DU, while UE logs everything
     stern "oai-cu" -n $NAMESPACE --output raw > "$CASE_LOG_DIR/cu.log" 2>/dev/null &
     STERN_CU_PID=$!
     stern "oai-du" -n $NAMESPACE --output raw > "$CASE_LOG_DIR/du.log" 2>/dev/null &
@@ -87,7 +87,7 @@ for CASE_FILE in "${TEST_FILES[@]}"; do
     stern "oai-nr-ue" -n $NAMESPACE --output raw > "$CASE_LOG_DIR/ue.log" 2>/dev/null &
     STERN_UE_PID=$!
 
-    # 2. 部署流程 (固定等待時間以採集錯誤狀態)
+    # 2. Deployment process (fixed wait time to capture error states)
     echo -e "${BLUE}Deploying CU (Waiting 10s)...${NC}"
     helm install oai-cu "$CHART_ROOT/oai-cu" -n $NAMESPACE -f "$target_cu"
     sleep 10
@@ -100,10 +100,10 @@ for CASE_FILE in "${TEST_FILES[@]}"; do
     helm install oai-nr-ue "$CHART_ROOT/oai-nr-ue" -n $NAMESPACE -f "$target_ue"
     sleep 20
 
-    # 3. 清理並準備下一輪
+    # 3. Cleanup and prepare for next round
     cleanup
     sleep 1
 done
 
-echo -e "\n${GREEN}✔ 所有 $TOTAL_CASES 個測試案例執行完畢！${NC}"
-echo -e "${GREEN}總日誌路徑: $BASE_LOG_DIR${NC}"
+echo -e "\n${GREEN}✔ All $TOTAL_CASES test cases completed!${NC}"
+echo -e "${GREEN}Total log path: $BASE_LOG_DIR${NC}"
