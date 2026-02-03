@@ -75,7 +75,7 @@ config:
   timeZone: "Europe/Paris"
   useAdditionalOptions: "--log_config.global_log_options level,nocolor"
   # If mounting the configuration file then below parameters are not used
-  cuName: "oai-cu"
+  cuName: "oai-cu"          # gNB_name
   amfHost: "192.168.8.108"  # amf ip-address or service-name oai-amf
   tac: 1
   enableE2: false
@@ -90,6 +90,19 @@ config:
       - sst: "1"
         sd: "0xffffff"
 
+custom:
+  gNB_ID: 0xe02
+  nr_cellid: 11
+  tr_s_preference: "f1"
+  SCTP_INSTREAMS: 2
+  SCTP_OUTSTREAMS: 2
+  drb_ciphering: "yes"
+  drb_integrity: "no"
+  ciphering_algorithms:
+    - "nea0"
+  integrity_algorithms:
+    - "nia2"
+    - "nia0"
 # Debugging options
 start:
   cu: true       # If false → NF container sleeps (for manual debugging)
