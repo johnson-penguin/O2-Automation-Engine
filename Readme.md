@@ -141,7 +141,7 @@ graph TD
 | --------------------------------------------------------------------- | ------ | ---------- | ------------------------------------------------------- |
 | Open5GS Installation for Ubuntu and UE registration                   | ✅     | 2024-10-15 | 本文件紀錄如何在 Ubuntu 環境下，安裝 Open5GS 核心網路。                                                        |
 | [OAI-5G-RAN-on-Kubernetes-Deployment-Guide.md](#smo-installation)     | ✅     | 2024-10-15 | 本文件紀錄如何在 Kubernetes 環境下，利用 Helm Chart 部署 OAI 5G RAN 元件（CU、DU），並透過 RFSimulator 與外部 Core Network (Open5GS) 進行端到端連通測試。                                                        |
-| [Chart-Custom-Config-Guide](#ho-xapp-development)                     | ✅     | 2024-10-23 | 本文件紀錄針對官方原始 Chart 中 values.yaml 無法有效控制所有關鍵參數的問題，所進行的結構性優化與配置調整。  |
+| [Chart-Custom-Config-Guide](#ho-xapp-development)                     | ✅     | 2024-10-23 | 本文件紀錄針對原始 Chart 中 values.yaml 無法有效控制所有關鍵參數的問題，所進行的結構性優化與配置調整。  |
 | [Mutated Configuration Generator](#mutated-configuration-generator)                   | ⏳     | 2024-10-25 | Blocked: waiting for cell shutdown tests to complete    |
 | [Config-Runner](#config-runner)                                                       | ❌    | 2024-10-26 | Failed: RU failed to reactivate, investigating RF issue |
 | [Reasoning Trace Generator (python)](#reasoning-trace-generator-python)               | ⏳     | 2024-10-28 |                                                         |
@@ -199,7 +199,11 @@ graph TD
 > - Keep `draw.io` files versioned for easy updates and maintenance
 > - Use consistent naming: `<project-name>.drawio`
 
+### High-Level System Architecture
+![System Architecture](./docs/drawio/LLM-system_model_v7.png)
 ---
+
+
 > [!NOTE]
 > **Guideline:** Draw the end-to-end system architecture using Mermaid diagrams. For each component, provide:
 >
@@ -209,119 +213,19 @@ graph TD
 >
 > This format enables easy adaptation into academic paper publications.
 
-**Example:**
 
-```mermaid
-graph TB
-    %% SMO Layer (Top)
-    subgraph SMO["OSC [L] - SMO"]
-        direction LR
-
-        subgraph SMO-O1["O1 Agent"]
-            direction TB
-            VES[VES Collector<br/>Port: 8080]
-            NETCONF[NETCONF Server<br/>Port: 830]
-        end
-        TEIV[TEIV<br/>Port: 8081]
-        Grafana[Grafana<br/>Port: 3000]
-        
-        subgraph Non-RT_RIC["Non-RT RIC"]
-            ESrAPP[ES rApp<br/>Port: 9090]
-            PMrAPP[PM rApp<br/>Port: 9091]
-        end
-
-        SMO-O1 ~~~ TEIV ~~~ Grafana ~~~ Non-RT_RIC
-    end
-    
-    %% Near-RT RIC Layer
-    subgraph NearRT_RIC["OSC [L] - Near-RT RIC"]
-        HOxAPP[HO xApp<br/>Port: 8080]
-        E2Term[E2 Termination<br/>Port: 36421]
-        RIC[Near-RT RIC Platform<br/>10.10.4.10]
-
-        HOxAPP ~~~ E2Term
-    end
-    
-    %% CU Layer
-    CU["OAI [2024.w40] - CU"]
-    
-    %% DU Layer
-    subgraph DU["OAI [2024.w40] - DU"]
-        subgraph DU-O1["O1 Agent"]
-            VESAgentDU[VES Agent]
-            NETCONFClientDU[NETCONF Client]
-        end
-
-        subgraph DU-E2["E2 Agent"]
-            E2AP[E2AP]
-            E2SM[E2SM]
-        end
-
-        DU-O1 ~~~ DU-E2
-    end
-    
-    FHGW[Fronthaul Gateway]
-
-    %% RU Layer
-    RU[JURA RU]
-    
-    %% Connections
-    SMO --- |O1| DU
-    SMO --- |O1| CU
-    SMO --- |A1| NearRT_RIC
-
-    NearRT_RIC --- |E2| CU
-    NearRT_RIC --- |E2| DU
-
-    CU --- |F1| DU
-    CU --- 5GC[Open5GS] --- Internet
-    DU --- FHGW --- RU --- UE
-
-    
-    %% Styling
-    classDef smo fill:#e1bee7,stroke:#7b1fa2,stroke-width:3px,color:#000
-    classDef nonrt fill:#c8e6c9,stroke:#388e3c,stroke-width:2px,color:#000
-    classDef ric fill:#fff9c4,stroke:#f57f17,stroke-width:3px,color:#000
-    classDef cu fill:#ffcc80,stroke:#e65100,stroke-width:3px,color:#000
-    classDef du fill:#ffcdd2,stroke:#c62828,stroke-width:3px,color:#000
-    classDef ru fill:#ffcdd2,stroke:#c62828,stroke-width:3px,color:#000
-    classDef ue fill:#bbdefb,stroke:#1565c0,stroke-width:3px,color:#000
-    
-    class VES,NETCONF,TEIV,Grafana smo
-    class ESrAPP,PMrAPP nonrt
-    class RIC,HOxAPP,E2Term ric
-    class CU cu
-    class VESAgentDU,NETCONFClientDU,E2AP,E2SM du
-    class RU ru
-    class UE ue
-```
 
 ### Software Requirements and Versions
 
 | Component        | Implementation    | Version/Release                                                              | Purpose                              |
 | ---------------- | ----------------- | ---------------------------------------------------------------------------- | ------------------------------------ |
 | SMO              | O-RAN SC          | [L Release (2024.06)](https://wiki.o-ran-sc.org/display/ORAN/L+Release)      | Service Management and Orchestration |
-| Non-RT RIC       | O-RAN SC          | [L Release (2024.06)](https://wiki.o-ran-sc.org/display/ORAN/L+Release)      | Non-Real-Time RIC (inside SMO)       |
-| VES Collector    | ONAP VES          | [1.12.5](https://github.com/onap/vnfsdk-validation/releases/tag/1.12.5)      | Event collection and normalization   |
-| NETCONF Server   | Netopeer2         | [2.1.71](https://github.com/CESNET/netopeer2/releases/tag/v2.1.71)           | Configuration management protocol    |
-| TEIV             | O-RAN SC          | [L Release (2024.06)](https://wiki.o-ran-sc.org/display/ORAN/L+Release)      | Topology & Inventory                 |
 | Kafka            | Apache Kafka      | [3.6.2](https://archive.apache.org/dist/kafka/3.6.2/)                        | Message broker for event streaming   |
-| Grafana          | Grafana           | [10.0.13](https://github.com/grafana/grafana/releases/tag/v10.0.13)          | Monitoring dashboard                 |
-| InfluxDB         | InfluxDB          | [2.7.10](https://github.com/influxdata/influxdb/releases/tag/v2.7.10)        | Time-series metrics storage          |
-| ES rApp          | Custom Python     | 1.0.0                                                                        | Energy Saving rApp                   |
-| PM rApp          | Custom Python     | 1.0.0                                                                        | Performance Monitoring rApp          |
-| Near-RT RIC      | O-RAN SC          | [L Release (2024.06)](https://wiki.o-ran-sc.org/display/ORAN/L+Release)      | Real-time RAN Intelligent Controller |
-| ES xApp          | Custom C++        | 1.0.0                                                                        | Energy Saving xApp                   |
-| HO xApp          | Custom C++        | 1.0.0                                                                        | Handover xApp                        |
-| E2 Termination   | O-RAN SC          | [L Release (2024.06)](https://gerrit.o-ran-sc.org/r/gitweb?p=ric-plt/e2.git) | E2 interface termination             |
 | CU-CP            | OAI               | [2024.w40](https://gitlab.eurecom.fr/oai/openairinterface5g/-/tags/2024.w40) | Central Unit Control Plane           |
 | CU-UP            | OAI               | [2024.w40](https://gitlab.eurecom.fr/oai/openairinterface5g/-/tags/2024.w40) | Central Unit User Plane              |
 | DU               | OAI               | [2024.w40](https://gitlab.eurecom.fr/oai/openairinterface5g/-/tags/2024.w40) | Distributed Unit                     |
-| E2 Agent (DU)    | FlexRIC           | [v1.0.0](https://github.com/OpenCellular/FlexRIC/releases/tag/v1.0.0)        | E2 agent for DU                      |
-| VES Agent (DU)   | ONAP              | [1.12.5](https://github.com/onap/vnfsdk-validation/releases/tag/1.12.5)      | VES agent for O1 interface           |
-| NETCONF Client   | Netopeer2         | [2.1.71](https://github.com/CESNET/netopeer2/releases/tag/v2.1.71)           | NETCONF client for O1 interface      |
-| RU (SDR)         | USRP B210         | [UHD 4.6.0](https://github.com/EttusResearch/uhd/releases/tag/v4.6.0.0)      | Radio Unit (RF frontend)             |
-| UE Module        | Quectel RM500Q-GL | [RM500QGLABR11A06M4G](https://www.quectel.com/product/5g-rm500q-gl)          | User Equipment (5G modem)            |
+| RU (rfsimulator) | OAI               | [2024.w40](https://gitlab.eurecom.fr/oai/openairinterface5g/-/blob/develop/radio/rfsimulator/README.md)      | Radio Unit|
+| UE               | OAI               | [2024.w40](https://gitlab.eurecom.fr/oai/openairinterface5g/-/blob/develop/doc/NR_SA_Tutorial_OAI_nrUE.md#rfsimulator-1)          | User Equipment (5G modem)            |
 | Operating System | Ubuntu            | [22.04.5 LTS](https://releases.ubuntu.com/jammy/)                            | Base system platform                 |
 | Docker           | Docker Engine     | [24.0.9](https://docs.docker.com/engine/release-notes/24.0/#2409)            | Container runtime                    |
 | Kubernetes       | K8s               | [1.28.15](https://github.com/kubernetes/kubernetes/releases/tag/v1.28.15)    | Container orchestration              |
@@ -335,43 +239,6 @@ graph TB
 > - **Current Latest**: L Release (June 2024), M Release expected in December 2024
 
 ### Components Explanation
-
-#### [SMO Layer - O-RAN SC [L Release]](installation-guide-link)
-
-- **[SMO Platform](smo-installation-link) (10.10.5.10)**: The Service Management and Orchestration platform [7] serves as the top-level management entity in the O-RAN architecture, providing centralized network management, service orchestration, and policy control. Implemented using O-RAN SC L Release, it communicates with lower layers through O1 [4] and A1 [5] interfaces to configure network functions, collect performance metrics, and enforce high-level policies. The SMO enables network slicing, resource allocation optimization, and lifecycle management of RAN components while maintaining a unified view of the entire network topology.
-
-- **[VES Collector](ves-installation-link) (Port 8080)**: The VES (Virtual Event Streaming) Collector receives fault, performance, and event notifications from RAN components through the O1 interface [4]. It normalizes event data from different vendors into a common format, enabling standardized monitoring and analytics across heterogeneous network elements. VES Collector forwards processed events to Kafka message bus for distribution to rApps and external management systems.
-
-- **[NETCONF Server](netconf-installation-link) (Port 830)**: The NETCONF server provides standards-based configuration management for O-RAN network elements through YANG data models. It handles configuration requests from SMO applications, validates changes against YANG schemas, and applies configurations to RAN nodes via O1 interface [4]. The server maintains configuration versioning, supports transaction rollback, and ensures consistent state management across distributed network components.
-
-- **[TEIV](teiv-installation-link) (Port 8081)**: Topology and Inventory (TEIV) service maintains a real-time graph database of network topology, including physical and logical relationships between RAN components. It tracks cell configurations, neighbor relations, hardware inventory, and network connectivity. TEIV provides APIs for rApps to query topology information, enabling intelligent decision-making for optimization algorithms based on current network structure.
-
-- **[Energy Optimization rApp](rapp-installation-link) (Port 9090)**: The Energy Optimization rApp executes on the SMO platform to provide intelligent energy-saving policies based on long-term network analytics and machine learning models. It analyzes historical traffic patterns, cell utilization, and energy consumption data [1] collected over hours or days to generate optimization policies. The rApp trains ML models to predict traffic demand, determines optimal cell sleep schedules, and deploys these policies to the Near-RT RIC through the A1 interface [5] for real-time execution by xApps.
-
-- **[Performance Monitoring rApp](pm-rapp-installation-link) (Port 9091)**: The Performance Monitoring rApp collects and analyzes long-term KPIs [1] from RAN components, detecting performance degradation trends and network anomalies. It aggregates metrics from multiple sources, generates performance reports, triggers alarms for SLA violations, and provides insights for capacity planning. The rApp supports custom analytics workflows and integrates with visualization tools to present network performance trends to operators.
-
-- **[Grafana Dashboard](grafana-installation-link) (Port 3000)**: Grafana provides the web-based visualization and monitoring interface for network operators. It displays real-time and historical metrics including cell throughput, UE connections, resource utilization, and energy consumption across all network layers. Operators can create custom dashboards, configure alert thresholds, analyze performance trends, and correlate events across different network domains through interactive visualizations.
-
-#### [Near-RT RIC - FlexRIC [v1.0.0]](flexric-installation-link)
-
-<Add component explanation>
-
-#### [Central Unit - OAI [2024.w40]](oai-cu-installation-link)
-
-<Add component explanation>
-
-#### [Distributed Unit - OAI [2024.w40]](oai-du-installation-link)
-
-<Add component explanation>
-
-#### [Radio Unit - USRP B210](usrp-installation-link)
-
-<Add component explanation>
-
-#### [User Equipment](ue-installation-link)
-
-<Add component explanation>
-| Kubernetes      | 1.18 or higher               |
 
 ## Use Case Diagram
 
@@ -846,153 +713,93 @@ flowchart TD
 
 ## System Parameters
 
-> [!NOTE]
-> **Guideline:** Define the input and output parameters used in the system, following 3GPP specifications. These parameters should be reflected in the class diagram attributes.
->
-> **Required Content:**
->
-> 1. **Input Parameters**: System inputs (e.g., KPIs from E2 interface, A1 policies)
-> 2. **Output Parameters**: System outputs (e.g., control decisions, cell status)
-> 3. **3GPP Standards**: Reference TS specifications for each parameter with hyperlinks
-> 4. **Parameter Table**: Include columns for Category, Parameter, Type, 3GPP Spec, Unit, Description, Range, Source/Destination
+### CU Parameters
 
-**Example:**
+| Parameter Name | Data Type | Unit | Default Value | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| Active_gNBs | List (String) | N/A | N/A | List of gNB names to be activated upon startup. |
+| Asn1_verbosity | String | N/A | """none""" | Logging verbosity level for ASN1 encoding/decoding. |
+| gNB_ID | Hexadecimal | N/A | 0xe00 | Unique identifier for the gNB (24 or 32 bits). |
+| gNB_name | String | N/A | """cu-rfsim""" | Human-readable name of the gNB. |
+| tracking_area_code | Integer | N/A | 1 | Tracking Area Code (TAC) used for UE location management by the AMF. |
+| mcc | Integer | N/A | 208 | Mobile Country Code. |
+| mnc | Integer | N/A | 99 | Mobile Network Code. |
+| mnc_length | Integer | N/A | 2 | Number of digits in the MNC (typically 2 or 3). |
+| sst | Integer | N/A | 1 | Slice/Service Type for Network Slicing. |
+| sd | Hexadecimal | N/A | 0xffffff | Slice Differentiator to further identify a specific slice. |
+| nr_cellid | Integer | N/A | N/A | Unique NR Cell Identity. |
+| tr_s_preference | String | N/A | """f1""" | Transport Split Preference (F1 interface indicates CU/DU split). |
+| local_s_address | IPv4 String | N/A | N/A | Local IP address for the F1 interface. |
+| remote_s_address | IPv4 String | N/A | N/A | Remote IP address (DU) for the F1 interface. |
+| local_s_portc | Integer | Port | 501 | Local port for F1-C (Control Plane). |
+| local_s_portd | Integer | Port | 2153 | Local port for F1-U (User Plane). |
+| remote_s_portc | Integer | Port | 500 | Remote port for F1-C (Control Plane). |
+| remote_s_portd | Integer | Port | 2153 | Remote port for F1-U (User Plane). |
+| SCTP_INSTREAMS | Integer | N/A | 2 | Number of SCTP input streams. |
+| SCTP_OUTSTREAMS | Integer | N/A | 2 | Number of SCTP output streams. |
+| amf_ip_address | List (IPv4) | N/A | N/A | List of IP addresses for the Access and Mobility Management Function (AMF). |
+| GNB_IPV4_ADDRESS_FOR_NG_AMF | IPv4 String | N/A | N/A | Local IP for the NG-C (N2) interface to the AMF. |
+| GNB_IPV4_ADDRESS_FOR_NGU | IPv4 String | N/A | N/A | Local IP for the NG-U (N3) interface to the UPF. |
+| GNB_PORT_FOR_S1U | Integer | Port | 2152 | GTP-U port for user plane data (standard is 2152). |
+| near_ric_ip_addr | IPv4 String | N/A | N/A | IP address of the Near-Real-Time RIC (O-RAN). |
+| ciphering_algorithms | List (String) | N/A | [""nea0""] | List of supported ciphering algorithms. |
+| integrity_algorithms | List (String) | N/A | [""nia2"", ""nia0""] | List of supported integrity protection algorithms. |
+| drb_ciphering | String | Boolean | """yes""" | Enables or disables ciphering for Data Radio Bearers (DRB). |
+| drb_integrity | String | Boolean | """no""" | Enables or disables integrity protection for DRBs. |
+| global_log_level | String | N/A | """info""" | Verbosity level for global system logs. |
+| pdcp_log_level | String | N/A | """info""" | Verbosity level for PDCP layer logs. |
+| rrc_log_level | String | N/A | """info""" | Verbosity level for RRC layer logs. |
+| f1ap_log_level | String | N/A | """info""" | Verbosity level for F1AP layer logs. |
+| ngap_log_level | String | N/A | """info""" | Verbosity level for NGAP layer logs. |
 
-| Category               | Parameter              | Type    | Unit       | 3GPP Spec                                                                                      | Description                             |
-| ---------------------- | ---------------------- | ------- | ---------- | ---------------------------------------------------------------------------------------------- | --------------------------------------- |
-| **E2 KPM Inputs**      | `DRB.PrbUtilDL`        | Float   | %          | [TS 28.552 §5.1.1.12.1](https://www.3gpp.org/ftp/Specs/archive/28_series/28.552/28552-i50.zip) | Downlink PRB utilization                |
-|                        | `DRB.PrbUtilUL`        | Float   | %          | [TS 28.552 §5.1.1.12.2](https://www.3gpp.org/ftp/Specs/archive/28_series/28.552/28552-i50.zip) | Uplink PRB utilization                  |
-|                        | `DRB.UEThpDL`          | Float   | kbps       | [TS 28.552 §5.1.1.10.1](https://www.3gpp.org/ftp/Specs/archive/28_series/28.552/28552-i50.zip) | DL UE throughput                        |
-|                        | `DRB.UEThpUL`          | Float   | kbps       | [TS 28.552 §5.1.1.10.2](https://www.3gpp.org/ftp/Specs/archive/28_series/28.552/28552-i50.zip) | UL UE throughput                        |
-|                        | `RRC.ConnectedUE`      | Integer | count      | [TS 28.552 §5.1.1.1.1](https://www.3gpp.org/ftp/Specs/archive/28_series/28.552/28552-i50.zip)  | Number of active UEs                    |
-| **E2 RC Outputs**      | `cellActivationCmd`    | Enum    | -          | [TS 38.331 §6.2.2](https://www.3gpp.org/ftp/Specs/archive/38_series/38.331/38331-i40.zip)      | Cell activation command                 |
-|                        | `handoverCmd`          | Struct  | -          | [TS 38.300 §9.2.3.2](https://www.3gpp.org/ftp/Specs/archive/38_series/38.300/38300-i00.zip)    | Handover command                        |
-|                        | `targetCellId`         | String  | -          | [TS 36.413 §9.1.2.1](https://www.3gpp.org/ftp/Specs/archive/36_series/36.413/36413-i10.zip)    | Target cell identifier                  |
-| **A1 Policy Inputs**   | `prbThresholdLow`      | Float   | %          | [O-RAN.WG2.A1AP-v06.00 §8.2](https://specifications.o-ran.org/)                                | Low PRB threshold for cell sleep        |
-|                        | `prbThresholdHigh`     | Float   | %          | [O-RAN.WG2.A1AP-v06.00 §8.2](https://specifications.o-ran.org/)                                | High PRB threshold for cell wake        |
-|                        | `durationThresholdSec` | Integer | seconds    | [O-RAN.WG2.A1AP-v06.00 §8.2](https://specifications.o-ran.org/)                                | Minimum duration before action          |
-| **Radio Measurements** | `RSRP`                 | Integer | dBm        | [TS 36.214 §5.1.1](https://www.3gpp.org/ftp/Specs/archive/36_series/36.214/36214-i40.zip)      | Reference Signal Received Power         |
-|                        | `RSRQ`                 | Integer | dB         | [TS 36.214 §5.1.2](https://www.3gpp.org/ftp/Specs/archive/36_series/36.214/36214-i40.zip)      | Reference Signal Received Quality       |
-|                        | `SINR`                 | Integer | dB         | [TS 36.214 §5.1.4](https://www.3gpp.org/ftp/Specs/archive/36_series/36.214/36214-i40.zip)      | Signal to Interference plus Noise Ratio |
-| **O1 VES Events**      | `cellStatusChange`     | Event   | -          | [TS 28.532 §5.2.6.2](https://www.3gpp.org/ftp/Specs/archive/28_series/28.532/28532-i50.zip)    | Cell state change notification          |
-|                        | `energySavingEstimate` | Float   | Watts      | -                                                                                              | Estimated power savings                 |
-|                        | `timestamp`            | Long    | Unix epoch | [TS 28.532 §5.1](https://www.3gpp.org/ftp/Specs/archive/28_series/28.532/28532-i50.zip)        | Event timestamp                         |
+### DU Parameters
 
-**Example:**
+| Parameter Name | Data Type | Unit | Default Value | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| Active_gNBs | List (String) | N/A | "du-rfsim" | Name of the active gNB instance. |
+| gNB_DU_ID | Hexadecimal | N/A | 0xe00 | Unique identifier for the Distributed Unit. |
+| nr_cellid | Integer | N/A | 12345678 | The 5G NR Cell Identity. |
+| physCellId | Integer | N/A | 0 | Physical Cell ID (PCI). |
+| absoluteFrequencySSB | Integer | ARFCN | 621312 | The absolute frequency of the SSB. |
+| dl_absoluteFrequencyPointA | Integer | ARFCN | 620040 | Frequency of ""Point A"" for the downlink. |
+| dl_carrierBandwidth | Integer | PRB | 106 | Downlink bandwidth (106 PRBs ≈ 40MHz for 30kHz SCS). |
+| ul_frequencyBand | Integer | Band | 78 | Operating NR frequency band (e.g., Band n78). |
+| pMax | Integer | dBm | 20 | Maximum allowed transmit power in the cell. |
+| subcarrierSpacing | Integer | N/A | 1 | SCS index (1 = 30kHz, 0 = 15kHz). |
+| dl_UL_TransmissionPeriodicity | Integer | Index | 6 | TDD Periodicity (6 = 5ms). |
+| nrofDownlinkSlots | Integer | Slots | 7 | Number of full DL slots in a TDD period. |
+| nrofUplinkSlots | Integer | Slots | 2 | Number of full UL slots in a TDD period. |
+| ssPBCH_BlockPower | Integer | dBm | -25 | Transmit power of the SS/PBCH block. |
+| tr_s_preference | String | N/A | "local_L1" | Transport preference between MAC and L1. |
+| tr_n_preference | String | N/A | "f1" | Transport preference for the Northbound interface (F1). |
+| local_n_address | IPv4 String | N/A | "192.168.71.171" | Local IP address for the F1-U interface. |
+| remote_n_address | IPv4 String | N/A | "192.168.71.150" | Remote CU IP address for the F1-U interface. |
+| local_n_portd | Integer | Port | 2153 | Local UDP port for F1 data. |
+| pusch_TargetSNRx10 | Integer | dB (x10) | 200 | Target SNR for PUSCH (200 = 20dB). |
+| prach_dtx_threshold | Integer | N/A | 200 | Threshold for PRACH DTX detection. |
+| ofdm_offset_divisor | Integer | N/A | 8 | Divisor used for OFDM time-domain offset calculation. |
+| local_rf | String (Yes/No) | N/A | "yes" | Determines if the RF hardware is local. |
+| nb_tx / nb_rx | Integer | Antennas | 1 | Number of Transmit/Receive antennas. |
+| att_tx / att_rx | Integer | dB | 0 | Attenuation applied to TX and RX paths. |
+| max_rxgain | Integer | dB | 114 | Maximum gain of the receiver. |
+| clock_src | String | N/A | "internal" | Source of the system clock (Internal/External). |
+| serveraddr | String | N/A | "server" | Address of the RF Simulator server. |
+| global_log_level | String | N/A | "info" | General logging detail level. |
 
-```mermaid
-classDiagram
-    %% ========================================
-    %% Core System Components (from System Architecture)
-    %% ========================================
-    
-    %% Near-RT RIC - Energy Saving xApp (Main Controller)
-    class EnergySavingXApp {
-        <<Near-RT RIC xApp>>
-        %% E2 KPM Inputs (from System Parameters)
-        -float drbPrbUtilDL
-        -float drbPrbUtilUL
-        -int rrcConnectedUE
-        %% A1 Policy Inputs
-        -float prbThresholdLow
-        -float prbThresholdHigh
-        -int durationThresholdSec
-        %% Methods (from Use Cases)
-        +monitorTrafficLoad() TrafficStatus
-        +initiateHandover(cellId: String) boolean
-        +shutdownCell(cellId: String) boolean
-        +activateCell(cellId: String) boolean
-    }
-    
-    %% Central Unit (CU)
-    class CentralUnit {
-        <<OAI 2024.w40>>
-        -String cuId
-        -int rrcConnectedUE
-        %% E2 RC Outputs
-        +Struct handoverCmd
-        +String targetCellId
-        +executeHandover(ueId: String, targetCell: String) boolean
-        +releaseUEContext(ueId: String) void
-    }
-    
-    %% Distributed Unit (DU)
-    class DistributedUnit {
-        <<OAI 2024.w40>>
-        -String duId
-        %% E2 KPM Inputs
-        +float drbPrbUtilDL
-        +float drbPrbUtilUL
-        +int rrcConnectedUE
-        %% E2 RC Outputs
-        +Enum cellActivationCmd
-        +activateCell() boolean
-        +deactivateCell() boolean
-        +reportKPM() KPMReport
-    }
-    
-    %% User Equipment
-    class UserEquipment {
-        <<Quectel RM500Q-GL>>
-        -String ueId
-        %% Radio Measurements
-        +int rsrp
-        +int rsrq
-        +int sinr
-        +sendMeasurementReport() MeasurementReport
-    }
-    
-    %% ========================================
-    %% Data Classes (from System Parameters)
-    %% ========================================
-    
-    class KPMReport {
-        <<E2SM-KPM>>
-        +String cellId
-        +long timestamp
-        +float drbPrbUtilDL
-        +float drbPrbUtilUL
-        +int rrcConnectedUE
-    }
-    
-    class TrafficStatus {
-        +String cellId
-        +float avgPrbUtil
-        +int activeUEs
-        +boolean lowTraffic
-        +boolean highTraffic
-    }
-    
-    class MeasurementReport {
-        +String ueId
-        +int rsrp
-        +int rsrq
-        +int sinr
-    }
-    
-    %% ========================================
-    %% Relationships
-    %% ========================================
-    
-    %% E2 Interface Connections
-    EnergySavingXApp "1" -- "1" CentralUnit : E2 Interface
-    EnergySavingXApp "1" -- "1" DistributedUnit : E2 Interface
-    
-    %% F1 Interface
-    CentralUnit "1" -- "1" DistributedUnit : F1 Interface
-    
-    %% Uu Interface
-    DistributedUnit "1" -- "*" UserEquipment : Uu Interface
-    
-    %% Data Flow
-    DistributedUnit ..> KPMReport : generates
-    EnergySavingXApp ..> KPMReport : processes
-    EnergySavingXApp ..> TrafficStatus : analyzes
-    UserEquipment ..> MeasurementReport : generates
-```
+### UE Parameters
+
+| Parameter Name | Data Type | Unit | Default Value | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| fullImsi | String | N/A | "001010000062653" | International Mobile Subscriber Identity; the unique ID for the SIM card. |
+| fullKey | Hexadecimal | N/A | "8baf4...6862" | The 128-bit secret key (K) shared between the USIM and the Home Subscriber Server (HSS/UDM). |
+| opc | Hexadecimal | N/A | "8e27b...605d" | Operator Configuration Key; used in the Authentication and Key Agreement (AKA) process. |
+| dnn | String | N/A | "Internet" | Data Network Name; equivalent to APN in 4G, defines the external network to access. |
+| sst | Integer | N/A | 1 | Slice/Service Type; part of the NSSAI to define the network slice for the UE. |
+| sd | Hexadecimal/Int | N/A | "16777215" | Slice Differentiator; optional value to distinguish between slices of the same SST. |
+| radio | String | N/A | "rfsim" | Defines the radio frontend type (e.g., RF Simulator or USRP hardware like B2xx/N3xx). |
+
 
 ## References
-
 > [!NOTE]
 > **Guideline:** Use IEEE citation style for all references. Cite references in the text using numerical format [1], [2], etc., and list them in order of appearance at the end of the document.
 >
