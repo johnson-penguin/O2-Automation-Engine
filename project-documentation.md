@@ -1,5 +1,4 @@
-# LLM-Driven gNB Reasoning & Adjustment Project Documentation
-<h1 align="center">LLM-Driven gNB Reasoning & Adjustment Project Documentation - Guideline</h1>
+<h1 align="center">Project Documentation - Guideline</h1>
 
 ---
 
@@ -53,7 +52,7 @@ graph TD
 > **Auto-Generate Table of Contents:**
 > Use [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one#table-of-contents) extension in VS Code for automatic TOC generation.
 
-- [LLM-Driven gNB Reasoning & Adjustment Project Documentation](#llm-driven-gnb-reasoning--adjustment-project-documentation)
+- [Table of Contents](#table-of-contents)
 - [Introduction](#introduction)
 - [Execution Status](#execution-status)
 - [Minimum Requirements](#minimum-requirements)
@@ -99,31 +98,24 @@ graph TD
 > - The `.bib` file can be directly reused for paper writing in LaTeX
 
 **Example:**
-這份文件提出一個基於大型語言模型（LLM）的自動化推理框架，用於解決 5G gNodeB (gNB) 參數調整過程中人工排障耗時且易出錯的問題 。該文件利用 OSS-GPT 120B 生成具備故障特徵的合成訓練數據，產生結構化的推理軌跡（Reasoning Traces），以此對 QwQ-32B 模型進行監督式微調（SFT），使其能精確地從非結構化的網路日誌中推導出根因分析並提出配置建議。
 
-這份文件以
-- 開源的 Open5GS 做為 5G 核心網路
-- 開源的 OpenAirInterface (OAI) 基地台軟體/RF模擬器/UE模擬器做為測試平台收集 gNB 的錯誤日誌 
-- 開源的 NeMo-Skills 做為訓練與驗證模型的框架。
-- NVIDIA NIM API 簡化部署 OSS-GPT 120B 的過程。
+This document presents an O-RAN-based energy saving system for 5G Radio Access Networks (RAN), implementing intelligent multi-cell sleep mechanisms through open interfaces [6] and RAN Intelligent Controllers (RICs) [7].
 
 1. **Background**: 
-   - 5G 無線存取網路（RAN）正朝向解耦式與模組化架構發展，將 gNodeB (gNB) 拆分為中央單元（CU）與分佈單元（DU）。
-   - 此架構雖提升了擴展性，但顯著增加了網路操作與維護（O&M）的複雜度 。
-   - 不同的模組或者單元會在運作期間會產生大量非結構化的文字日誌，包含信令程序、錯誤報告與效能指標 。
-   - 目前主要依賴人工專家分析日誌以進行根因分析（RCA），該過程極其耗時且容易出錯，且經驗不易傳承。
+   - Mobile operators face high energy costs from continuously active base stations during low-traffic periods
+   - Traditional RAN architectures lack standardized interfaces [2] for coordinated multi-cell energy optimization
+
 2. **Importance**: 
-   - 自動化診斷平台：為研究 5G gNB 在不同配置下的錯誤行為、根因分析（RCA）與參數調整提供逼真的模擬環境 。
-   - 端到端自動化集成：實現從數據採集到配置下發的閉環流程，使其能與現有的服務管理編排（SMO）與電信管理系統集成 。
-   - 合成推理建模：利用 OSS-GPT 120B作為教師模型，針對 CU/DU 配置與日誌生成推理軌跡（Reasoning Traces），引導 QwQ-32B 學習專家級的診斷邏輯 。
+   - Reduces operational costs by 30-40% through dynamic multi-cell energy management
+   - Provides vendor-neutral solutions via O-RAN open interfaces while maintaining QoS
+
 3. **Contribution**: 
-   - 日誌至推理軌跡管道：開發一套自動化流程，將原始的 gNB 錯誤日誌轉化為結構化的推理軌跡，建立日誌特徵與配置建議之間的邏輯聯繫 。
-   - 領域專用模型的推理強化：透過 SFT 訓練流程，成功將 5G 領域知識與複雜的排障邏輯植入 LLM，提升模型在網路診斷中的因果推理能力 。
-   - 實作一個 LLM 推理循環，該循環建議配置變更並使用來自 gNB 的回饋日誌驗證配置。
+   - O-RAN-compliant system leveraging ML-based traffic prediction (Non-RT RIC rApp) and real-time control (Near-RT RIC xApp) for dynamic multi-cell activation/deactivation
+   - Novel O1/A1 [5]/E2 [6] interface coordination with intelligent handover algorithms [2] minimizing service disruption
+
 4. **Challenges**: 
-   - 電信領域標註數據稀缺：5G 網路日誌涉及高度專業的領域知識且缺乏公開的大規模標註數據，導致模型難以直接進行監督式學習 。
-   - 日誌結構的複雜性與非結構化特性：gNB 產生的日誌包含異構且高度依賴上下文的資訊（如信令追蹤、模組交互、效能指標），難以透過傳統機器學習進行語義理解與因果推理 。
-   - 部件故障的關聯分析：當錯誤發生在 CU 與 DU 的交互接口（如 F1）時，模型需具備跨組件的關聯推理能力，而非僅分析單一模組的局部日誌 。
+   - **UE Handover & QoS**: Zero dropped calls during cell transitions [3] while preventing congestion in remaining active cells
+   - **Multi-Cell Coordination**: Accurate traffic prediction and reliable O1/A1/E2 communication for synchronized shutdown/activation decisions
 
 ## Execution Status
 
@@ -139,15 +131,26 @@ graph TD
 
 | Step                                                                  | Status | Timeline   | Execution Status / Notes                                |
 | --------------------------------------------------------------------- | ------ | ---------- | ------------------------------------------------------- |
-| Open5GS Installation for Ubuntu and UE registration                   | ✅     | 2024-10-15 | 本文件紀錄如何在 Ubuntu 環境下，安裝 Open5GS 核心網路。                                                        |
-| [OAI-5G-RAN-on-Kubernetes-Deployment-Guide.md](#smo-installation)     | ✅     | 2024-10-15 | 本文件紀錄如何在 Kubernetes 環境下，利用 Helm Chart 部署 OAI 5G RAN 元件（CU、DU），並透過 RFSimulator 與外部 Core Network (Open5GS) 進行端到端連通測試。                                                        |
-| [Chart-Custom-Config-Guide](#ho-xapp-development)                     | ✅     | 2024-10-23 | 本文件紀錄針對官方原始 Chart 中 values.yaml 無法有效控制所有關鍵參數的問題，所進行的結構性優化與配置調整。  |
-| [Mutated Configuration Generator](#mutated-configuration-generator)                   | ⏳     | 2024-10-25 | Blocked: waiting for cell shutdown tests to complete    |
-| [Config-Runner](#config-runner)                                                       | ❌    | 2024-10-26 | Failed: RU failed to reactivate, investigating RF issue |
-| [Reasoning Trace Generator (python)](#reasoning-trace-generator-python)               | ⏳     | 2024-10-28 |                                                         |
-| [Reasoning Trace Generator (NEMO-Skills)](#reasoning-trace-generator-nemo-skills)     | ⏳     | 2024-10-28 |                                                         |
-| Performance Benchmarking                                              | ⏳     | 2024-10-28 |                                                         |
-| Documentation and Reporting                                           | ⏳     | 2024-10-30 |                                                         |
+| [Install SMO (O-RAN SC L Release)](#smo-installation)                 | ✅     | 2024-10-15 |                                                         |
+| [Install Near-RT RIC (FlexRIC v1.0.0)](#nearrt-ric-install)           | ✅     | 2024-10-16 |                                                         |
+| [Install CU (OAI 2024.w40)](#cu-installation)                         | ✅     | 2024-10-17 |                                                         |
+| [Install DU (OAI 2024.w40)](#du-installation)                         | ✅     | 2024-10-18 |                                                         |
+| [Install RU (USRP B210)](#ru-installation)                            | ✅     | 2024-10-19 |                                                         |
+| [Integrate SMO with Near-RT RIC (A1 Interface)](#smo-ric-integration) | ✅     | 2024-10-20 |                                                         |
+| [Integrate Near-RT RIC with CU (E2 Interface)](#ric-cu-integration)   | ✅     | 2024-10-20 |                                                         |
+| [Integrate Near-RT RIC with DU (E2 Interface)](#ric-du-integration)   | ✅     | 2024-10-21 |                                                         |
+| [Integrate CU with DU (F1 Interface)](#cu-du-integration)             | ✅     | 2024-10-21 |                                                         |
+| [Integrate DU with RU (eCPRI Interface)](#du-ru-integration)          | ✅     | 2024-10-21 |                                                         |
+| [Configure O1 Interface (DU to SMO)](#o1-configuration)               | ✅     | 2024-10-21 |                                                         |
+| [Develop Energy Saving rApp](#es-rapp-development)                    | ✅     | 2024-10-22 |                                                         |
+| [Develop Energy Saving xApp](#es-xapp-development)                    | ✅     | 2024-10-22 |                                                         |
+| [Develop Handover (HO) xApp](#ho-xapp-development)                    | ✅     | 2024-10-23 |                                                         |
+| [Test Handover xApp Functionality](#ho-xapp-testing)                  | ✅     | 2024-10-23 |                                                         |
+| [Test Cell Shutdown Procedure](#cell-shutdown-testing)                | ✅     | 2024-10-24 |                                                         |
+| [Test Cell Wake-up Procedure](#cell-wakeup-testing)                   | ⏳      | 2024-10-25 | Blocked: waiting for cell shutdown tests to complete    |
+| [End-to-End Energy Saving Test](#e2e-testing)                         | ❌     | 2024-10-26 | Failed: RU failed to reactivate, investigating RF issue |
+| Performance Benchmarking                                              |        | 2024-10-28 |                                                         |
+| Documentation and Reporting                                           |        | 2024-10-30 |                                                         |
 
 ## Minimum Requirements
 
@@ -161,31 +164,15 @@ graph TD
 > 3. **Component-Specific Requirements**: List requirements for each major component (SMO, RIC, DU, RU, etc.)
 > 4. **Version Specifications**: Include exact versions for reproducibility
 
-### Hardware Requirements
+**Example:**
 
-- [OAI gNB](https://gitlab.eurecom.fr/oai/openairinterface5g/-/blob/develop/doc/system_requirements.md#simulated-radio)
-
-| Component | Minimum Requirements | Remarks |
-|---|---|---|
-| CPU | 2 Cores | Dedicated processing for gNB is highly recommended. |
-| Frequency | > 2.0 GHz | Required to prevent communication timeouts caused by processing latency. |
-| Memory | 4 GiB | |
-| Instruction Set | AVX2 | Mandatory; used for accelerating Physical Layer (L1) computations. |
-| Kernel Protocol | SCTP | Essential for Core Network interfacing (N2 Interface); must be enabled on the host. |
-
-### Software Requirements
-
-
-| Package | Version | Primary Purpose |
-|---|---|---|
-| PyYAML | 5.4.1 | Reading and modifying values.yaml and 5G configurations. |
-| ruamel.yaml | 0.19.1 | Advanced YAML parsing with support for preserving comments. |
-| requests | 2.31.0 | Handling HTTP/REST API requests for network orchestration. |
-| httpx | 0.28.1 | High-performance async HTTP client for 5G service APIs. |
-| python-dotenv | 0.19.2 | Managing project environment variables and secure credentials. |
-| openai | 2.15.0 | Invoking LLMs for reasoning and synthetic data generation. |
-| pydantic | 2.12.5 | "Data validation for 5G parameters (e.g., IMSI, Keys, DNN)." |
-| numpy | 2.0.2 | Numerical computing and efficient log data processing. |
+| Component       | Requirement                  |
+|-----------------|------------------------------|
+| CPU             | 2 GHz dual-core processor    |
+| GPU             | NVIDIA GTX 1060 or equivalent|
+| Memory (RAM)    | 4 GB RAM                     |
+| Storage         | 20 GB available disk space   |
+| Network         | 100 Mbps Ethernet connection |
 
 ## System Architecture
 
