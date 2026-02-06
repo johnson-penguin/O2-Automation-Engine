@@ -1,0 +1,571 @@
+Ncat: Version 7.95 ( https://nmap.org/ncat )
+Ncat: Connected to 10.0.6.56:38472.
+Ncat: 0 bytes sent, 0 bytes received in 4.40 seconds.
+Resolving hostnames and patching config...
+Resolved CU_IP=10.0.6.56
+==================================
+/proc/sys/kernel/core_pattern=|/usr/lib/systemd/systemd-coredump %P %u %g %s %t %c %h
+No configuration file /opt/oai-gnb/etc/gnb.conf found: attempting to find YAML config
+==================================
+== Configuration file:
+Active_gNBs:
+  - oai-rfsim
+Asn1_verbosity: "none"
+gNBs:
+  - gNB_ID: 0xe00
+    gNB_DU_ID: 0xe00
+    gNB_name: "oai-rfsim"
+    tracking_area_code: "1"
+    plmn_list:
+      - mcc: "001"
+        mnc: "01"
+        mnc_length: "2"
+        snssaiList:
+          - sd: "0xffffff"
+            sst: "1"
+    nr_cellid: 12345678
+    min_rxtxtime: 6
+    servingCellConfigCommon:
+      - physCellId: 0
+        absoluteFrequencySSB: 621312
+        dl_absoluteFrequencyPointA: 620040
+        dl_offstToCarrier: 0
+        dl_subcarrierSpacing: 1
+        dl_carrierBandwidth: 106
+        initialDLBWPlocationAndBandwidth: 28875
+        initialDLBWPsubcarrierSpacing: 1
+        initialDLBWPcontrolResourceSetZero: 11
+        initialDLBWPsearchSpaceZero: 0
+        ul_frequencyBand: 78
+        ul_offstToCarrier: 0
+        ul_subcarrierSpacing: 1
+        ul_carrierBandwidth: 106
+        pMax: 20
+        initialULBWPlocationAndBandwidth: 28875
+        initialULBWPsubcarrierSpacing: 1
+        prach_ConfigurationIndex: 98
+        prach_msg1_FDM: 0
+        prach_msg1_FrequencyStart: 0
+        zeroCorrelationZoneConfig: 12
+        preambleReceivedTargetPower: -104
+        preambleTransMax: 6
+        powerRampingStep: 1
+        ssb_perRACH_OccasionAndCB_PreamblesPerSSB_PR: 4
+        ssb_perRACH_OccasionAndCB_PreamblesPerSSB: 15
+        ra_ContentionResolutionTimer: 7
+        rsrp_ThresholdSSB: 19
+        prach_RootSequenceIndex_PR: 2
+        prach_RootSequenceIndex: 1
+        msg1_SubcarrierSpacing: 1
+        restrictedSetConfig: 0
+        msg3_DeltaPreamble: 1
+        p0_NominalWithGrant: -90
+        pucchGroupHopping: 0
+        hoppingId: 40
+        p0_nominal: -90
+        ssb_PositionsInBurst_Bitmap: 1
+        ssb_periodicityServingCell: 2
+        dmrs_TypeA_Position: 0
+        subcarrierSpacing: 1
+        referenceSubcarrierSpacing: 1
+        dl_UL_TransmissionPeriodicity: 6
+        nrofDownlinkSlots: 7
+        nrofDownlinkSymbols: 6
+        nrofUplinkSlots: 2
+        nrofUplinkSymbols: 4
+        ssPBCH_BlockPower: -25
+    SCTP:
+      SCTP_INSTREAMS: 2
+      SCTP_OUTSTREAMS: 2
+MACRLCs:
+  - num_cc: 1
+    tr_s_preference: "local_L1"
+    tr_n_preference: "f1"
+    local_n_address: "10.0.6.226"
+    remote_n_address: "10.0.6.56"
+    local_n_address_f1u: 10.0.6.226
+local_n_portd: 2153
+remote_n_portd: 2153
+pusch_TargetSNRx10: 200
+pucch_TargetSNRx10: 200
+L1s:
+  - num_cc: 1
+    tr_n_preference: "local_mac"
+    prach_dtx_threshold: 200
+    pucch0_dtx_threshold: 150
+    ofdm_offset_divisor: 8
+RUs:
+  - local_rf: "yes"
+    nb_tx: 1
+    nb_rx: 1
+    att_tx: 0
+    att_rx: 0
+bands: [78]
+max_pdschReferenceSignalPower: -27
+max_rxgain: 114
+eNB_instances: [0]
+clock_src: "internal"
+rfsimulator:
+  serveraddr: server
+log_config:
+  global_log_level: "info"
+  hw_log_level: "info"
+  phy_log_level: "info"
+  mac_log_level: "info"
+  rlc_log_level: "info"
+  f1ap_log_level: "info"
+==================================
+== Load USRP binaries
+==================================
+== Starting gNB soft modem
+Additional option(s): -E --rfsim --log_config.global_log_options level,nocolor
+/opt/oai-gnb/bin/nr-softmodem -O /opt/oai-gnb/etc/gnb.yaml -E --rfsim --log_config.global_log_options level,nocolor
+CMDLINE: "/opt/oai-gnb/bin/nr-softmodem" "-O" "/opt/oai-gnb/etc/gnb.yaml" "-E" "--rfsim" "--log_config.global_log_options" "level,nocolor" 
+[UTIL]   W mlockall() failed: 12, Cannot allocate memory
+[UTIL]   I running in SA mode (no --phy-test, --do-ra, --nsa option present)
+[OPT]    I OPT disabled
+[HW]     I Version: Branch: HEAD Abrev. Hash: ed4cca814a Date: Thu Jan 22 14:27:15 2026 +0000
+[GNB_APP] I Initialized RAN Context: RC.nb_nr_inst = 1, RC.nb_nr_macrlc_inst = 1, RC.nb_nr_L1_inst = 1, RC.nb_RU = 1, RC.nb_nr_CC[0] = 1
+[NR_PHY] I Initializing gNB RAN context: RC.nb_nr_L1_inst = 1 
+[NR_PHY] I Registered with MAC interface module (0x55b73c54b420)
+[NR_PHY] I Initializing NR L1: RC.nb_nr_L1_inst = 1
+[NR_PHY] I L1_RX_THREAD_CORE -1 (15)
+[NR_PHY] I TX_AMP = 519 (-36 dBFS)
+[PHY]    I No prs_config configuration found..!!
+[GNB_APP] I pdsch_AntennaPorts N1 1 N2 1 XP 1 pusch_AntennaPorts 1
+[GNB_APP] I minTXRXTIME 6
+[GNB_APP] I CSI-RS 0, SRS 0, report type 0 (ssb_rsrp), 256 QAM may be on, delta_MCS off, maxMIMO_Layers -1, HARQ feedback enabled, num DLHARQ:16, num ULHARQ:16
+[GNB_APP] I No RedCap configuration found
+[GNB_APP] I No PTRS configuration found
+[GNB_APP] I sr_ProhibitTimer 0, sr_TransMax 64, sr_ProhibitTimer_v1700 0, t300 400, t301 400, t310 2000, n310 10, t311 3000, n311 1, t319 400
+[NR_MAC] I Candidates per PDCCH aggregation level on UESS: L1: 0, L2: 2, L4: 0, L8: 0, L16: 0
+[RRC]    I Read in ServingCellConfigCommon (PhysCellId 0, ABSFREQSSB 621312, DLBand 78, ABSFREQPOINTA 620040, DLBW 106,RACH_TargetReceivedPower -104
+[RRC]    I absoluteFrequencySSB 621312 corresponds to 3319680000 Hz
+[NR_MAC] I TDD period index = 6, based on the sum of dl_UL_TransmissionPeriodicity from Pattern1 (5.000000 ms) and Pattern2 (0.000000 ms): Total = 5.000000 ms
+[UTIL]   I threadCreate() for MAC_STATS: creating thread with affinity ffffffff, priority 2
+[NR_MAC] I PUSCH Target 200, PUCCH Target 150, PUCCH Failure 10, PUSCH Failure 10
+[NR_PHY] I Copying 0 blacklisted PRB to L1 context
+[NR_MAC] I Set TX antenna number to 1, Set RX antenna number to 1 (num ssb 1: 80000000,0)
+[NR_MAC] I TDD period index = 6, based on the sum of dl_UL_TransmissionPeriodicity from Pattern1 (5.000000 ms) and Pattern2 (0.000000 ms): Total = 5.000000 ms
+[NR_MAC] I Set TDD configuration period to: 8 DL slots, 3 UL slots, 10 slots per period (NR_TDD_UL_DL_Pattern is 7 DL slots, 2 UL slots, 6 DL symbols, 4 UL symbols)
+[NR_MAC] I Configured 1 TDD patterns (total slots: pattern1 = 10, pattern2 = 0)
+[NR_PHY] I Set TDD Period Configuration: 2 periods per frame, 20 slots to be configured (8 DL, 3 UL)
+[NR_PHY] I TDD period configuration: slot 0 is DOWNLINK
+[NR_PHY] I TDD period configuration: slot 1 is DOWNLINK
+[NR_PHY] I TDD period configuration: slot 2 is DOWNLINK
+[NR_PHY] I TDD period configuration: slot 3 is DOWNLINK
+[NR_PHY] I TDD period configuration: slot 4 is DOWNLINK
+[NR_PHY] I TDD period configuration: slot 5 is DOWNLINK
+[NR_PHY] I TDD period configuration: slot 6 is DOWNLINK
+[NR_PHY] I TDD period configuration: slot 7 is FLEXIBLE: DDDDDDFFFFUUUU
+[NR_PHY] I TDD period configuration: slot 8 is UPLINK
+[NR_PHY] I TDD period configuration: slot 9 is UPLINK
+[NR_MAC] I Command line parameters for OAI UE: -C 3319680000 -r 106 --numerology 1 --band 78 --ssb 516 -E
+[NR_PHY] I dlfreq:3319680 ulfreq:3319680 deltaduplex:0 khz, uldl_min_offset:0 khz
+[NR_PHY] I dlfreq:3319680 ulfreq:3319680 deltaduplex:0 khz, uldl_min_offset:0 khz
+[NR_PHY] I dlfreq:3319680 ulfreq:3319680 deltaduplex:0 khz, uldl_min_offset:0 khz
+[NR_PHY] I dlfreq:3319680 ulfreq:3319680 deltaduplex:0 khz, uldl_min_offset:0 khz
+[PHY]    I DL frequency 3319680000 Hz, UL frequency 3319680000 Hz: band 78, uldl offset 0 Hz
+[PHY]    I Initializing frame parms for mu 1, N_RB 106, Ncp 0
+[PHY]    I Init: N_RB_DL 106, first_carrier_offset 900, nb_prefix_samples 108,nb_prefix_samples0 132, ofdm_symbol_size 1536
+[NR_MAC] I TDA index 0: start 0 length 13 k2 6
+[NR_MAC] I TDA index 1: start 10 length 3 k2 6
+[NR_RRC] I SIB1 freq: offsetToPointA 86
+[GNB_APP] I F1AP: gNB idx 0 gNB_DU_id 3584, gNB_DU_name oai-rfsim, TAC 1 MCC/MNC/length 1/1/2 cellID 12345678
+[GNB_APP] I ngran_DU: Configuring Cell 0 for TDD
+[GNB_APP] I SDAP layer is disabled
+[GNB_APP] I Data Radio Bearer count 1
+[UTIL]   I threadCreate() for TASK_SCTP: creating thread with affinity ffffffff, priority 50
+[X2AP]   I X2AP is disabled.
+[UTIL]   I threadCreate() for TASK_GNB_APP: creating thread with affinity ffffffff, priority 50
+[UTIL]   I threadCreate() for TASK_GTPV1_U: creating thread with affinity ffffffff, priority 50
+[UTIL]   I threadCreate() for TASK_DU_F1: creating thread with affinity ffffffff, priority 50
+[F1AP]   I Starting F1AP at DU
+[F1AP]   I F1-C DU IPaddr 10.0.6.226, connect to F1-C CU 10.0.6.56, binding GTP to 10.0.6.226
+[GTPU]   I Initializing UDP for local address 10.0.6.226 with port 50011
+[GTPU]   I Created gtpu instance id: 90
+[UTIL]   I threadCreate() for GTPrx_90: creating thread with affinity ffffffff, priority 50
+[MAC]    E the CU reported F1AP Setup Failure, is there a configuration mismatch?
+[UTIL]   I threadCreate() for time source iq samples: creating thread with affinity ffffffff, priority 2
+[CONFIG] function config_yaml_init returned 0
+DL frequency 3319680000: band 78, UL frequency 3319680000
+[INFO  tini (1)] Spawned child process '/opt/oai-gnb/bin/entrypoint.sh' with pid '2'
+[INFO  tini (1)] Main child exited normally (with status '1')
+==================================
+/proc/sys/kernel/core_pattern=|/usr/lib/systemd/systemd-coredump %P %u %g %s %t %c %h
+No configuration file /opt/oai-gnb/etc/gnb.conf found: attempting to find YAML config
+==================================
+== Configuration file:
+Active_gNBs:
+  - oai-rfsim
+Asn1_verbosity: "none"
+gNBs:
+  - gNB_ID: 0xe00
+    gNB_DU_ID: 0xe00
+    gNB_name: "oai-rfsim"
+    tracking_area_code: "1"
+    plmn_list:
+      - mcc: "001"
+        mnc: "01"
+        mnc_length: "2"
+        snssaiList:
+          - sd: "0xffffff"
+            sst: "1"
+    nr_cellid: 12345678
+    min_rxtxtime: 6
+    servingCellConfigCommon:
+      - physCellId: 0
+        absoluteFrequencySSB: 621312
+        dl_absoluteFrequencyPointA: 620040
+        dl_offstToCarrier: 0
+        dl_subcarrierSpacing: 1
+        dl_carrierBandwidth: 106
+        initialDLBWPlocationAndBandwidth: 28875
+        initialDLBWPsubcarrierSpacing: 1
+        initialDLBWPcontrolResourceSetZero: 11
+        initialDLBWPsearchSpaceZero: 0
+        ul_frequencyBand: 78
+        ul_offstToCarrier: 0
+        ul_subcarrierSpacing: 1
+        ul_carrierBandwidth: 106
+        pMax: 20
+        initialULBWPlocationAndBandwidth: 28875
+        initialULBWPsubcarrierSpacing: 1
+        prach_ConfigurationIndex: 98
+        prach_msg1_FDM: 0
+        prach_msg1_FrequencyStart: 0
+        zeroCorrelationZoneConfig: 12
+        preambleReceivedTargetPower: -104
+        preambleTransMax: 6
+        powerRampingStep: 1
+        ssb_perRACH_OccasionAndCB_PreamblesPerSSB_PR: 4
+        ssb_perRACH_OccasionAndCB_PreamblesPerSSB: 15
+        ra_ContentionResolutionTimer: 7
+        rsrp_ThresholdSSB: 19
+        prach_RootSequenceIndex_PR: 2
+        prach_RootSequenceIndex: 1
+        msg1_SubcarrierSpacing: 1
+        restrictedSetConfig: 0
+        msg3_DeltaPreamble: 1
+        p0_NominalWithGrant: -90
+        pucchGroupHopping: 0
+        hoppingId: 40
+        p0_nominal: -90
+        ssb_PositionsInBurst_Bitmap: 1
+        ssb_periodicityServingCell: 2
+        dmrs_TypeA_Position: 0
+        subcarrierSpacing: 1
+        referenceSubcarrierSpacing: 1
+        dl_UL_TransmissionPeriodicity: 6
+        nrofDownlinkSlots: 7
+        nrofDownlinkSymbols: 6
+        nrofUplinkSlots: 2
+        nrofUplinkSymbols: 4
+        ssPBCH_BlockPower: -25
+    SCTP:
+      SCTP_INSTREAMS: 2
+      SCTP_OUTSTREAMS: 2
+MACRLCs:
+  - num_cc: 1
+    tr_s_preference: "local_L1"
+    tr_n_preference: "f1"
+    local_n_address: "10.0.6.226"
+    remote_n_address: "10.0.6.56"
+    local_n_address_f1u: 10.0.6.226
+local_n_portd: 2153
+remote_n_portd: 2153
+pusch_TargetSNRx10: 200
+pucch_TargetSNRx10: 200
+L1s:
+  - num_cc: 1
+    tr_n_preference: "local_mac"
+    prach_dtx_threshold: 200
+    pucch0_dtx_threshold: 150
+    ofdm_offset_divisor: 8
+RUs:
+  - local_rf: "yes"
+    nb_tx: 1
+    nb_rx: 1
+    att_tx: 0
+    att_rx: 0
+bands: [78]
+max_pdschReferenceSignalPower: -27
+max_rxgain: 114
+eNB_instances: [0]
+clock_src: "internal"
+rfsimulator:
+  serveraddr: server
+log_config:
+  global_log_level: "info"
+  hw_log_level: "info"
+  phy_log_level: "info"
+  mac_log_level: "info"
+  rlc_log_level: "info"
+  f1ap_log_level: "info"
+==================================
+== Load USRP binaries
+==================================
+== Starting gNB soft modem
+Additional option(s): -E --rfsim --log_config.global_log_options level,nocolor
+/opt/oai-gnb/bin/nr-softmodem -O /opt/oai-gnb/etc/gnb.yaml -E --rfsim --log_config.global_log_options level,nocolor
+CMDLINE: "/opt/oai-gnb/bin/nr-softmodem" "-O" "/opt/oai-gnb/etc/gnb.yaml" "-E" "--rfsim" "--log_config.global_log_options" "level,nocolor" 
+[UTIL]   W mlockall() failed: 12, Cannot allocate memory
+[UTIL]   I running in SA mode (no --phy-test, --do-ra, --nsa option present)
+[OPT]    I OPT disabled
+[HW]     I Version: Branch: HEAD Abrev. Hash: ed4cca814a Date: Thu Jan 22 14:27:15 2026 +0000
+[GNB_APP] I Initialized RAN Context: RC.nb_nr_inst = 1, RC.nb_nr_macrlc_inst = 1, RC.nb_nr_L1_inst = 1, RC.nb_RU = 1, RC.nb_nr_CC[0] = 1
+[NR_PHY] I Initializing gNB RAN context: RC.nb_nr_L1_inst = 1 
+[NR_PHY] I Registered with MAC interface module (0x56458cf5f420)
+[NR_PHY] I Initializing NR L1: RC.nb_nr_L1_inst = 1
+[NR_PHY] I L1_RX_THREAD_CORE -1 (15)
+[NR_PHY] I TX_AMP = 519 (-36 dBFS)
+[PHY]    I No prs_config configuration found..!!
+[GNB_APP] I pdsch_AntennaPorts N1 1 N2 1 XP 1 pusch_AntennaPorts 1
+[GNB_APP] I minTXRXTIME 6
+[GNB_APP] I CSI-RS 0, SRS 0, report type 0 (ssb_rsrp), 256 QAM may be on, delta_MCS off, maxMIMO_Layers -1, HARQ feedback enabled, num DLHARQ:16, num ULHARQ:16
+[GNB_APP] I No RedCap configuration found
+[GNB_APP] I No PTRS configuration found
+[GNB_APP] I sr_ProhibitTimer 0, sr_TransMax 64, sr_ProhibitTimer_v1700 0, t300 400, t301 400, t310 2000, n310 10, t311 3000, n311 1, t319 400
+[NR_MAC] I Candidates per PDCCH aggregation level on UESS: L1: 0, L2: 2, L4: 0, L8: 0, L16: 0
+[RRC]    I Read in ServingCellConfigCommon (PhysCellId 0, ABSFREQSSB 621312, DLBand 78, ABSFREQPOINTA 620040, DLBW 106,RACH_TargetReceivedPower -104
+[RRC]    I absoluteFrequencySSB 621312 corresponds to 3319680000 Hz
+[NR_MAC] I TDD period index = 6, based on the sum of dl_UL_TransmissionPeriodicity from Pattern1 (5.000000 ms) and Pattern2 (0.000000 ms): Total = 5.000000 ms
+[UTIL]   I threadCreate() for MAC_STATS: creating thread with affinity ffffffff, priority 2
+[NR_MAC] I PUSCH Target 200, PUCCH Target 150, PUCCH Failure 10, PUSCH Failure 10
+[NR_PHY] I Copying 0 blacklisted PRB to L1 context
+[NR_MAC] I Set TX antenna number to 1, Set RX antenna number to 1 (num ssb 1: 80000000,0)
+[NR_MAC] I TDD period index = 6, based on the sum of dl_UL_TransmissionPeriodicity from Pattern1 (5.000000 ms) and Pattern2 (0.000000 ms): Total = 5.000000 ms
+[NR_MAC] I Set TDD configuration period to: 8 DL slots, 3 UL slots, 10 slots per period (NR_TDD_UL_DL_Pattern is 7 DL slots, 2 UL slots, 6 DL symbols, 4 UL symbols)
+[NR_MAC] I Configured 1 TDD patterns (total slots: pattern1 = 10, pattern2 = 0)
+[NR_PHY] I Set TDD Period Configuration: 2 periods per frame, 20 slots to be configured (8 DL, 3 UL)
+[NR_PHY] I TDD period configuration: slot 0 is DOWNLINK
+[NR_PHY] I TDD period configuration: slot 1 is DOWNLINK
+[NR_PHY] I TDD period configuration: slot 2 is DOWNLINK
+[NR_PHY] I TDD period configuration: slot 3 is DOWNLINK
+[NR_PHY] I TDD period configuration: slot 4 is DOWNLINK
+[NR_PHY] I TDD period configuration: slot 5 is DOWNLINK
+[NR_PHY] I TDD period configuration: slot 6 is DOWNLINK
+[NR_PHY] I TDD period configuration: slot 7 is FLEXIBLE: DDDDDDFFFFUUUU
+[NR_PHY] I TDD period configuration: slot 8 is UPLINK
+[NR_PHY] I TDD period configuration: slot 9 is UPLINK
+[NR_MAC] I Command line parameters for OAI UE: -C 3319680000 -r 106 --numerology 1 --band 78 --ssb 516 -E
+[NR_PHY] I dlfreq:3319680 ulfreq:3319680 deltaduplex:0 khz, uldl_min_offset:0 khz
+[NR_PHY] I dlfreq:3319680 ulfreq:3319680 deltaduplex:0 khz, uldl_min_offset:0 khz
+[NR_PHY] I dlfreq:3319680 ulfreq:3319680 deltaduplex:0 khz, uldl_min_offset:0 khz
+[NR_PHY] I dlfreq:3319680 ulfreq:3319680 deltaduplex:0 khz, uldl_min_offset:0 khz
+[PHY]    I DL frequency 3319680000 Hz, UL frequency 3319680000 Hz: band 78, uldl offset 0 Hz
+[PHY]    I Initializing frame parms for mu 1, N_RB 106, Ncp 0
+[PHY]    I Init: N_RB_DL 106, first_carrier_offset 900, nb_prefix_samples 108,nb_prefix_samples0 132, ofdm_symbol_size 1536
+[NR_MAC] I TDA index 0: start 0 length 13 k2 6
+[NR_MAC] I TDA index 1: start 10 length 3 k2 6
+[NR_RRC] I SIB1 freq: offsetToPointA 86
+[GNB_APP] I F1AP: gNB idx 0 gNB_DU_id 3584, gNB_DU_name oai-rfsim, TAC 1 MCC/MNC/length 1/1/2 cellID 12345678
+[GNB_APP] I ngran_DU: Configuring Cell 0 for TDD
+[GNB_APP] I SDAP layer is disabled
+[GNB_APP] I Data Radio Bearer count 1
+[UTIL]   I threadCreate() for TASK_SCTP: creating thread with affinity ffffffff, priority 50
+[X2AP]   I X2AP is disabled.
+[UTIL]   I threadCreate() for TASK_GNB_APP: creating thread with affinity ffffffff, priority 50
+[UTIL]   I threadCreate() for TASK_GTPV1_U: creating thread with affinity ffffffff, priority 50
+[UTIL]   I threadCreate() for TASK_DU_F1: creating thread with affinity ffffffff, priority 50
+[F1AP]   I Starting F1AP at DU
+[F1AP]   I F1-C DU IPaddr 10.0.6.226, connect to F1-C CU 10.0.6.56, binding GTP to 10.0.6.226
+[GTPU]   I Initializing UDP for local address 10.0.6.226 with port 50011
+[GTPU]   I Created gtpu instance id: 89
+[UTIL]   I threadCreate() for GTPrx_89: creating thread with affinity ffffffff, priority 50
+[UTIL]   I threadCreate() for time source iq samples: creating thread with affinity ffffffff, priority 2
+[UTIL]   I time manager configuration: [time source: iq_samples] [mode: standalone] [server IP: 127.0.0.1} [server port: 7374] (server IP/port not used)
+[MAC]    E the CU reported F1AP Setup Failure, is there a configuration mismatch?
+[CONFIG] function config_yaml_init returned 0
+DL frequency 3319680000: band 78, UL frequency 3319680000
+[INFO  tini (1)] Spawned child process '/opt/oai-gnb/bin/entrypoint.sh' with pid '2'
+[INFO  tini (1)] Main child exited normally (with status '1')
+==================================
+/proc/sys/kernel/core_pattern=|/usr/lib/systemd/systemd-coredump %P %u %g %s %t %c %h
+No configuration file /opt/oai-gnb/etc/gnb.conf found: attempting to find YAML config
+==================================
+== Configuration file:
+Active_gNBs:
+  - oai-rfsim
+Asn1_verbosity: "none"
+gNBs:
+  - gNB_ID: 0xe00
+    gNB_DU_ID: 0xe00
+    gNB_name: "oai-rfsim"
+    tracking_area_code: "1"
+    plmn_list:
+      - mcc: "001"
+        mnc: "01"
+        mnc_length: "2"
+        snssaiList:
+          - sd: "0xffffff"
+            sst: "1"
+    nr_cellid: 12345678
+    min_rxtxtime: 6
+    servingCellConfigCommon:
+      - physCellId: 0
+        absoluteFrequencySSB: 621312
+        dl_absoluteFrequencyPointA: 620040
+        dl_offstToCarrier: 0
+        dl_subcarrierSpacing: 1
+        dl_carrierBandwidth: 106
+        initialDLBWPlocationAndBandwidth: 28875
+        initialDLBWPsubcarrierSpacing: 1
+        initialDLBWPcontrolResourceSetZero: 11
+        initialDLBWPsearchSpaceZero: 0
+        ul_frequencyBand: 78
+        ul_offstToCarrier: 0
+        ul_subcarrierSpacing: 1
+        ul_carrierBandwidth: 106
+        pMax: 20
+        initialULBWPlocationAndBandwidth: 28875
+        initialULBWPsubcarrierSpacing: 1
+        prach_ConfigurationIndex: 98
+        prach_msg1_FDM: 0
+        prach_msg1_FrequencyStart: 0
+        zeroCorrelationZoneConfig: 12
+        preambleReceivedTargetPower: -104
+        preambleTransMax: 6
+        powerRampingStep: 1
+        ssb_perRACH_OccasionAndCB_PreamblesPerSSB_PR: 4
+        ssb_perRACH_OccasionAndCB_PreamblesPerSSB: 15
+        ra_ContentionResolutionTimer: 7
+        rsrp_ThresholdSSB: 19
+        prach_RootSequenceIndex_PR: 2
+        prach_RootSequenceIndex: 1
+        msg1_SubcarrierSpacing: 1
+        restrictedSetConfig: 0
+        msg3_DeltaPreamble: 1
+        p0_NominalWithGrant: -90
+        pucchGroupHopping: 0
+        hoppingId: 40
+        p0_nominal: -90
+        ssb_PositionsInBurst_Bitmap: 1
+        ssb_periodicityServingCell: 2
+        dmrs_TypeA_Position: 0
+        subcarrierSpacing: 1
+        referenceSubcarrierSpacing: 1
+        dl_UL_TransmissionPeriodicity: 6
+        nrofDownlinkSlots: 7
+        nrofDownlinkSymbols: 6
+        nrofUplinkSlots: 2
+        nrofUplinkSymbols: 4
+        ssPBCH_BlockPower: -25
+    SCTP:
+      SCTP_INSTREAMS: 2
+      SCTP_OUTSTREAMS: 2
+MACRLCs:
+  - num_cc: 1
+    tr_s_preference: "local_L1"
+    tr_n_preference: "f1"
+    local_n_address: "10.0.6.226"
+    remote_n_address: "10.0.6.56"
+    local_n_address_f1u: 10.0.6.226
+local_n_portd: 2153
+remote_n_portd: 2153
+pusch_TargetSNRx10: 200
+pucch_TargetSNRx10: 200
+L1s:
+  - num_cc: 1
+    tr_n_preference: "local_mac"
+    prach_dtx_threshold: 200
+    pucch0_dtx_threshold: 150
+    ofdm_offset_divisor: 8
+RUs:
+  - local_rf: "yes"
+    nb_tx: 1
+    nb_rx: 1
+    att_tx: 0
+    att_rx: 0
+bands: [78]
+max_pdschReferenceSignalPower: -27
+max_rxgain: 114
+eNB_instances: [0]
+clock_src: "internal"
+rfsimulator:
+  serveraddr: server
+log_config:
+  global_log_level: "info"
+  hw_log_level: "info"
+  phy_log_level: "info"
+  mac_log_level: "info"
+  rlc_log_level: "info"
+  f1ap_log_level: "info"
+==================================
+== Load USRP binaries
+==================================
+== Starting gNB soft modem
+Additional option(s): -E --rfsim --log_config.global_log_options level,nocolor
+/opt/oai-gnb/bin/nr-softmodem -O /opt/oai-gnb/etc/gnb.yaml -E --rfsim --log_config.global_log_options level,nocolor
+CMDLINE: "/opt/oai-gnb/bin/nr-softmodem" "-O" "/opt/oai-gnb/etc/gnb.yaml" "-E" "--rfsim" "--log_config.global_log_options" "level,nocolor" 
+[UTIL]   W mlockall() failed: 12, Cannot allocate memory
+[UTIL]   I running in SA mode (no --phy-test, --do-ra, --nsa option present)
+[OPT]    I OPT disabled
+[HW]     I Version: Branch: HEAD Abrev. Hash: ed4cca814a Date: Thu Jan 22 14:27:15 2026 +0000
+[GNB_APP] I Initialized RAN Context: RC.nb_nr_inst = 1, RC.nb_nr_macrlc_inst = 1, RC.nb_nr_L1_inst = 1, RC.nb_RU = 1, RC.nb_nr_CC[0] = 1
+[NR_PHY] I Initializing gNB RAN context: RC.nb_nr_L1_inst = 1 
+[NR_PHY] I Registered with MAC interface module (0x55b6fd186420)
+[NR_PHY] I Initializing NR L1: RC.nb_nr_L1_inst = 1
+[NR_PHY] I L1_RX_THREAD_CORE -1 (15)
+[NR_PHY] I TX_AMP = 519 (-36 dBFS)
+[PHY]    I No prs_config configuration found..!!
+[GNB_APP] I pdsch_AntennaPorts N1 1 N2 1 XP 1 pusch_AntennaPorts 1
+[GNB_APP] I minTXRXTIME 6
+[GNB_APP] I CSI-RS 0, SRS 0, report type 0 (ssb_rsrp), 256 QAM may be on, delta_MCS off, maxMIMO_Layers -1, HARQ feedback enabled, num DLHARQ:16, num ULHARQ:16
+[GNB_APP] I No RedCap configuration found
+[GNB_APP] I No PTRS configuration found
+[GNB_APP] I sr_ProhibitTimer 0, sr_TransMax 64, sr_ProhibitTimer_v1700 0, t300 400, t301 400, t310 2000, n310 10, t311 3000, n311 1, t319 400
+[NR_MAC] I Candidates per PDCCH aggregation level on UESS: L1: 0, L2: 2, L4: 0, L8: 0, L16: 0
+[RRC]    I Read in ServingCellConfigCommon (PhysCellId 0, ABSFREQSSB 621312, DLBand 78, ABSFREQPOINTA 620040, DLBW 106,RACH_TargetReceivedPower -104
+[RRC]    I absoluteFrequencySSB 621312 corresponds to 3319680000 Hz
+[NR_MAC] I TDD period index = 6, based on the sum of dl_UL_TransmissionPeriodicity from Pattern1 (5.000000 ms) and Pattern2 (0.000000 ms): Total = 5.000000 ms
+[UTIL]   I threadCreate() for MAC_STATS: creating thread with affinity ffffffff, priority 2
+[NR_MAC] I PUSCH Target 200, PUCCH Target 150, PUCCH Failure 10, PUSCH Failure 10
+[NR_PHY] I Copying 0 blacklisted PRB to L1 context
+[NR_MAC] I Set TX antenna number to 1, Set RX antenna number to 1 (num ssb 1: 80000000,0)
+[NR_MAC] I TDD period index = 6, based on the sum of dl_UL_TransmissionPeriodicity from Pattern1 (5.000000 ms) and Pattern2 (0.000000 ms): Total = 5.000000 ms
+[NR_MAC] I Set TDD configuration period to: 8 DL slots, 3 UL slots, 10 slots per period (NR_TDD_UL_DL_Pattern is 7 DL slots, 2 UL slots, 6 DL symbols, 4 UL symbols)
+[NR_MAC] I Configured 1 TDD patterns (total slots: pattern1 = 10, pattern2 = 0)
+[NR_PHY] I Set TDD Period Configuration: 2 periods per frame, 20 slots to be configured (8 DL, 3 UL)
+[NR_PHY] I TDD period configuration: slot 0 is DOWNLINK
+[NR_PHY] I TDD period configuration: slot 1 is DOWNLINK
+[NR_PHY] I TDD period configuration: slot 2 is DOWNLINK
+[NR_PHY] I TDD period configuration: slot 3 is DOWNLINK
+[NR_PHY] I TDD period configuration: slot 4 is DOWNLINK
+[NR_PHY] I TDD period configuration: slot 5 is DOWNLINK
+[NR_PHY] I TDD period configuration: slot 6 is DOWNLINK
+[NR_PHY] I TDD period configuration: slot 7 is FLEXIBLE: DDDDDDFFFFUUUU
+[NR_PHY] I TDD period configuration: slot 8 is UPLINK
+[NR_PHY] I TDD period configuration: slot 9 is UPLINK
+[NR_MAC] I Command line parameters for OAI UE: -C 3319680000 -r 106 --numerology 1 --band 78 --ssb 516 -E
+[NR_PHY] I dlfreq:3319680 ulfreq:3319680 deltaduplex:0 khz, uldl_min_offset:0 khz
+[NR_PHY] I dlfreq:3319680 ulfreq:3319680 deltaduplex:0 khz, uldl_min_offset:0 khz
+[NR_PHY] I dlfreq:3319680 ulfreq:3319680 deltaduplex:0 khz, uldl_min_offset:0 khz
+[NR_PHY] I dlfreq:3319680 ulfreq:3319680 deltaduplex:0 khz, uldl_min_offset:0 khz
+[PHY]    I DL frequency 3319680000 Hz, UL frequency 3319680000 Hz: band 78, uldl offset 0 Hz
+[PHY]    I Initializing frame parms for mu 1, N_RB 106, Ncp 0
+[PHY]    I Init: N_RB_DL 106, first_carrier_offset 900, nb_prefix_samples 108,nb_prefix_samples0 132, ofdm_symbol_size 1536
+[NR_MAC] I TDA index 0: start 0 length 13 k2 6
+[NR_MAC] I TDA index 1: start 10 length 3 k2 6
+[NR_RRC] I SIB1 freq: offsetToPointA 86
+[GNB_APP] I F1AP: gNB idx 0 gNB_DU_id 3584, gNB_DU_name oai-rfsim, TAC 1 MCC/MNC/length 1/1/2 cellID 12345678
+[GNB_APP] I ngran_DU: Configuring Cell 0 for TDD
+[GNB_APP] I SDAP layer is disabled
+[GNB_APP] I Data Radio Bearer count 1
+[UTIL]   I threadCreate() for TASK_SCTP: creating thread with affinity ffffffff, priority 50
+[X2AP]   I X2AP is disabled.
+[UTIL]   I threadCreate() for TASK_GNB_APP: creating thread with affinity ffffffff, priority 50
+[UTIL]   I threadCreate() for TASK_GTPV1_U: creating thread with affinity ffffffff, priority 50
+[UTIL]   I threadCreate() for TASK_DU_F1: creating thread with affinity ffffffff, priority 50
+[F1AP]   I Starting F1AP at DU
+[UTIL]   I threadCreate() for time source iq samples: creating thread with affinity ffffffff, priority 2
+[F1AP]   I F1-C DU IPaddr 10.0.6.226, connect to F1-C CU 10.0.6.56, binding GTP to 10.0.6.226
+[UTIL]   I time manager configuration: [time source: iq_samples] [mode: standalone] [server IP: 127.0.0.1} [server port: 7374] (server IP/port not used)
+[GTPU]   I Initializing UDP for local address 10.0.6.226 with port 50011
+[GTPU]   I Created gtpu instance id: 90
+[UTIL]   I threadCreate() for GTPrx_90: creating thread with affinity ffffffff, priority 50
+[MAC]    E the CU reported F1AP Setup Failure, is there a configuration mismatch?
+[CONFIG] function config_yaml_init returned 0
+DL frequency 3319680000: band 78, UL frequency 3319680000
+[INFO  tini (1)] Spawned child process '/opt/oai-gnb/bin/entrypoint.sh' with pid '2'
+[INFO  tini (1)] Main child exited normally (with status '1')
