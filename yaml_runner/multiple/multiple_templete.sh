@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # --- Configuration ---
-CHART_ROOT="/home/johnson/O2-Automation-Engine/Mutated Configuration Generator/charts/oai-5g-ran"
+CHART_ROOT="/home/johnson/O2-Automation-Engine/Mutated_Configuration_Generator/charts/oai-5g-ran"
 # Mutation test case source
 TEST_CASE_DIR="/home/johnson/O2-Automation-Engine/yaml_runner/multiple/multiple_templete_yaml"
 # Standard configuration source
-STD_VAL_DIR="/home/johnson/O2-Automation-Engine/Mutated Configuration Generator/workable_yaml"
+STD_VAL_DIR="/home/johnson/O2-Automation-Engine/Mutated_Configuration_Generator/workable_yaml"
 # Log storage path
 BASE_LOG_DIR="/home/johnson/O2-Automation-Engine/yaml_runner/multiple/multiple_templete_logs/$(date +%Y%m%d_%H%M%S)"
 
@@ -49,8 +49,10 @@ for CASE_FILE in "${TEST_FILES[@]}"; do
     FILENAME=$(basename "$CASE_FILE")
     CURRENT_CASE="${FILENAME%.*}"
     CASE_LOG_DIR="$BASE_LOG_DIR/$CURRENT_CASE"
-    mkdir -p "$CASE_LOG_DIR"
     
+    mkdir -p "$CASE_LOG_DIR/logs"
+    mkdir -p "$CASE_LOG_DIR/conf"
+
     # Initialize configuration: Use all files from Standard path by default
     target_cu=$STD_CU
     target_du=$STD_DU
@@ -61,10 +63,18 @@ for CASE_FILE in "${TEST_FILES[@]}"; do
     if [[ "$FILENAME" == oai-cu* ]]; then
         target_cu="$CASE_FILE"
         subject="CU (Mutated)"
+        cp "$target_cu" "$CASE_LOG_DIR/conf/mutated_cu.yaml"
+        cp "$target_du" "$CASE_LOG_DIR/conf/default_du.yaml"
+        cp "$target_ue" "$CASE_LOG_DIR/conf/default_ue.yaml"
     elif [[ "$FILENAME" == oai-du* ]]; then
         target_du="$CASE_FILE"
         subject="DU (Mutated)"
+        cp "$target_cu" "$CASE_LOG_DIR/conf/default_cu.yaml"
+        cp "$target_du" "$CASE_LOG_DIR/conf/mutated_du.yaml"
+        cp "$target_ue" "$CASE_LOG_DIR/conf/default_ue.yaml"
     fi
+
+
 
     # --- Display current execution combination and progress ---
     echo -e "\n${CYAN}================================================================${NC}"
@@ -80,11 +90,11 @@ for CASE_FILE in "${TEST_FILES[@]}"; do
 
     # 1. Start background Stern log monitoring
     # Use sed to filter noise for CU/DU, while UE logs everything
-    stern "oai-cu" -n $NAMESPACE --output raw > "$CASE_LOG_DIR/cu.log" 2>/dev/null &
+    stern "oai-cu" -n $NAMESPACE --output raw > "$CASE_LOG_DIR/logs/cu.log" 2>/dev/null &
     STERN_CU_PID=$!
-    stern "oai-du" -n $NAMESPACE --output raw > "$CASE_LOG_DIR/du.log" 2>/dev/null &
+    stern "oai-du" -n $NAMESPACE --output raw > "$CASE_LOG_DIR/logs/du.log" 2>/dev/null &
     STERN_DU_PID=$!
-    stern "oai-nr-ue" -n $NAMESPACE --output raw > "$CASE_LOG_DIR/ue.log" 2>/dev/null &
+    stern "oai-nr-ue" -n $NAMESPACE --output raw > "$CASE_LOG_DIR/logs/ue.log" 2>/dev/null &
     STERN_UE_PID=$!
 
     # 2. Deployment process (fixed wait time to capture error states)

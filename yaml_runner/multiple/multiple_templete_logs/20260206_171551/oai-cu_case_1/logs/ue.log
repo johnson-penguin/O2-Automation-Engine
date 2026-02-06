@@ -117,3 +117,5 @@ CMDLINE: "/opt/oai-nr-ue/bin/nr-uesoftmodem" "-O" "/opt/oai-nr-ue/etc/nr-ue.conf
 Press ^C again to trigger immediate shutdown
 [NAS]    I [UE 0] Received NAS_DEREGISTRATION_REQ
 [NAS]    W No GUTI, cannot trigger deregistration request.
+[NR_RRC] I RRC moved into IDLE state
+[NAS]    I [UE 0] Received NR_NAS_CONN_RELEASE_IND: cause OTHER

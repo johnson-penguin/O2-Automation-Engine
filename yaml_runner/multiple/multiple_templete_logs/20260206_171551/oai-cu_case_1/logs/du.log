@@ -1,8 +1,8 @@
 Ncat: Version 7.95 ( https://nmap.org/ncat )
-Ncat: Connected to 10.0.6.50:38472.
-Ncat: 0 bytes sent, 0 bytes received in 3.80 seconds.
+Ncat: Connected to 10.0.6.219:38472.
+Ncat: 0 bytes sent, 0 bytes received in 4.30 seconds.
 Resolving hostnames and patching config...
-Resolved CU_IP=10.0.6.50
+Resolved CU_IP=10.0.6.219
 ==================================
 /proc/sys/kernel/core_pattern=|/usr/lib/systemd/systemd-coredump %P %u %g %s %t %c %h
 No configuration file /opt/oai-gnb/etc/gnb.conf found: attempting to find YAML config
@@ -81,13 +81,13 @@ MACRLCs:
   - num_cc: 1
     tr_s_preference: "local_L1"
     tr_n_preference: "f1"
-    local_n_address: "10.0.6.209"
-    remote_n_address: "10.0.6.50"
-    local_n_portd: 2153
-    remote_n_portd: 2153
-    pusch_TargetSNRx10: 200
-    pucch_TargetSNRx10: 200
-    local_n_address_f1u: 10.0.6.209
+    local_n_address: "10.0.6.90"
+    remote_n_address: "10.0.6.219"
+    local_n_address_f1u: 10.0.6.90
+local_n_portd: 2153
+remote_n_portd: 2153
+pusch_TargetSNRx10: 200
+pucch_TargetSNRx10: 200
 L1s:
   - num_cc: 1
     tr_n_preference: "local_mac"
@@ -100,11 +100,11 @@ RUs:
     nb_rx: 1
     att_tx: 0
     att_rx: 0
-    bands: [78]
-    max_pdschReferenceSignalPower: -27
-    max_rxgain: 114
-    eNB_instances: [0]
-    clock_src: "internal"
+bands: [78]
+max_pdschReferenceSignalPower: -27
+max_rxgain: 114
+eNB_instances: [0]
+clock_src: "internal"
 rfsimulator:
   serveraddr: server
 log_config:
@@ -127,7 +127,7 @@ CMDLINE: "/opt/oai-gnb/bin/nr-softmodem" "-O" "/opt/oai-gnb/etc/gnb.yaml" "-E" "
 [HW]     I Version: Branch: HEAD Abrev. Hash: ed4cca814a Date: Thu Jan 22 14:27:15 2026 +0000
 [GNB_APP] I Initialized RAN Context: RC.nb_nr_inst = 1, RC.nb_nr_macrlc_inst = 1, RC.nb_nr_L1_inst = 1, RC.nb_RU = 1, RC.nb_nr_CC[0] = 1
 [NR_PHY] I Initializing gNB RAN context: RC.nb_nr_L1_inst = 1 
-[NR_PHY] I Registered with MAC interface module (0x55c8338b53a0)
+[NR_PHY] I Registered with MAC interface module (0x55822fcf1420)
 [NR_PHY] I Initializing NR L1: RC.nb_nr_L1_inst = 1
 [NR_PHY] I L1_RX_THREAD_CORE -1 (15)
 [NR_PHY] I TX_AMP = 519 (-36 dBFS)
@@ -143,7 +143,7 @@ CMDLINE: "/opt/oai-gnb/bin/nr-softmodem" "-O" "/opt/oai-gnb/etc/gnb.yaml" "-E" "
 [RRC]    I absoluteFrequencySSB 621312 corresponds to 3319680000 Hz
 [NR_MAC] I TDD period index = 6, based on the sum of dl_UL_TransmissionPeriodicity from Pattern1 (5.000000 ms) and Pattern2 (0.000000 ms): Total = 5.000000 ms
 [UTIL]   I threadCreate() for MAC_STATS: creating thread with affinity ffffffff, priority 2
-[NR_MAC] I PUSCH Target 200, PUCCH Target 200, PUCCH Failure 10, PUSCH Failure 10
+[NR_MAC] I PUSCH Target 200, PUCCH Target 150, PUCCH Failure 10, PUSCH Failure 10
 [NR_PHY] I Copying 0 blacklisted PRB to L1 context
 [NR_MAC] I Set TX antenna number to 1, Set RX antenna number to 1 (num ssb 1: 80000000,0)
 [NR_MAC] I TDD period index = 6, based on the sum of dl_UL_TransmissionPeriodicity from Pattern1 (5.000000 ms) and Pattern2 (0.000000 ms): Total = 5.000000 ms
@@ -181,10 +181,10 @@ CMDLINE: "/opt/oai-gnb/bin/nr-softmodem" "-O" "/opt/oai-gnb/etc/gnb.yaml" "-E" "
 [UTIL]   I threadCreate() for TASK_GTPV1_U: creating thread with affinity ffffffff, priority 50
 [UTIL]   I threadCreate() for TASK_DU_F1: creating thread with affinity ffffffff, priority 50
 [F1AP]   I Starting F1AP at DU
-[F1AP]   I F1-C DU IPaddr 10.0.6.209, connect to F1-C CU 10.0.6.50, binding GTP to 10.0.6.209
-[GTPU]   I Initializing UDP for local address 10.0.6.209 with port 2153
-[GTPU]   I Created gtpu instance id: 89
-[UTIL]   I threadCreate() for GTPrx_89: creating thread with affinity ffffffff, priority 50
+[F1AP]   I F1-C DU IPaddr 10.0.6.90, connect to F1-C CU 10.0.6.219, binding GTP to 10.0.6.90
+[GTPU]   I Initializing UDP for local address 10.0.6.90 with port 50011
+[GTPU]   I Created gtpu instance id: 90
+[UTIL]   I threadCreate() for GTPrx_90: creating thread with affinity ffffffff, priority 50
 [UTIL]   I threadCreate() for time source iq samples: creating thread with affinity ffffffff, priority 2
 [UTIL]   I time manager configuration: [time source: iq_samples] [mode: standalone] [server IP: 127.0.0.1} [server port: 7374] (server IP/port not used)
 [MAC]    E the CU reported F1AP Setup Failure, is there a configuration mismatch?
@@ -270,13 +270,13 @@ MACRLCs:
   - num_cc: 1
     tr_s_preference: "local_L1"
     tr_n_preference: "f1"
-    local_n_address: "10.0.6.209"
-    remote_n_address: "10.0.6.50"
-    local_n_portd: 2153
-    remote_n_portd: 2153
-    pusch_TargetSNRx10: 200
-    pucch_TargetSNRx10: 200
-    local_n_address_f1u: 10.0.6.209
+    local_n_address: "10.0.6.90"
+    remote_n_address: "10.0.6.219"
+    local_n_address_f1u: 10.0.6.90
+local_n_portd: 2153
+remote_n_portd: 2153
+pusch_TargetSNRx10: 200
+pucch_TargetSNRx10: 200
 L1s:
   - num_cc: 1
     tr_n_preference: "local_mac"
@@ -289,11 +289,11 @@ RUs:
     nb_rx: 1
     att_tx: 0
     att_rx: 0
-    bands: [78]
-    max_pdschReferenceSignalPower: -27
-    max_rxgain: 114
-    eNB_instances: [0]
-    clock_src: "internal"
+bands: [78]
+max_pdschReferenceSignalPower: -27
+max_rxgain: 114
+eNB_instances: [0]
+clock_src: "internal"
 rfsimulator:
   serveraddr: server
 log_config:
@@ -316,7 +316,7 @@ CMDLINE: "/opt/oai-gnb/bin/nr-softmodem" "-O" "/opt/oai-gnb/etc/gnb.yaml" "-E" "
 [HW]     I Version: Branch: HEAD Abrev. Hash: ed4cca814a Date: Thu Jan 22 14:27:15 2026 +0000
 [GNB_APP] I Initialized RAN Context: RC.nb_nr_inst = 1, RC.nb_nr_macrlc_inst = 1, RC.nb_nr_L1_inst = 1, RC.nb_RU = 1, RC.nb_nr_CC[0] = 1
 [NR_PHY] I Initializing gNB RAN context: RC.nb_nr_L1_inst = 1 
-[NR_PHY] I Registered with MAC interface module (0x55837b0843a0)
+[NR_PHY] I Registered with MAC interface module (0x5565dc9b0420)
 [NR_PHY] I Initializing NR L1: RC.nb_nr_L1_inst = 1
 [NR_PHY] I L1_RX_THREAD_CORE -1 (15)
 [NR_PHY] I TX_AMP = 519 (-36 dBFS)
@@ -332,7 +332,7 @@ CMDLINE: "/opt/oai-gnb/bin/nr-softmodem" "-O" "/opt/oai-gnb/etc/gnb.yaml" "-E" "
 [RRC]    I absoluteFrequencySSB 621312 corresponds to 3319680000 Hz
 [NR_MAC] I TDD period index = 6, based on the sum of dl_UL_TransmissionPeriodicity from Pattern1 (5.000000 ms) and Pattern2 (0.000000 ms): Total = 5.000000 ms
 [UTIL]   I threadCreate() for MAC_STATS: creating thread with affinity ffffffff, priority 2
-[NR_MAC] I PUSCH Target 200, PUCCH Target 200, PUCCH Failure 10, PUSCH Failure 10
+[NR_MAC] I PUSCH Target 200, PUCCH Target 150, PUCCH Failure 10, PUSCH Failure 10
 [NR_PHY] I Copying 0 blacklisted PRB to L1 context
 [NR_MAC] I Set TX antenna number to 1, Set RX antenna number to 1 (num ssb 1: 80000000,0)
 [NR_MAC] I TDD period index = 6, based on the sum of dl_UL_TransmissionPeriodicity from Pattern1 (5.000000 ms) and Pattern2 (0.000000 ms): Total = 5.000000 ms
@@ -370,10 +370,10 @@ CMDLINE: "/opt/oai-gnb/bin/nr-softmodem" "-O" "/opt/oai-gnb/etc/gnb.yaml" "-E" "
 [UTIL]   I threadCreate() for TASK_GTPV1_U: creating thread with affinity ffffffff, priority 50
 [UTIL]   I threadCreate() for TASK_DU_F1: creating thread with affinity ffffffff, priority 50
 [F1AP]   I Starting F1AP at DU
-[F1AP]   I F1-C DU IPaddr 10.0.6.209, connect to F1-C CU 10.0.6.50, binding GTP to 10.0.6.209
-[GTPU]   I Initializing UDP for local address 10.0.6.209 with port 2153
-[GTPU]   I Created gtpu instance id: 91
-[UTIL]   I threadCreate() for GTPrx_91: creating thread with affinity ffffffff, priority 50
+[F1AP]   I F1-C DU IPaddr 10.0.6.90, connect to F1-C CU 10.0.6.219, binding GTP to 10.0.6.90
+[GTPU]   I Initializing UDP for local address 10.0.6.90 with port 50011
+[GTPU]   I Created gtpu instance id: 90
+[UTIL]   I threadCreate() for GTPrx_90: creating thread with affinity ffffffff, priority 50
 [UTIL]   I threadCreate() for time source iq samples: creating thread with affinity ffffffff, priority 2
 [UTIL]   I time manager configuration: [time source: iq_samples] [mode: standalone] [server IP: 127.0.0.1} [server port: 7374] (server IP/port not used)
 [MAC]    E the CU reported F1AP Setup Failure, is there a configuration mismatch?
@@ -459,13 +459,13 @@ MACRLCs:
   - num_cc: 1
     tr_s_preference: "local_L1"
     tr_n_preference: "f1"
-    local_n_address: "10.0.6.209"
-    remote_n_address: "10.0.6.50"
-    local_n_portd: 2153
-    remote_n_portd: 2153
-    pusch_TargetSNRx10: 200
-    pucch_TargetSNRx10: 200
-    local_n_address_f1u: 10.0.6.209
+    local_n_address: "10.0.6.90"
+    remote_n_address: "10.0.6.219"
+    local_n_address_f1u: 10.0.6.90
+local_n_portd: 2153
+remote_n_portd: 2153
+pusch_TargetSNRx10: 200
+pucch_TargetSNRx10: 200
 L1s:
   - num_cc: 1
     tr_n_preference: "local_mac"
@@ -478,11 +478,11 @@ RUs:
     nb_rx: 1
     att_tx: 0
     att_rx: 0
-    bands: [78]
-    max_pdschReferenceSignalPower: -27
-    max_rxgain: 114
-    eNB_instances: [0]
-    clock_src: "internal"
+bands: [78]
+max_pdschReferenceSignalPower: -27
+max_rxgain: 114
+eNB_instances: [0]
+clock_src: "internal"
 rfsimulator:
   serveraddr: server
 log_config:
@@ -505,7 +505,7 @@ CMDLINE: "/opt/oai-gnb/bin/nr-softmodem" "-O" "/opt/oai-gnb/etc/gnb.yaml" "-E" "
 [HW]     I Version: Branch: HEAD Abrev. Hash: ed4cca814a Date: Thu Jan 22 14:27:15 2026 +0000
 [GNB_APP] I Initialized RAN Context: RC.nb_nr_inst = 1, RC.nb_nr_macrlc_inst = 1, RC.nb_nr_L1_inst = 1, RC.nb_RU = 1, RC.nb_nr_CC[0] = 1
 [NR_PHY] I Initializing gNB RAN context: RC.nb_nr_L1_inst = 1 
-[NR_PHY] I Registered with MAC interface module (0x55b5602af3a0)
+[NR_PHY] I Registered with MAC interface module (0x562c3bf74420)
 [NR_PHY] I Initializing NR L1: RC.nb_nr_L1_inst = 1
 [NR_PHY] I L1_RX_THREAD_CORE -1 (15)
 [NR_PHY] I TX_AMP = 519 (-36 dBFS)
@@ -521,7 +521,7 @@ CMDLINE: "/opt/oai-gnb/bin/nr-softmodem" "-O" "/opt/oai-gnb/etc/gnb.yaml" "-E" "
 [RRC]    I absoluteFrequencySSB 621312 corresponds to 3319680000 Hz
 [NR_MAC] I TDD period index = 6, based on the sum of dl_UL_TransmissionPeriodicity from Pattern1 (5.000000 ms) and Pattern2 (0.000000 ms): Total = 5.000000 ms
 [UTIL]   I threadCreate() for MAC_STATS: creating thread with affinity ffffffff, priority 2
-[NR_MAC] I PUSCH Target 200, PUCCH Target 200, PUCCH Failure 10, PUSCH Failure 10
+[NR_MAC] I PUSCH Target 200, PUCCH Target 150, PUCCH Failure 10, PUSCH Failure 10
 [NR_PHY] I Copying 0 blacklisted PRB to L1 context
 [NR_MAC] I Set TX antenna number to 1, Set RX antenna number to 1 (num ssb 1: 80000000,0)
 [NR_MAC] I TDD period index = 6, based on the sum of dl_UL_TransmissionPeriodicity from Pattern1 (5.000000 ms) and Pattern2 (0.000000 ms): Total = 5.000000 ms
@@ -556,16 +556,16 @@ CMDLINE: "/opt/oai-gnb/bin/nr-softmodem" "-O" "/opt/oai-gnb/etc/gnb.yaml" "-E" "
 [UTIL]   I threadCreate() for TASK_SCTP: creating thread with affinity ffffffff, priority 50
 [X2AP]   I X2AP is disabled.
 [UTIL]   I threadCreate() for TASK_GNB_APP: creating thread with affinity ffffffff, priority 50
-[UTIL]   I threadCreate() for TASK_GTPV1_U: creating thread with affinity ffffffff, priority 50
 [UTIL]   I threadCreate() for TASK_DU_F1: creating thread with affinity ffffffff, priority 50
 [F1AP]   I Starting F1AP at DU
-[F1AP]   I F1-C DU IPaddr 10.0.6.209, connect to F1-C CU 10.0.6.50, binding GTP to 10.0.6.209
-[GTPU]   I Initializing UDP for local address 10.0.6.209 with port 2153
-[GTPU]   I Created gtpu instance id: 89
-[UTIL]   I threadCreate() for GTPrx_89: creating thread with affinity ffffffff, priority 50
+[F1AP]   I F1-C DU IPaddr 10.0.6.90, connect to F1-C CU 10.0.6.219, binding GTP to 10.0.6.90
+[GTPU]   I Initializing UDP for local address 10.0.6.90 with port 50011
+[UTIL]   I threadCreate() for TASK_GTPV1_U: creating thread with affinity ffffffff, priority 50
+[GTPU]   I Created gtpu instance id: 90
+[UTIL]   I threadCreate() for GTPrx_90: creating thread with affinity ffffffff, priority 50
 [UTIL]   I threadCreate() for time source iq samples: creating thread with affinity ffffffff, priority 2
-[UTIL]   I time manager configuration: [time source: iq_samples] [mode: standalone] [server IP: 127.0.0.1} [server port: 7374] (server IP/port not used)
 [MAC]    E the CU reported F1AP Setup Failure, is there a configuration mismatch?
+[UTIL]   I time manager configuration: [time source: iq_samples] [mode: standalone] [server IP: 127.0.0.1} [server port: 7374] (server IP/port not used)
 [CONFIG] function config_yaml_init returned 0
 DL frequency 3319680000: band 78, UL frequency 3319680000
 [INFO  tini (1)] Spawned child process '/opt/oai-gnb/bin/entrypoint.sh' with pid '2'
