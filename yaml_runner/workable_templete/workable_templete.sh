@@ -2,13 +2,16 @@
 
 # --- Configuration ---
 QUIET_MODE=true  
-CHART_ROOT="/home/johnson/O2-Automation-Engine/Mutated Configuration Generator/charts/oai-5g-ran"
-VALUES_DIR="/home/johnson/O2-Automation-Engine/Mutated Configuration Generator/workable_yaml"
+CHART_ROOT="/home/johnson/O2-Automation-Engine/Mutated_Configuration_Generator/charts/oai-5g-ran"
+VALUES_DIR="/home/johnson/O2-Automation-Engine/Mutated_Configuration_Generator/workable_yaml"
 NAMESPACE="johnson-ns"
 LOG_DIR="./workable_templete_logs/$(date +%Y%m%d_%H%M%S)"
 mkdir -p "$LOG_DIR"
 
 # ----------------
+
+
+
 
 set -e
 
