@@ -91,7 +91,7 @@ config:
         sd: "0xffffff"
 
 custom:
-  gNB_ID: 0xe02
+  gNB_ID: 0xe00
   nr_cellid: 11
   tr_s_preference: "f1"
   SCTP_INSTREAMS: 2

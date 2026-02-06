@@ -13,8 +13,8 @@ data:
     Asn1_verbosity: "none"
 
     gNBs:
-    - gNB_ID: 0xe00
-      gNB_DU_ID: 0xe00
+    - gNB_ID: {{ .Values.custom.gNB_ID }}
+      gNB_DU_ID: {{ .Values.custom.gNB_ID }}
       gNB_name: "du-rfsim"
       tracking_area_code: 1
       plmn_list:
@@ -24,88 +24,90 @@ data:
           snssaiList:
             - sst: 1
               sd: 0xffffff
-      nr_cellid: 12345678
-      min_rxtxtime: 6
+      nr_cellid: {{ .Values.custom.nr_cellid }}
+      min_rxtxtime: {{ .Values.custom.min_rxtxtime }}
       servingCellConfigCommon:
-        - physCellId: 0
-          absoluteFrequencySSB: 621312
-          dl_absoluteFrequencyPointA: 620040
-          dl_offstToCarrier: 0
-          dl_subcarrierSpacing: 1
-          dl_carrierBandwidth: 106
-          initialDLBWPlocationAndBandwidth: 28875
-          initialDLBWPsubcarrierSpacing: 1
-          initialDLBWPcontrolResourceSetZero: 11
-          initialDLBWPsearchSpaceZero: 0
-          ul_frequencyBand: 78
-          ul_offstToCarrier: 0
-          ul_subcarrierSpacing: 1
-          ul_carrierBandwidth: 106
-          pMax: 20
-          initialULBWPlocationAndBandwidth: 28875
-          initialULBWPsubcarrierSpacing: 1
-          prach_ConfigurationIndex: 98
-          prach_msg1_FDM: 0
-          prach_msg1_FrequencyStart: 0
-          zeroCorrelationZoneConfig: 12
-          preambleReceivedTargetPower: -104
-          preambleTransMax: 6
-          powerRampingStep: 1
-          ssb_perRACH_OccasionAndCB_PreamblesPerSSB_PR: 4
-          ssb_perRACH_OccasionAndCB_PreamblesPerSSB: 15
-          ra_ContentionResolutionTimer: 7
-          rsrp_ThresholdSSB: 19
-          prach_RootSequenceIndex_PR: 2
-          prach_RootSequenceIndex: 1
-          msg1_SubcarrierSpacing: 1
-          restrictedSetConfig: 0
-          msg3_DeltaPreamble: 1
-          p0_NominalWithGrant: -90
-          pucchGroupHopping: 0
-          hoppingId: 40
-          p0_nominal: -90
-          ssb_PositionsInBurst_Bitmap: 1
-          ssb_periodicityServingCell: 2
-          dmrs_TypeA_Position: 0
-          subcarrierSpacing: 1
-          referenceSubcarrierSpacing: 1
-          dl_UL_TransmissionPeriodicity: 6
-          nrofDownlinkSlots: 7
-          nrofDownlinkSymbols: 6
-          nrofUplinkSlots: 2
-          nrofUplinkSymbols: 4
-          ssPBCH_BlockPower: -25
-      SCTP:
-        SCTP_INSTREAMS: 2
-        SCTP_OUTSTREAMS: 2
+        - physCellId: {{ .Values.servingCellConfigCommon.physCellId }}
+          absoluteFrequencySSB: {{ .Values.servingCellConfigCommon.absoluteFrequencySSB }}
+          dl_absoluteFrequencyPointA: {{ .Values.servingCellConfigCommon.dl_absoluteFrequencyPointA }}
+          dl_offstToCarrier: {{ .Values.servingCellConfigCommon.dl_offstToCarrier }}
+          dl_subcarrierSpacing: {{ .Values.servingCellConfigCommon.dl_subcarrierSpacing }}
+          dl_carrierBandwidth: {{ .Values.servingCellConfigCommon.dl_carrierBandwidth }}
+          initialDLBWPlocationAndBandwidth: {{ .Values.servingCellConfigCommon.initialDLBWPlocationAndBandwidth }}
+          initialDLBWPsubcarrierSpacing: {{ .Values.servingCellConfigCommon.initialDLBWPsubcarrierSpacing }}
+          initialDLBWPcontrolResourceSetZero: {{ .Values.servingCellConfigCommon.initialDLBWPcontrolResourceSetZero }}
+          initialDLBWPsearchSpaceZero: {{ .Values.servingCellConfigCommon.initialDLBWPsearchSpaceZero }}
+          ul_frequencyBand: {{ .Values.servingCellConfigCommon.ul_frequencyBand }}
+          ul_offstToCarrier: {{ .Values.servingCellConfigCommon.ul_offstToCarrier }}
+          ul_subcarrierSpacing: {{ .Values.servingCellConfigCommon.ul_subcarrierSpacing }}
+          ul_carrierBandwidth: {{ .Values.servingCellConfigCommon.ul_carrierBandwidth }}
+          pMax: {{ .Values.servingCellConfigCommon.pMax }}
+          initialULBWPlocationAndBandwidth: {{ .Values.servingCellConfigCommon.initialULBWPlocationAndBandwidth }}
+          initialULBWPsubcarrierSpacing: {{ .Values.servingCellConfigCommon.initialULBWPsubcarrierSpacing }}
+          prach_ConfigurationIndex: {{ .Values.servingCellConfigCommon.prach_ConfigurationIndex }}
+          prach_msg1_FDM: {{ .Values.servingCellConfigCommon.prach_msg1_FDM }}
+          prach_msg1_FrequencyStart: {{ .Values.servingCellConfigCommon.prach_msg1_FrequencyStart }}
+          zeroCorrelationZoneConfig: {{ .Values.servingCellConfigCommon.zeroCorrelationZoneConfig }}
+          preambleReceivedTargetPower: {{ .Values.servingCellConfigCommon.preambleReceivedTargetPower }}
+          preambleTransMax: {{ .Values.servingCellConfigCommon.preambleTransMax }}
+          powerRampingStep: {{ .Values.servingCellConfigCommon.powerRampingStep }}
+          ssb_perRACH_OccasionAndCB_PreamblesPerSSB_PR: {{ .Values.servingCellConfigCommon.ssb_perRACH_OccasionAndCB_PreamblesPerSSB_PR }}
+          ssb_perRACH_OccasionAndCB_PreamblesPerSSB: {{ .Values.servingCellConfigCommon.ssb_perRACH_OccasionAndCB_PreamblesPerSSB }}
+          ra_ContentionResolutionTimer: {{ .Values.servingCellConfigCommon.ra_ContentionResolutionTimer }}
+          rsrp_ThresholdSSB: {{ .Values.servingCellConfigCommon.rsrp_ThresholdSSB }}
+          prach_RootSequenceIndex_PR: {{ .Values.servingCellConfigCommon.prach_RootSequenceIndex_PR }}
+          prach_RootSequenceIndex: {{ .Values.servingCellConfigCommon.prach_RootSequenceIndex }}
+          msg1_SubcarrierSpacing: {{ .Values.servingCellConfigCommon.msg1_SubcarrierSpacing }}
+          restrictedSetConfig: {{ .Values.servingCellConfigCommon.restrictedSetConfig }}
+          msg3_DeltaPreamble: {{ .Values.servingCellConfigCommon.msg3_DeltaPreamble }}
+          p0_NominalWithGrant: {{ .Values.servingCellConfigCommon.p0_NominalWithGrant }}
+          pucchGroupHopping: {{ .Values.servingCellConfigCommon.pucchGroupHopping }}
+          hoppingId: {{ .Values.servingCellConfigCommon.hoppingId }}
+          p0_nominal: {{ .Values.servingCellConfigCommon.p0_nominal }}
+          ssb_PositionsInBurst_Bitmap: {{ .Values.servingCellConfigCommon.ssb_PositionsInBurst_Bitmap }}
+          ssb_periodicityServingCell: {{ .Values.servingCellConfigCommon.ssb_periodicityServingCell }}
+          dmrs_TypeA_Position: {{ .Values.servingCellConfigCommon.dmrs_TypeA_Position }}
+          subcarrierSpacing: {{ .Values.servingCellConfigCommon.subcarrierSpacing }}
+          referenceSubcarrierSpacing: {{ .Values.servingCellConfigCommon.referenceSubcarrierSpacing }}
+          dl_UL_TransmissionPeriodicity: {{ .Values.servingCellConfigCommon.dl_UL_TransmissionPeriodicity }}
+          nrofDownlinkSlots: {{ .Values.servingCellConfigCommon.nrofDownlinkSlots }}
+          nrofDownlinkSymbols: {{ .Values.servingCellConfigCommon.nrofDownlinkSymbols }}
+          nrofUplinkSlots: {{ .Values.servingCellConfigCommon.nrofUplinkSlots }}
+          nrofUplinkSymbols: {{ .Values.servingCellConfigCommon.nrofUplinkSymbols }}
+          ssPBCH_BlockPower: {{ .Values.servingCellConfigCommon.ssPBCH_BlockPower }}
+    SCTP:
+      SCTP_INSTREAMS: {{ .Values.SCTP.SCTP_INSTREAMS }}
+      SCTP_OUTSTREAMS: {{ .Values.SCTP.SCTP_OUTSTREAMS }}
+
     MACRLCs:
-    - num_cc: 1
-      tr_s_preference: "local_L1"
-      tr_n_preference: "f1"
+    - num_cc: {{ .Values.MACRLCs.num_cc }}
+      tr_s_preference: "{{ .Values.MACRLCs.tr_s_preference }}"
+      tr_n_preference: "{{ .Values.MACRLCs.tr_n_preference }}"
       local_n_address: "192.168.71.171"
       remote_n_address: "192.168.71.150"
-    local_n_portd: 2153
-    remote_n_portd: 2153
-    pusch_TargetSNRx10: 200
-    pucch_TargetSNRx10: 200
+      local_n_portd: {{ .Values.MACRLCs.local_n_portd }}
+      remote_n_portd: {{ .Values.MACRLCs.remote_n_portd }}
+      pusch_TargetSNRx10: {{ .Values.MACRLCs.pusch_TargetSNRx10 }}
+      pucch_TargetSNRx10: {{ .Values.MACRLCs.pucch_TargetSNRx10 }}
+
     L1s:
-    - num_cc: 1
-      tr_n_preference: "local_mac"
-      prach_dtx_threshold: 200
-      pucch0_dtx_threshold: 150
-      ofdm_offset_divisor: 8 
+    - num_cc: {{ .Values.L1s.num_cc }}
+      tr_n_preference: "{{ .Values.L1s.tr_n_preference }}"
+      prach_dtx_threshold: {{ .Values.L1s.prach_dtx_threshold }}
+      pucch0_dtx_threshold: {{ .Values.L1s.pucch0_dtx_threshold }}
+      ofdm_offset_divisor: {{ .Values.L1s.ofdm_offset_divisor }}
 
     RUs:
-    - local_rf: "yes"
-      nb_tx: 1
-      nb_rx: 1
-      att_tx: 0
-      att_rx: 0
-    bands: [78]
-    max_pdschReferenceSignalPower: -27
-    max_rxgain: 114
-    eNB_instances: [0]
-    clock_src: "internal"
+    - local_rf: {{ .Values.RUs.local_rf }}
+      nb_tx: {{ .Values.RUs.nb_tx }}
+      nb_rx: {{ .Values.RUs.nb_rx }}
+      att_tx: {{ .Values.RUs.att_tx }}
+      att_rx: {{ .Values.RUs.att_rx }}
+      bands: {{ .Values.RUs.bands }}
+      max_pdschReferenceSignalPower: {{ .Values.RUs.max_pdschReferenceSignalPower }}
+      max_rxgain: {{ .Values.RUs.max_rxgain }}
+      eNB_instances: {{ .Values.RUs.eNB_instances }}
+      clock_src: "{{ .Values.RUs.clock_src }}"
 
     rfsimulator:
       serveraddr: server
