@@ -1,0 +1,107 @@
+kubernetesDistribution: Vanilla
+nfimage:
+  repository: docker.io/oaisoftwarealliance/oai-gnb
+  version: develop
+  pullPolicy: IfNotPresent
+serviceAccount:
+  create: true
+  annotations: {}
+multus:
+  enabled: false
+  interfaces:
+  - name: n2
+    hostInterface: eth0
+    ipAdd: 172.21.6.90
+    netmask: 22
+    mac: 
+    defaultRoute: 172.21.7.254
+    type: macvlan
+    mode: bridge
+  - name: f1
+    hostInterface: eth0
+    ipAdd: 172.21.16.90
+    netmask: 22
+    type: macvlan
+    mode: bridge
+  - name: n3
+    hostInterface: eth0
+    ipAdd: 172.21.8.91
+    netmask: 22
+    gateway: 172.21.11.254
+    enabled: true
+    type: macvlan
+    mode: bridge
+  - name: e2
+    hostInterface: eth0
+    ipAdd: 192.168.85.93
+    enabled: true
+    netmask: 24
+    type: macvlan
+    mode: bridge
+config:
+  timeZone: Europe/Paris
+  useAdditionalOptions: a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6 # Modified:
+    --log_config.global_log_options level,nocolor -> a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6
+  cuName: oai-cu
+  amfHost: 192.168.8.108
+  tac: 1
+  enableE2: false
+  ricHost: oai-flexric
+  f1uPort: 2153
+  gdbstack: 1
+  plmn_list:
+  - mcc: 001
+    mnc: 01
+    mnc_length: 2
+    snssaiList:
+    - sst: 1
+      sd: 0xffffff
+custom:
+  gNB_ID: 3586
+  nr_cellid: 11
+  tr_s_preference: f1
+  SCTP_INSTREAMS: 2
+  SCTP_OUTSTREAMS: 2
+  drb_ciphering: yes
+  drb_integrity: no
+  ciphering_algorithms:
+  - nea0
+  integrity_algorithms:
+  - nia2
+  - nia0
+start:
+  cu: true
+  tcpdump: false
+includeTcpDumpContainer: false
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0
+securityContext:
+  capabilities:
+    add:
+    - SYS_NICE
+    drop:
+    - ALL
+tcpdumpimage:
+  repository: docker.io/oaisoftwarealliance/oai-tcpdump-init
+  version: alpine-3.20
+  pullPolicy: IfNotPresent
+resources:
+  define: false
+  limits:
+    nf:
+      cpu: 200m
+      memory: 512Mi
+    tcpdump:
+      cpu: 100m
+      memory: 128Mi
+  requests:
+    nf:
+      cpu: 200m
+      memory: 512Mi
+    tcpdump:
+      cpu: 100m
+      memory: 128Mi
+terminationGracePeriodSeconds: 5
+nodeSelector: {}
+nodeName: null

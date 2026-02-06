@@ -1,0 +1,96 @@
+kubernetesDistribution: Vanilla
+nfimage:
+  repository: docker.io/oaisoftwarealliance/oai-gnb
+  version: develop
+  pullPolicy: IfNotPresent
+serviceAccount:
+  create: true
+  annotations: {}
+multus:
+  enabled: false
+  interfaces:
+  - name: f1c
+    hostInterface: eth0
+    ipAdd: 172.21.6.90
+    enabled: true
+    netmask: 22
+    defaultRoute: 172.21.7.254
+    type: macvlan
+    mode: bridge
+  - name: f1u
+    hostInterface: eth0
+    ipAdd: 172.21.16.90
+    enabled: true
+    netmask: 22
+    type: macvlan
+    mode: bridge
+  - name: e2
+    hostInterface: eth0
+    ipAdd: 192.168.85.91
+    enabled: true
+    netmask: 24
+    type: macvlan
+    mode: bridge
+  - name: ru
+    hostInterface: eth0
+    enabled: true
+    ipAdd: 192.168.80.90
+    netmask: 24
+    gateway: 192.168.80.1
+    type: macvlan
+    mode: bridge
+    mtu: 1500
+config:
+  timeZone: Europe/Paris
+  useAdditionalOptions: -E --rfsim --log_config.global_log_options level,nocolor
+  duName: oai-rfsim
+  usrp: rfsim
+  cuHost: oai-cu
+  enableE2: false
+  f1duPort: 2153
+  ricHost: false # Modified: oai-flexric -> false
+  gdbstack: 1
+  tac: 1
+  plmn_list:
+  - mcc: 001
+    mnc: 01
+    mnc_length: 2
+    snssaiList:
+    - sst: 1
+      sd: 1234567890 # Modified: 0xffffff -> 1234567890
+start:
+  du: true
+  tcpdump: false
+includeTcpDumpContainer: false
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0
+securityContext:
+  capabilities:
+    add:
+    - SYS_NICE
+    drop:
+    - ALL
+tcpdumpimage:
+  repository: docker.io/oaisoftwarealliance/oai-tcpdump-init
+  version: alpine-3.20
+  pullPolicy: IfNotPresent
+resources:
+  define: false
+  limits:
+    nf:
+      cpu: 2000m
+      memory: 2Gi
+    tcpdump:
+      cpu: 200m
+      memory: 128Mi
+  requests:
+    nf:
+      cpu: 2000m
+      memory: 2Gi
+    tcpdump:
+      cpu: 100m
+      memory: 128Mi
+terminationGracePeriodSeconds: 5
+nodeSelector: {}
+nodeName: null

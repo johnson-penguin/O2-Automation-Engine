@@ -1,0 +1,59 @@
+kubernetesDistribution: Vanilla
+nfimage:
+  repository: docker.io/oaisoftwarealliance/oai-nr-ue
+  version: develop
+  pullPolicy: IfNotPresent
+serviceAccount:
+  create: true
+  annotations: {}
+config:
+  timeZone: Europe/Paris
+  rfSimServer: oai-ran
+  fullImsi: true # Modified: 001010000062653 -> true
+  fullKey: 8baf473f2f8fd09487cccbd7097c6862
+  opc: 8e27b6af0e692e750f32667a3b14605d
+  gdbstack: 1
+  dnn: Internet
+  sst: 1
+  radio: rfsim
+  useAdditionalOptions: -E --rfsim -r 106 --numerology 1 -C 3319680000 --log_config.global_log_options
+    level,nocolor
+start:
+  nrue: true
+  tcpdump: false
+includeTcpDumpContainer: false
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0
+securityContext:
+  privileged: true
+  capabilities:
+    add:
+    - NET_ADMIN
+    - NET_RAW
+    - SYS_NICE
+    drop:
+    - ALL
+tcpdumpimage:
+  repository: docker.io/oaisoftwarealliance/oai-tcpdump-init
+  version: alpine-3.20
+  pullPolicy: IfNotPresent
+resources:
+  define: false
+  limits:
+    nf:
+      cpu: 1500m
+      memory: 1Gi
+    tcpdump:
+      cpu: 200m
+      memory: 128Mi
+  requests:
+    nf:
+      cpu: 1500m
+      memory: 1Gi
+    tcpdump:
+      cpu: 100m
+      memory: 128Mi
+terminationGracePeriodSeconds: 5
+nodeSelector: {}
+nodeName: null

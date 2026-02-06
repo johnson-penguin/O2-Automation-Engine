@@ -1,0 +1,502 @@
+[
+    {
+        "filename": "oai-cu_case_1.yaml",
+        "changes": [
+            {
+                "key": "config.amfHost",
+                "original_value": "192.168.8.108",
+                "error_value": true
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_2.yaml",
+        "changes": [
+            {
+                "key": "config.f1uPort",
+                "original_value": 2153,
+                "error_value": -1
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_3.yaml",
+        "changes": [
+            {
+                "key": "config.enableE2",
+                "original_value": false,
+                "error_value": true
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_4.yaml",
+        "changes": [
+            {
+                "key": "config.cuName",
+                "original_value": "oai-cu",
+                "error_value": ""
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_5.yaml",
+        "changes": [
+            {
+                "key": "config.gdbstack",
+                "original_value": 1,
+                "error_value": "X9kL2mN8pQ5rT1vB6yZ3wU0eS7cJa1b"
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_6.yaml",
+        "changes": [
+            {
+                "key": "config.plmn_list[0].mcc",
+                "original_value": "001",
+                "error_value": "9999"
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_7.yaml",
+        "changes": [
+            {
+                "key": "config.plmn_list[0].mnc",
+                "original_value": "01",
+                "error_value": null
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_8.yaml",
+        "changes": [
+            {
+                "key": "config.plmn_list[0].mnc_length",
+                "original_value": "2",
+                "error_value": true
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_9.yaml",
+        "changes": [
+            {
+                "key": "config.plmn_list[0].snssaiList[0].sd",
+                "original_value": "0xffffff",
+                "error_value": "M4n5O6p7Q8r9S0t1U2v3W4x5Y6z7A8b9"
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_10.yaml",
+        "changes": [
+            {
+                "key": "config.plmn_list[0].snssaiList[0].sst",
+                "original_value": "1",
+                "error_value": "-1"
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_11.yaml",
+        "changes": [
+            {
+                "key": "config.ricHost",
+                "original_value": "oai-flexric",
+                "error_value": false
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_12.yaml",
+        "changes": [
+            {
+                "key": "config.tac",
+                "original_value": 1,
+                "error_value": -5
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_13.yaml",
+        "changes": [
+            {
+                "key": "config.timeZone",
+                "original_value": "Europe/Paris",
+                "error_value": ""
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_14.yaml",
+        "changes": [
+            {
+                "key": "config.useAdditionalOptions",
+                "original_value": "--log_config.global_log_options level,nocolor",
+                "error_value": null
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_15.yaml",
+        "changes": [
+            {
+                "key": "config.amfHost",
+                "original_value": "192.168.8.108",
+                "error_value": "not.an.ip"
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_16.yaml",
+        "changes": [
+            {
+                "key": "config.f1uPort",
+                "original_value": 2153,
+                "error_value": "port"
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_17.yaml",
+        "changes": [
+            {
+                "key": "config.enableE2",
+                "original_value": false,
+                "error_value": null
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_18.yaml",
+        "changes": [
+            {
+                "key": "config.cuName",
+                "original_value": "oai-cu",
+                "error_value": "hG7jK2lM9nP3qR5sT8vW1xY4zB6cD0eFgH1iJ2k"
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_19.yaml",
+        "changes": [
+            {
+                "key": "config.gdbstack",
+                "original_value": 1,
+                "error_value": -2
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_20.yaml",
+        "changes": [
+            {
+                "key": "config.plmn_list[0].mcc",
+                "original_value": "001",
+                "error_value": ""
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_21.yaml",
+        "changes": [
+            {
+                "key": "config.plmn_list[0].mnc",
+                "original_value": "01",
+                "error_value": "x1y2z3a4b5c6d7e8f9g0h1i2j3k4l5"
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_22.yaml",
+        "changes": [
+            {
+                "key": "config.plmn_list[0].mnc_length",
+                "original_value": "2",
+                "error_value": ""
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_23.yaml",
+        "changes": [
+            {
+                "key": "config.plmn_list[0].snssaiList[0].sd",
+                "original_value": "0xffffff",
+                "error_value": null
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_24.yaml",
+        "changes": [
+            {
+                "key": "config.plmn_list[0].snssaiList[0].sst",
+                "original_value": "1",
+                "error_value": true
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_25.yaml",
+        "changes": [
+            {
+                "key": "config.ricHost",
+                "original_value": "oai-flexric",
+                "error_value": ""
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_26.yaml",
+        "changes": [
+            {
+                "key": "config.tac",
+                "original_value": 1,
+                "error_value": 0
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_27.yaml",
+        "changes": [
+            {
+                "key": "config.timeZone",
+                "original_value": "Europe/Paris",
+                "error_value": true
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_28.yaml",
+        "changes": [
+            {
+                "key": "config.useAdditionalOptions",
+                "original_value": "--log_config.global_log_options level,nocolor",
+                "error_value": "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6"
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_29.yaml",
+        "changes": [
+            {
+                "key": "config.amfHost",
+                "original_value": "192.168.8.108",
+                "error_value": null
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_30.yaml",
+        "changes": [
+            {
+                "key": "config.f1uPort",
+                "original_value": 2153,
+                "error_value": -65535
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_31.yaml",
+        "changes": [
+            {
+                "key": "config.enableE2",
+                "original_value": false,
+                "error_value": "yes"
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_32.yaml",
+        "changes": [
+            {
+                "key": "config.cuName",
+                "original_value": "oai-cu",
+                "error_value": false
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_33.yaml",
+        "changes": [
+            {
+                "key": "config.gdbstack",
+                "original_value": 1,
+                "error_value": "stack"
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_34.yaml",
+        "changes": [
+            {
+                "key": "config.plmn_list[0].mcc",
+                "original_value": "001",
+                "error_value": "abc"
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_35.yaml",
+        "changes": [
+            {
+                "key": "config.plmn_list[0].mnc",
+                "original_value": "01",
+                "error_value": false
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_36.yaml",
+        "changes": [
+            {
+                "key": "config.plmn_list[0].mnc_length",
+                "original_value": "2",
+                "error_value": 3
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_37.yaml",
+        "changes": [
+            {
+                "key": "config.plmn_list[0].snssaiList[0].sd",
+                "original_value": "0xffffff",
+                "error_value": ""
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_38.yaml",
+        "changes": [
+            {
+                "key": "config.plmn_list[0].snssaiList[0].sst",
+                "original_value": "1",
+                "error_value": "r1s2t3u4v5w6x7y8z9a0b1c2d3e4f5g6"
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_39.yaml",
+        "changes": [
+            {
+                "key": "config.ricHost",
+                "original_value": "oai-flexric",
+                "error_value": 12345
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_40.yaml",
+        "changes": [
+            {
+                "key": "config.tac",
+                "original_value": 1,
+                "error_value": "tac"
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_41.yaml",
+        "changes": [
+            {
+                "key": "config.timeZone",
+                "original_value": "Europe/Paris",
+                "error_value": null
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_42.yaml",
+        "changes": [
+            {
+                "key": "config.useAdditionalOptions",
+                "original_value": "--log_config.global_log_options level,nocolor",
+                "error_value": false
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_43.yaml",
+        "changes": [
+            {
+                "key": "config.amfHost",
+                "original_value": "192.168.8.108",
+                "error_value": "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5"
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_44.yaml",
+        "changes": [
+            {
+                "key": "config.f1uPort",
+                "original_value": 2153,
+                "error_value": true
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_45.yaml",
+        "changes": [
+            {
+                "key": "config.enableE2",
+                "original_value": false,
+                "error_value": 1
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_46.yaml",
+        "changes": [
+            {
+                "key": "config.cuName",
+                "original_value": "oai-cu",
+                "error_value": null
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_47.yaml",
+        "changes": [
+            {
+                "key": "config.gdbstack",
+                "original_value": 1,
+                "error_value": "Q1w2E3r4T5y6U7i8O9p0A1s2D3f4G5h6"
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_48.yaml",
+        "changes": [
+            {
+                "key": "config.plmn_list[0].mcc",
+                "original_value": "001",
+                "error_value": 1000
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_49.yaml",
+        "changes": [
+            {
+                "key": "config.plmn_list[0].mnc",
+                "original_value": "01",
+                "error_value": "999"
+            }
+        ]
+    },
+    {
+        "filename": "oai-cu_case_50.yaml",
+        "changes": [
+            {
+                "key": "config.plmn_list[0].snssaiList[0].sd",
+                "original_value": "0xffffff",
+                "error_value": "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6"
+            }
+        ]
+    }
+]
