@@ -142,12 +142,12 @@ graph TD
 | Open5GS Installation for Ubuntu and UE registration                   | ✅     | 2024-10-15 | 本文件紀錄如何在 Ubuntu 環境下，安裝 Open5GS 核心網路。                                                        |
 | [OAI-5G-RAN-on-Kubernetes-Deployment-Guide.md](#smo-installation)     | ✅     | 2024-10-15 | 本文件紀錄如何在 Kubernetes 環境下，利用 Helm Chart 部署 OAI 5G RAN 元件（CU、DU），並透過 RFSimulator 與外部 Core Network (Open5GS) 進行端到端連通測試。                                                        |
 | [Chart-Custom-Config-Guide](#ho-xapp-development)                     | ✅     | 2024-10-23 | 本文件紀錄針對原始 Chart 中 values.yaml 無法有效控制所有關鍵參數的問題，所進行的結構性優化與配置調整。  |
-| [Mutated Configuration Generator](#mutated-configuration-generator)                   | ⏳     | 2024-10-25 | Blocked: waiting for cell shutdown tests to complete    |
-| [Config-Runner](#config-runner)                                                       | ❌    | 2024-10-26 | Failed: RU failed to reactivate, investigating RF issue |
-| [Reasoning Trace Generator (python)](#reasoning-trace-generator-python)               | ⏳     | 2024-10-28 |                                                         |
-| [Reasoning Trace Generator (NEMO-Skills)](#reasoning-trace-generator-nemo-skills)     | ⏳     | 2024-10-28 |                                                         |
-| Performance Benchmarking                                              | ⏳     | 2024-10-28 |                                                         |
-| Documentation and Reporting                                           | ⏳     | 2024-10-30 |                                                         |
+| [Mutated Configuration Generator](#mutated-configuration-generator)                   | ⏳     | 2024-10-25 |     |
+| [Config-Runner](#config-runner)                                                       | ⏳     | 2024-10-26 |     |
+| [Reasoning Trace Generator (python)](#reasoning-trace-generator-python)               | ⏳     | 2024-10-28 |     |
+| [Reasoning Trace Generator (NEMO-Skills)](#reasoning-trace-generator-nemo-skills)     | ⏳     | 2024-10-28 |     |
+| Performance Benchmarking                                              | ⏳     | 2024-10-28 |     |
+| Documentation and Reporting                                           | ⏳     | 2024-10-30 |     |
 
 ## Minimum Requirements
 
@@ -202,6 +202,20 @@ graph TD
 ### High-Level System Architecture
 ![System Architecture](./docs/drawio/LLM-system_model_v7.png)
 ---
+Consists of the following major components:
+The system consists of three main components: 
+- An operator
+    - May be a human, an automated system, or a large language model (LLM) equipped with RAN-specific domain knowledge, including RAN terminology and log semantics. 
+- A management platform
+    - May be an Operations Support System (OSS) used in traditional telecom networks or a Service Management and Orchestration (SMO) framework defined by the O-RAN ALLIANCE.
+- An open and disaggregated RAN.
+    - CU/DU/RU
+
+Through the management platform, the operator configures RAN components and collects operational logs from the disaggregated RAN using standardized open interfaces (e.g., the O2 interface) and YANG models specified by 3GPP
+
+
+
+
 
 
 > [!NOTE]
@@ -252,36 +266,6 @@ graph TD
 > 3. **Use Case Definitions**: List all functional capabilities with clear names
 > 4. **Relationships**: Show interactions between actors and use cases
 
-**Example:**
-
-```mermaid
-graph LR
-    %% Actors
-    NetworkOperator[Network Operator]
-    
-    %% Use Cases
-    subgraph "Energy Saving System"
-        UC1[Monitor<br/>Traffic Load]
-        UC2[Handover UEs<br/>to Neighbor Cell]
-        UC3[Shutdown<br/>Cell]
-        UC4[Activate<br/>Cell]
-    end
-    
-    %% Relationships
-    NetworkOperator -->|Configure Policy| UC1
-    NetworkOperator -->|View Status| UC1
-    
-    UC1 -->|Low Traffic| UC2
-    UC2 -->|UEs Moved| UC3
-    UC1 -->|High Traffic| UC4
-    
-    %% Styling
-    classDef actor fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
-    classDef usecase fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
-    
-    class NetworkOperator actor
-    class UC1,UC2,UC3,UC4 usecase
-```
 
 ## Message Sequence Chart (MSC)
 
@@ -297,7 +281,7 @@ graph LR
 > 5. **Error Scenarios**: Include alternative flows and error handling where relevant
 
 **Example:**
-
+### UC1:
 ### UC2: Handover UEs to Neighbor Cell
 
 This MSC shows the handover procedure when the Energy Saving xApp decides to move UEs from a low-traffic cell to a neighbor cell before shutdown.
